@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {View, FlatList, Image, Text, TouchableHighlight, ActivityIndicator, StyleSheet} from 'react-native';
+import {View, FlatList, Text, ActivityIndicator, StyleSheet} from 'react-native';
 import {queryMovies, comingMovies} from '../common/Service';
 import MovieItemCell from "../widgets/MovieItemCell";
 
