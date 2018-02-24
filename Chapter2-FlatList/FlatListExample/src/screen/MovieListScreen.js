@@ -92,6 +92,9 @@ export default class MovieListScreen extends Component {
       })
     }).catch((e) => {
       console.log("加载失败");
+      that.setState({
+        loaded: true
+      })
     }).done();
   }
   
@@ -139,6 +142,7 @@ export default class MovieListScreen extends Component {
         loaded: true,
       })
     }).catch((error) => {
+      console.log("加载失败");
       that.setState({
         loaded: true
       })
