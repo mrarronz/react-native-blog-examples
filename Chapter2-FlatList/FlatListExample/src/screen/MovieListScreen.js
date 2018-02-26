@@ -63,9 +63,11 @@ export default class MovieListScreen extends Component {
       let movies = [];
       for (let idx in json.subjects) {
         let movieItem = json.subjects[idx];
-        let directors = "";
+        let directors = ""; // 导演
         for (let index in movieItem.directors) {
+          // 得到每一条电影的数据
           let director = movieItem.directors[index];
+          // 将多个导演的名字用空格分隔开显示
           if (directors === "") {
             directors = directors + director.name
           } else {
@@ -73,7 +75,8 @@ export default class MovieListScreen extends Component {
           }
         }
         movieItem["directorNames"] = directors;
-  
+        
+        // 拼装主演的演员名字，多个名字用空格分隔显示
         let actors = "";
         for (let index in movieItem.casts) {
           let actor = movieItem.casts[index];
