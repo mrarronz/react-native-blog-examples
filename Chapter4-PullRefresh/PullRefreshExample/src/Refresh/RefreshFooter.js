@@ -63,10 +63,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     padding: 15,
   },
-  noMoreDataImage: {
-    width: 17,
-    height: 17,
-  },
   refreshingText: {
     fontSize: 12,
     color: "#666666",
