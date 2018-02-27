@@ -117,7 +117,7 @@ export default class MovieListScreen extends Component {
   }
   
   /**
-   * 加载即将上映的电影列表，此处默认城市为北京，取20条数据显示
+   * 加载即将上映的电影列表，并更新sectionData刷新列表
    */
   loadComingMovies() {
     let that = this;
