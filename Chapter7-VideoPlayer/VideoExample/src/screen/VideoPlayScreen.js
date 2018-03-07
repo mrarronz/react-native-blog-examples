@@ -149,12 +149,14 @@ export default class VideoPlayScreen extends Component {
   }
   
   onLoaded(data) {
+    console.log('视频加载完成');
     this.setState({
       duration: data.duration,
     });
   }
   
   onProgressChanged(data) {
+    console.log('视频进度更新');
     if (this.state.isPlaying) {
       this.setState({
         currentTime: data.currentTime,
@@ -163,6 +165,7 @@ export default class VideoPlayScreen extends Component {
   }
   
   onPlayEnd() {
+    console.log('视频播放结束');
     this.setState({
       currentTime: 0,
       isPlaying: false,
@@ -324,5 +327,5 @@ const styles = StyleSheet.create({
     position: 'absolute',
     bottom: 0,
     left: 0
-  }
+  },
 });
