@@ -37,13 +37,14 @@ export default class VideoPlayScreen extends Component {
       currentTime: 0,        // 视频当前播放的时间
       duration: 0,           // 视频的总时长
       isFullScreen: false,     // 当前是否全屏显示
+      playFromBeginning: false, // 是否从头开始播放
     };
   }
   
   render() {
     return (
       <View style={styles.container} onLayout={this._onLayout}>
-        <View style={{ width: this.state.videoWidth, height: this.state.videoHeight }}>
+        <View style={{ width: this.state.videoWidth, height: this.state.videoHeight, backgroundColor:'#000000' }}>
           <Video
             ref={(ref) => this.videoPlayer = ref}
             source={{uri: this.state.videoUrl}}
@@ -51,17 +52,17 @@ export default class VideoPlayScreen extends Component {
             volume={1.0}
             muted={false}
             paused={!this.state.isPlaying}
-            resizeMode={'cover'}
+            resizeMode={'contain'}
             playWhenInactive={false}
             playInBackground={false}
             ignoreSilentSwitch={'ignore'}
             progressUpdateInterval={250.0}
-            onLoadStart={() => { this.onLoadStart() }}
-            onLoad={(data) => { this.onLoaded(data) }}
-            onProgress={(data) => { this.onProgressChanged(data) }}
-            onEnd={() => { this.onPlayEnd() }}
-            onError={() => { this.onPlayError() }}
-            onBuffer={() => { this.onBuffering() }}
+            onLoadStart={this._onLoadStart}
+            onLoad={this._onLoaded}
+            onProgress={this._onProgressChanged}
+            onEnd={this._onPlayEnd}
+            onError={this._onPlayError}
+            onBuffer={this._onBuffering}
             style={{width: this.state.videoWidth, height: this.state.videoHeight}}
           />
           {
@@ -140,43 +141,46 @@ export default class VideoPlayScreen extends Component {
     )
   }
   
-  onLoadStart() {
+  /// -------Video组件回调事件-------
+  
+  _onLoadStart = () => {
     console.log('视频开始加载');
-  }
+  };
   
-  onBuffering() {
+  _onBuffering = () => {
     console.log('视频缓冲中...')
-  }
+  };
   
-  onLoaded(data) {
+  _onLoaded = (data) => {
     console.log('视频加载完成');
     this.setState({
       duration: data.duration,
     });
-  }
+  };
   
-  onProgressChanged(data) {
+  _onProgressChanged = (data) => {
     console.log('视频进度更新');
     if (this.state.isPlaying) {
       this.setState({
         currentTime: data.currentTime,
       })
     }
-  }
+  };
   
-  onPlayEnd() {
+  _onPlayEnd = () => {
     console.log('视频播放结束');
     this.setState({
       currentTime: 0,
       isPlaying: false,
-      showVideoCover: true,
+      playFromBeginning: true
     });
-    this.videoPlayer.seek(0);
-  }
+  };
   
-  onPlayError() {
+  _onPlayError = () => {
     console.log('视频播放失败');
-  }
+  };
+  
+  ///-------控件点击事件-------
   
   /// 控制播放器工具栏的显示和隐藏
   hideControl() {
@@ -209,7 +213,13 @@ export default class VideoPlayScreen extends Component {
     this.setState({
       isPlaying: isPlay,
       showVideoCover: false
-    })
+    });
+    if (this.state.playFromBeginning) {
+      this.videoPlayer.seek(0);
+      this.setState({
+        playFromBeginning: false,
+      })
+    }
   }
   
   /// 点击了工具栏上的播放按钮
@@ -266,6 +276,8 @@ export default class VideoPlayScreen extends Component {
     }
     Orientation.unlockAllOrientations();
   };
+  
+  /// -------外部调用事件方法-------
   
   ///播放视频，提供给外部调用
   playVideo() {
