@@ -5,13 +5,13 @@
  */
 
 import React, { Component } from 'react';
-import RegisterScreen from "./src/screen/RegisterScreen";
+import RootScreen from "./src/screen/RootScreen";
 
 type Props = {};
 export default class App extends Component<Props> {
   render() {
     return (
-      <RegisterScreen/>
+      <RootScreen/>
     );
   }
 }

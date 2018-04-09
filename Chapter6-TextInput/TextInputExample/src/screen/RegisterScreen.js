@@ -1,7 +1,19 @@
 import React, {Component} from 'react';
-import {View, TextInput, TouchableOpacity, Keyboard, Text, KeyboardAvoidingView, StyleSheet} from 'react-native';
+import {
+  TextInput,
+  TouchableOpacity,
+  Keyboard,
+  Text,
+  KeyboardAvoidingView,
+  Dimensions,
+  StyleSheet
+} from 'react-native';
 
 export default class RegisterScreen extends Component {
+  
+  static navigationOptions = {
+    headerTitle: 'RegisterExample'
+  };
   
   constructor(props) {
     super(props);
@@ -15,7 +27,7 @@ export default class RegisterScreen extends Component {
   render() {
     return (
       <TouchableOpacity activeOpacity={1} style={styles.container} onPress={() => {Keyboard.dismiss()}}>
-        <KeyboardAvoidingView behavior={'position'}>
+        <KeyboardAvoidingView style={{flex: 1, width:screenWidth }} behavior={'padding'}>
           <TextInput
             ref={(ref) => this.phoneTextField = ref}
             style={styles.textField}
@@ -32,7 +44,7 @@ export default class RegisterScreen extends Component {
               this.pwdTextField.focus();
             }}
             onChangeText={(text) => {
-              let str = text.replace(/[^0123456789]/, '');
+              let str = text.replace(/[^0123456789]/, ''); // 只允许输入数字
               this.setState({
                 phone: str
               })
@@ -54,7 +66,7 @@ export default class RegisterScreen extends Component {
               this.nickNameField.focus();
             }}
             onChangeText={(text) => {
-              this.setState({password: text.replace(/\s/g, '')});
+              this.setState({password: text.replace(/\s/g, '')}); // 替换输入的空格
             }}
             value={this.state.password}
           />
@@ -73,7 +85,7 @@ export default class RegisterScreen extends Component {
               this.schoolTextField.focus();
             }}
             onChangeText={(text) => {
-              this.setState({nickname: text.replace(/\s/g, '')});
+              this.setState({nickname: text.replace(/\s/g, '')}); // 替换输入的空格
             }}
             value={this.state.nickname}
           />
@@ -105,12 +117,16 @@ export default class RegisterScreen extends Component {
             underlineColorAndroid={'transparent'}
             onSubmitEditing={() => {Keyboard.dismiss()}}
           />
+          <TouchableOpacity activeOpacity={0.7} style={styles.submitButton}>
+            <Text style={styles.submitText}>确定</Text>
+          </TouchableOpacity>
         </KeyboardAvoidingView>
       </TouchableOpacity>
     )
   }
 }
 
+const screenWidth = Dimensions.get('window').width;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -124,7 +140,25 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderRadius: 5,
     borderColor: '#dcdcdc',
-    margin: 10,
-    width: 200
+    marginTop: 10,
+    marginLeft: 10,
+    marginRight: 10,
+    paddingLeft: 10,
+    paddingRight: 10
+  },
+  submitButton: {
+    backgroundColor:'#707aa2',
+    height: 50,
+    borderRadius: 5,
+    marginTop: 20,
+    marginLeft: 10,
+    marginRight: 10,
+    alignItems:'center',
+    justifyContent:'center'
+  },
+  submitText: {
+    fontSize: 16,
+    fontWeight: 'bold',
+    color: 'white'
   }
 });
