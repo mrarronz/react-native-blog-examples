@@ -10,14 +10,15 @@ export const videoList = [
   "http://bbt.lcedu.net:8810/SD/2017qingdao/xiaoxueshuxue/grade2/1.mp4",
   "http://bbt.lcedu.net:8810/SD/2017qingdao/xiaoxueEnglish/grade5/b/1.mp4",
   "http://bbt.lcedu.net:8810/SD/2017qingdao/xiaoxueshuxue/grade5/1.mp4",
-  "http://bbt.lcedu.net:8810/SD/2017qingdao/xiaoxueEnglish/grade3/a/1.mp4"
+  "http://bbt.lcedu.net:8810/SD/2017qingdao/xiaoxueEnglish/grade3/a/1.mp4",
+  "http://upload.lcedu.net/data/uploads/2018/0409/17/9c9b0c15-bdd7-4fd7-babc-75fc51e28497.mp4"
 ];
 
 export default class VideoListScreen extends React.Component {
   
-  static navigationOptions = {
-    headerTitle: '视频列表'
-  };
+  static navigationOptions = ({navigation}) => ({
+    headerTitle: (navigation.state.routeName === 'Mode1') ? '列表模式' : '全屏模式',
+  });
   
   render() {
     return (
@@ -42,7 +43,11 @@ export default class VideoListScreen extends React.Component {
   };
   
   itemSelected(url) {
-    this.props.navigation.navigate('VideoPlay', {url: url});
+    if (this.props.navigation.state.routeName === 'Mode1') {
+      this.props.navigation.navigate('VideoPlay', {url: url});
+    } else {
+      this.props.navigation.navigate('FullPlayer', {url: url});
+    }
   }
 }
 

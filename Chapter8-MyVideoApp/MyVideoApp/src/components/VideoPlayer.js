@@ -123,7 +123,7 @@ export default class VideoPlayer extends React.Component {
               <TouchableOpacity activeOpacity={0.3} onPress={this._onTapPlayButton}>
                 <Image
                   style={styles.control_play_btn}
-                  source={this.state.pause ? require('../image/icon_control_play.png') : require('../image/icon_control_pause.png')}
+                  source={this.state.isPaused ? require('../image/icon_control_play.png') : require('../image/icon_control_pause.png')}
                 />
               </TouchableOpacity>
               <Text style={styles.timeText}>{formatTime(this.state.currentTime)}</Text>
@@ -329,6 +329,7 @@ export function formatTime(second) {
   return [zero(h), zero(i), zero(s)].join(":");
 }
 export const screenWidth = Dimensions.get('window').width;
+export const screenHeight = Dimensions.get('window').height;
 export const defaultVideoHeight = screenWidth * 9/16;
 export const isIPhoneX = DeviceInfo.isIPhoneX_deprecated;
 export const statusBarHeight = isIPhoneX ? 44 : 20;
