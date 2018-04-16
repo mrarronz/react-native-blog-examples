@@ -1,5 +1,6 @@
 import React from 'react';
 import {FlatList, View, Text, Image, TouchableHighlight, StyleSheet} from 'react-native';
+import {statusBarHeight} from "../components/VideoPlayer";
 
 export const videoList = [
   "http://wvideo.spriteapp.cn/video/2016/0328/56f8ec01d9bfe_wpd.mp4",
@@ -67,5 +68,9 @@ export const styles = StyleSheet.create({
   rightIcon: {
     width: 15,
     height: 15
+  },
+  statusBarView: {
+    backgroundColor:'#000',
+    height:statusBarHeight,
   }
 });

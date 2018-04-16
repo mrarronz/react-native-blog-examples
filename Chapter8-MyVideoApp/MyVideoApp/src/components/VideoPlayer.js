@@ -7,7 +7,9 @@ import {
   Dimensions,
   StyleSheet,
   TouchableOpacity,
-  TouchableWithoutFeedback
+  TouchableWithoutFeedback,
+  DeviceInfo,
+  Platform
 } from 'react-native';
 import PropTypes from 'prop-types';
 import Video from 'react-native-video';
@@ -321,6 +323,10 @@ export function formatTime(second) {
 }
 export const screenWidth = Dimensions.get('window').width;
 export const defaultVideoHeight = screenWidth * 9/16;
+export const isIPhoneX = DeviceInfo.isIPhoneX_deprecated;
+export const statusBarHeight = isIPhoneX ? 44 : 20;
+export const isSystemIOS = (Platform.OS === 'ios');
+
 const styles = StyleSheet.create({
   playButton: {
     width: 50,

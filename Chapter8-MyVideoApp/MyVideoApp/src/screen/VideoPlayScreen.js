@@ -1,6 +1,6 @@
 import React from 'react';
-import {View, ScrollView, Text, Image, SafeAreaView, TouchableHighlight} from 'react-native';
-import VideoPlayer, {defaultVideoHeight} from "../components/VideoPlayer";
+import {View, ScrollView, Text, Image, BackHandler, TouchableHighlight} from 'react-native';
+import VideoPlayer, {defaultVideoHeight, isSystemIOS, statusBarHeight} from "../components/VideoPlayer";
 import Orientation from "react-native-orientation";
 import {videoList, styles} from "./VideoListScreen";
 
@@ -16,16 +16,29 @@ export default class VideoPlayScreen extends React.Component {
       isFullScreen: false,
       currentUrl: this.props.navigation.state.params.url,
       videoHeight: defaultVideoHeight
-    }
+    };
+    BackHandler.addEventListener('hardwareBackPress', this._backButtonPress);
+  }
+  
+  componentWillUnmount(){
+    BackHandler.removeEventListener('hardwareBackPress', this._backButtonPress);
   }
   
   render() {
+    let statusBarView = null;
+    let videoTopHeight = 0;
+    if (isSystemIOS) {
+      statusBarView =
+        (<View style={[{backgroundColor:'#000'}, this.state.isFullScreen ? {height: 0} : {height: statusBarHeight}]}/>);
+      videoTopHeight = this.state.isFullScreen ? 0 : statusBarHeight;
+    }
     return (
       <View style={styles.container} onLayout={this._onLayoutChange}>
+        {statusBarView}
         <ScrollView style={[styles.container, {marginTop: this.state.videoHeight}]}>
           {
             videoList.map((item, index) => {
-              let isSelected = (this.state.currentUrl == item);
+              let isSelected = (this.state.currentUrl === item);
               return (
                 <TouchableHighlight key={index} underlayColor={'#dcdcdc'} onPress={() => {this.itemSelected(item)}}>
                   <View style={styles.itemContainer}>
@@ -39,7 +52,7 @@ export default class VideoPlayScreen extends React.Component {
         </ScrollView>
         <VideoPlayer
           ref={(ref) => this.videoPlayer = ref}
-          style={{position:'absolute', left: 0, top: 0}}
+          style={{position:'absolute', left: 0, top: videoTopHeight}}
           videoURL={this.state.currentUrl}
           videoTitle={'视频标题'}
           onChangeOrientation={this._onOrientationChanged}
@@ -48,6 +61,15 @@ export default class VideoPlayScreen extends React.Component {
       </View>
     )
   }
+  
+  _backButtonPress = () => {
+    if (this.state.isFullScreen) {
+      Orientation.lockToPortrait();
+    } else {
+      this.props.navigation.goBack();
+    }
+    return true;
+  };
   
   itemSelected(url) {
     this.setState({
