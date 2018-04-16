@@ -225,7 +225,7 @@ export default class VideoPlayer extends React.Component {
   _onPlayEnd = () => {
     console.log('播放结束');
     this.setState({
-      currentTime: 0.0,
+      currentTime: 0,
       isPaused: true,
       playFromBeginning: true,
       isShowVideoCover: this.state.hasCover
@@ -268,13 +268,8 @@ export default class VideoPlayer extends React.Component {
     this.videoRef.seek(currentTime);
     if (this.state.isPaused) {
       this.setState({
-        currentTime: currentTime,
         isPaused: false,
         isShowVideoCover: false
-      })
-    } else {
-      this.setState({
-        currentTime: currentTime
       })
     }
   };
@@ -292,14 +287,14 @@ export default class VideoPlayer extends React.Component {
   };
   
   updateVideo(videoUrl, seekTime, videoTitle) {
+    let title = (videoTitle != null) ? videoTitle : this.state.videoTitle;
     this.setState({
       videoUrl: videoUrl,
-      videoTitle: videoTitle,
-      currentTime: seekTime,
+      videoTitle: title,
       isPaused: false,
       isShowVideoCover: false,
     });
-    this.videoRef.seek(seekTime)
+    this.videoRef.seek(seekTime);
   }
   
   updateLayout(width, height, isFullScreen) {
@@ -324,8 +319,8 @@ export function formatTime(second) {
   };
   return [zero(h), zero(i), zero(s)].join(":");
 }
-const screenWidth = Dimensions.get('window').width;
-const defaultVideoHeight = screenWidth * 9/16;
+export const screenWidth = Dimensions.get('window').width;
+export const defaultVideoHeight = screenWidth * 9/16;
 const styles = StyleSheet.create({
   playButton: {
     width: 50,
