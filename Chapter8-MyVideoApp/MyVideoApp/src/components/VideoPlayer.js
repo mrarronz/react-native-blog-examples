@@ -39,6 +39,7 @@ export default class VideoPlayer extends React.Component {
       hasCover = false;
     }
     this.state = {
+      x: 0,
       videoWidth: screenWidth,
       videoHeight: defaultVideoHeight,
       videoUrl: this.props.videoURL,
@@ -71,7 +72,7 @@ export default class VideoPlayer extends React.Component {
           volume={1.0}
           muted={false}
           ignoreSilentSwitch={"ignore"}
-          style={{width: this.state.videoWidth, height: this.state.videoHeight}}
+          style={{position:'absolute', left: this.state.x, top: 0, width: this.state.videoWidth-2*this.state.x, height: this.state.videoHeight}}
           paused={this.state.isPaused}
           onLoadStart={this._onLoadStart}
           onBuffer={this._onBuffering}
@@ -300,7 +301,13 @@ export default class VideoPlayer extends React.Component {
   }
   
   updateLayout(width, height, isFullScreen) {
+    let xPadding = 0;
+    if (isFullScreen) {
+      // 全屏模式下iPhone X左右两边需要留出状态栏的部分，避免视频被刘海遮住
+      xPadding = isIPhoneX ? statusBarHeight : 0;
+    }
     this.setState({
+      x: xPadding,
       videoWidth: width,
       videoHeight: height,
       isFullScreen: isFullScreen

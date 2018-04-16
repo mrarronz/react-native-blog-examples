@@ -62,6 +62,7 @@ export default class VideoPlayScreen extends React.Component {
     )
   }
   
+  /// 处理安卓物理返回键，横屏时点击返回键回到竖屏，再次点击回到上个界面
   _backButtonPress = () => {
     if (this.state.isFullScreen) {
       Orientation.lockToPortrait();
@@ -82,7 +83,7 @@ export default class VideoPlayScreen extends React.Component {
     if (isFullScreen) {
       Orientation.lockToPortrait();
     } else {
-      Orientation.lockToLandscape();
+      Orientation.lockToLandscapeRight();
     }
   };
   
