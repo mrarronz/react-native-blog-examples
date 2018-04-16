@@ -308,13 +308,8 @@ export default class VideoPlayerScreen extends React.Component {
     this.videoPlayer.seek(currentTime);
     if (this.state.isPaused) {
       this.setState({
-        currentTime: currentTime,
         isPaused: false,
         showVideoCover: false
-      })
-    } else {
-      this.setState({
-        currentTime: currentTime
       })
     }
   }
