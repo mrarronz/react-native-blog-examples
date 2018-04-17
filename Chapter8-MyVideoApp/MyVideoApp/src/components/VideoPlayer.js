@@ -15,6 +15,7 @@ import PropTypes from 'prop-types';
 import Video from 'react-native-video';
 import Orientation from "react-native-orientation";
 import SelectDefinitionView from "./SelectDefinitionView";
+import SelectVideoView from "./SelectVideoView";
 
 export default class VideoPlayer extends React.Component {
 
@@ -58,7 +59,8 @@ export default class VideoPlayer extends React.Component {
       volume: 1.0,   // 音量大小
       playRate: 1.0, // 播放速率
       lastSingleTapTime: 0,   //上次单点击视频区域的时间
-      isDefinitionShow: false,
+      isDefinitionShow: false, // 是否显示清晰度切换界面
+      isVideoListShow: false,  // 是否显示选集界面
     }
   }
   
@@ -239,7 +241,6 @@ export default class VideoPlayer extends React.Component {
         {
           this.state.isFullScreen && this.state.isDefinitionShow ?
             <SelectDefinitionView
-              ref={(ref) => this.definitionView = ref}
               selectedIndex={2}
               style={{
                 position:'absolute',
@@ -250,6 +251,21 @@ export default class VideoPlayer extends React.Component {
               }}
               onItemSelected={(index) => this.onDefinitionItemSelected(index)}
               onCloseWindow={() => { this.setState({isDefinitionShow: false}) }}
+            /> : null
+        }
+        {
+          this.state.isFullScreen && this.state.isVideoListShow ?
+            <SelectVideoView
+              currentUrl={this.state.videoUrl}
+              style={{
+                position:'absolute',
+                top: 0,
+                left: 0,
+                width: this.state.videoWidth,
+                height: this.state.videoHeight,
+              }}
+              onItemSelected={(url) => this.onVideoListSwitch(url)}
+              onCloseWindow={() => { this.setState({isVideoListShow: false}) }}
             /> : null
         }
       </View>
@@ -359,7 +375,10 @@ export default class VideoPlayer extends React.Component {
   
   // 点击选集
   _onTapSelectVideo = () => {
-  
+    this.setState({
+      isVideoListShow: true,
+      isShowControl: false
+    })
   };
   
   // 点击截屏
@@ -388,6 +407,13 @@ export default class VideoPlayer extends React.Component {
     })
   }
   
+  onVideoListSwitch(url) {
+    this.updateVideo(url, 0, null);
+    this.setState({
+      isVideoListShow: false
+    })
+  }
+  
   /// --------外部调用方法--------
   
   updateVideo(videoUrl, seekTime, videoTitle) {
@@ -412,6 +438,13 @@ export default class VideoPlayer extends React.Component {
       videoWidth: width,
       videoHeight: height,
       isFullScreen: isFullScreen
+    })
+  }
+  
+  stop() {
+    this.setState({
+      isPaused: true,
+      currentTime: 0
     })
   }
   

@@ -18,10 +18,12 @@ export default class VideoPlayScreen extends React.Component {
       videoHeight: defaultVideoHeight
     };
     BackHandler.addEventListener('hardwareBackPress', this._backButtonPress);
+    Orientation.addOrientationListener(this._orientationDidChange);
   }
   
   componentWillUnmount(){
     BackHandler.removeEventListener('hardwareBackPress', this._backButtonPress);
+    Orientation.removeOrientationListener(this._orientationDidChange);
   }
   
   render() {
@@ -108,5 +110,13 @@ export default class VideoPlayScreen extends React.Component {
       this.videoPlayer.updateLayout(width, width * 9/16, false);
     }
     Orientation.unlockAllOrientations();
+  };
+  
+  _orientationDidChange = (orientation) => {
+    if (orientation === 'PORTRAIT') {
+    
+    } else {
+    
+    }
   };
 }
