@@ -14,6 +14,7 @@ import {
 import PropTypes from 'prop-types';
 import Video from 'react-native-video';
 import Orientation from "react-native-orientation";
+import SelectDefinitionView from "./SelectDefinitionView";
 
 export default class VideoPlayer extends React.Component {
 
@@ -57,6 +58,7 @@ export default class VideoPlayer extends React.Component {
       volume: 1.0,   // 音量大小
       playRate: 1.0, // 播放速率
       lastSingleTapTime: 0,   //上次单点击视频区域的时间
+      isDefinitionShow: false,
     }
   }
   
@@ -234,6 +236,22 @@ export default class VideoPlayer extends React.Component {
               />
             </TouchableOpacity>
         }
+        {
+          this.state.isFullScreen && this.state.isDefinitionShow ?
+            <SelectDefinitionView
+              ref={(ref) => this.definitionView = ref}
+              selectedIndex={2}
+              style={{
+                position:'absolute',
+                top: 0,
+                left: 0,
+                width: this.state.videoWidth,
+                height: this.state.videoHeight,
+              }}
+              onItemSelected={(index) => this.onDefinitionItemSelected(index)}
+              onCloseWindow={() => { this.setState({isDefinitionShow: false}) }}
+            /> : null
+        }
       </View>
     )
   }
@@ -333,7 +351,10 @@ export default class VideoPlayer extends React.Component {
   
   // 点击切换清晰度
   _onTapDefinitionButton = () => {
-  
+    this.setState({
+      isDefinitionShow: true,
+      isShowControl: false
+    })
   };
   
   // 点击选集
@@ -360,6 +381,12 @@ export default class VideoPlayer extends React.Component {
   _onTapMoreButton = () => {
   
   };
+  
+  onDefinitionItemSelected(index) {
+    this.setState({
+      isDefinitionShow: false
+    })
+  }
   
   /// --------外部调用方法--------
   
