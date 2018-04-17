@@ -97,11 +97,13 @@ export default class VideoPlayScreen extends React.Component {
     if (isLandscape) {
       this.setState({
         isFullScreen: true,
+        videoHeight: height
       });
       this.videoPlayer.updateLayout(width, height, true);
     } else {
       this.setState({
-        isFullScreen: false
+        isFullScreen: false,
+        videoHeight: width * 9/16
       });
       this.videoPlayer.updateLayout(width, width * 9/16, false);
     }

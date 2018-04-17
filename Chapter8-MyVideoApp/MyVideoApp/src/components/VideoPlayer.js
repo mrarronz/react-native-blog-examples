@@ -147,6 +147,17 @@ export default class VideoPlayer extends React.Component {
                     />
                   </TouchableOpacity> : null
               }
+              {
+                this.state.isFullScreen ?
+                  <View style={styles.bottomOptionView}>
+                    <TouchableOpacity onPress={this._onTapDefinitionButton}>
+                      <Text style={styles.bottomOptionText}>高清</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity onPress={this._onTapSelectVideo}>
+                      <Text style={[styles.bottomOptionText, {marginLeft: 10}]}>选集</Text>
+                    </TouchableOpacity>
+                  </View>: null
+              }
             </View> : null
         }
         {
@@ -171,7 +182,36 @@ export default class VideoPlayer extends React.Component {
                   style={{width: 26, height: 26}}
                 />
               </TouchableOpacity>
-              <Text style={styles.videoTitle}>{this.state.videoTitle}</Text>
+              <Text style={styles.videoTitle} numberOfLines={1}>{this.state.videoTitle}</Text>
+              {
+                this.state.isFullScreen ?
+                  <View style={styles.topOptionView}>
+                    <TouchableOpacity style={styles.topOptionItem} onPress={this._onTapCaptureImage}>
+                      <Image
+                        source={require('../image/icon_video_capture.png')}
+                        style={{width: 26, height: 26}}
+                      />
+                    </TouchableOpacity>
+                    <TouchableOpacity style={styles.topOptionItem} onPress={this._onTapAirplayButton}>
+                      <Image
+                        source={require('../image/icon_video_airplay.png')}
+                        style={styles.topImageOption}
+                      />
+                    </TouchableOpacity>
+                    <TouchableOpacity style={styles.topOptionItem} onPress={this._onTapShareButton}>
+                      <Image
+                        source={require('../image/icon_video_share.png')}
+                        style={{width: 22, height: 22}}
+                      />
+                    </TouchableOpacity>
+                    <TouchableOpacity style={styles.topOptionItem} onPress={this._onTapMoreButton}>
+                      <Image
+                        source={require('../image/icon_video_more.png')}
+                        style={styles.topImageOption}
+                      />
+                    </TouchableOpacity>
+                  </View> : null
+              }
             </View> : null
         }
         {
@@ -277,10 +317,12 @@ export default class VideoPlayer extends React.Component {
     }
   };
   
+  // 点击展开全屏或收起全屏
   _onTapSwitchButton = () => {
     this.props.onChangeOrientation && this.props.onChangeOrientation(this.state.isFullScreen);
   };
   
+  // 点击返回键
   _onTapBackButton = () => {
     if (this.state.isFullScreen) {
       Orientation.lockToPortrait();
@@ -288,6 +330,38 @@ export default class VideoPlayer extends React.Component {
       this.props.onTapBackButton && this.props.onTapBackButton();
     }
   };
+  
+  // 点击切换清晰度
+  _onTapDefinitionButton = () => {
+  
+  };
+  
+  // 点击选集
+  _onTapSelectVideo = () => {
+  
+  };
+  
+  // 点击截屏
+  _onTapCaptureImage = () => {
+  
+  };
+  
+  // 点击AirPlay
+  _onTapAirplayButton = () => {
+  
+  };
+  
+  // 点击分享
+  _onTapShareButton = () => {
+  
+  };
+  
+  // 点击更多
+  _onTapMoreButton = () => {
+  
+  };
+  
+  /// --------外部调用方法--------
   
   updateVideo(videoUrl, seekTime, videoTitle) {
     let title = (videoTitle != null) ? videoTitle : this.state.videoTitle;
@@ -352,12 +426,14 @@ const styles = StyleSheet.create({
   timeText: {
     fontSize: 13,
     color: 'white',
-    marginLeft: 5,
-    marginRight: 5
+    marginLeft: 10,
+    marginRight: 10
   },
   videoTitle: {
     fontSize: 14,
-    color: 'white'
+    color: 'white',
+    flex: 1,
+    marginRight: 10,
   },
   control_play_btn: {
     width: 24,
@@ -377,4 +453,30 @@ const styles = StyleSheet.create({
     justifyContent:'center',
     marginLeft: 10
   },
+  bottomOptionView: {
+    flexDirection: 'row',
+    alignItems:'center',
+    marginRight: 15,
+    height: 50
+  },
+  bottomOptionText: {
+    fontSize: 14,
+    color: 'white',
+  },
+  topOptionView: {
+    flexDirection: 'row',
+    alignItems:'center',
+    marginRight: 15,
+    height: 50
+  },
+  topOptionItem: {
+    width: 50,
+    height: 50,
+    alignItems:'center',
+    justifyContent:'center'
+  },
+  topImageOption: {
+    width: 24,
+    height: 24
+  }
 });

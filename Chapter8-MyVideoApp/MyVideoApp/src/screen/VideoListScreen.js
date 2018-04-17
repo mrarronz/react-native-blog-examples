@@ -1,5 +1,6 @@
 import React from 'react';
 import {FlatList, View, Text, Image, TouchableHighlight, StyleSheet} from 'react-native';
+import Orientation from "react-native-orientation";
 import {statusBarHeight} from "../components/VideoPlayer";
 
 export const videoList = [
@@ -19,6 +20,11 @@ export default class VideoListScreen extends React.Component {
   static navigationOptions = ({navigation}) => ({
     headerTitle: (navigation.state.routeName === 'Mode1') ? '列表模式' : '全屏模式',
   });
+  
+  constructor(props) {
+    super(props);
+    Orientation.lockToPortrait();
+  }
   
   render() {
     return (
