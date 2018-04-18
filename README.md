@@ -14,6 +14,6 @@ recommended IDE: [WebStorm](http://www.jetbrains.com/webstorm/)
 7. Chapter8 - [ReactNative干货分享——视频播放器App](https://juejin.im/post/5ad7288cf265da50407bc8ce)
 
 ### 视频播放器效果图
-![image](https://github.com/mrarronz/react-native-blog-examples/tree/master/Chapter8-MyVideoApp/MyVideoApp/screenshots/ios_landscape.png)
+![image](https://github.com/mrarronz/react-native-blog-examples/raw/master/Chapter8-MyVideoApp/MyVideoApp/screenshots/ios_landscape.png)
 
-![image](https://github.com/mrarronz/react-native-blog-examples/tree/master/Chapter8-MyVideoApp/MyVideoApp/screenshots/ios_share.png)
+![image](https://github.com/mrarronz/react-native-blog-examples/raw/master/Chapter8-MyVideoApp/MyVideoApp/screenshots/ios_share.png)
