@@ -11,3 +11,9 @@ recommended IDE: [WebStorm](http://www.jetbrains.com/webstorm/)
 4. Chapter4 - [React Native——自定义下拉刷新上拉加载的列表](https://juejin.im/post/5a94d26d6fb9a0636263fd16)
 5. Chapter5 - [react-navigation使用介绍及UI组件外实现统一跳转](https://juejin.im/post/5a9668a8f265da4e9d226176)
 6. Chapter7 - [ReactNative——react-native-video实现视频全屏播放](https://juejin.im/post/5a9f9fde518825557207e7b0)
+7. Chapter8 - [ReactNative干货分享——视频播放器App](https://juejin.im/post/5ad7288cf265da50407bc8ce)
+
+### 视频播放器效果图
+![image](https://github.com/mrarronz/react-native-blog-examples/tree/master/Chapter8-MyVideoApp/MyVideoApp/screenshots/videoPlayDemo.gif)
+
+![image](https://github.com/mrarronz/react-native-blog-examples/tree/master/Chapter8-MyVideoApp/MyVideoApp/screenshots/portrait.gif)
