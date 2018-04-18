@@ -16,6 +16,7 @@ import Video from 'react-native-video';
 import Orientation from "react-native-orientation";
 import SelectDefinitionView from "./SelectDefinitionView";
 import SelectVideoView from "./SelectVideoView";
+import ShareOptionView from "./ShareOptionView";
 
 export default class VideoPlayer extends React.Component {
 
@@ -61,6 +62,7 @@ export default class VideoPlayer extends React.Component {
       lastSingleTapTime: 0,   //上次单点击视频区域的时间
       isDefinitionShow: false, // 是否显示清晰度切换界面
       isVideoListShow: false,  // 是否显示选集界面
+      isShareMenuShow: false,  // 是否显示分享界面
     }
   }
   
@@ -268,6 +270,20 @@ export default class VideoPlayer extends React.Component {
               onCloseWindow={() => { this.setState({isVideoListShow: false}) }}
             /> : null
         }
+        {
+          this.state.isFullScreen && this.state.isShareMenuShow ?
+            <ShareOptionView
+              style={{
+                position:'absolute',
+                top: 0,
+                left: 0,
+                width: this.state.videoWidth,
+                height: this.state.videoHeight,
+              }}
+              onShareItemSelected={(index) => {this.onShareMenuPressed(index)}}
+              onCloseWindow={() => { this.setState({isShareMenuShow: false}) }}
+            /> : null
+        }
       </View>
     )
   }
@@ -393,7 +409,10 @@ export default class VideoPlayer extends React.Component {
   
   // 点击分享
   _onTapShareButton = () => {
-  
+    this.setState({
+      isShareMenuShow: true,
+      isShowControl: false
+    })
   };
   
   // 点击更多
@@ -411,6 +430,12 @@ export default class VideoPlayer extends React.Component {
     this.updateVideo(url, 0, null);
     this.setState({
       isVideoListShow: false
+    })
+  }
+  
+  onShareMenuPressed(index) {
+    this.setState({
+      isShareMenuShow: false
     })
   }
   
