@@ -13,7 +13,28 @@ recommended IDE: [WebStorm](http://www.jetbrains.com/webstorm/)
 6. Chapter7 - [ReactNative——react-native-video实现视频全屏播放](https://juejin.im/post/5a9f9fde518825557207e7b0)
 7. Chapter8 - [ReactNative干货分享——视频播放器App](https://juejin.im/post/5ad7288cf265da50407bc8ce)
 
+## 视频播放器功能
+
+- [x] 支持本地和远程视频地址
+- [x] 支持播放和暂停
+- [x] 支持横竖屏切换
+- [x] 横屏显示视频标题
+- [x] 静音功能
+- [x] 支持视频选集切换
+- [x] 横屏清晰度切换
+- [x] 横屏展示分享
+- [x] 调整音量
+- [x] 调整播放速率，支持多倍速播放
+- [x] 适配iPhone X
+
+### TODO
+- [x] 视频截屏
+- [x] 横屏锁定旋转
+- [x] Refine code
+
 ### 视频播放器效果图
 ![image](https://github.com/mrarronz/react-native-blog-examples/raw/master/Chapter8-MyVideoApp/MyVideoApp/screenshots/videoPlayDemo.gif)
 
 ![image](https://github.com/mrarronz/react-native-blog-examples/raw/master/Chapter8-MyVideoApp/MyVideoApp/screenshots/portrait.gif)
+
+
