@@ -17,6 +17,7 @@ import Orientation from "react-native-orientation";
 import SelectDefinitionView from "./SelectDefinitionView";
 import SelectVideoView from "./SelectVideoView";
 import ShareOptionView from "./ShareOptionView";
+import MoreSettingView from "./MoreSettingView";
 
 export default class VideoPlayer extends React.Component {
 
@@ -63,6 +64,7 @@ export default class VideoPlayer extends React.Component {
       isDefinitionShow: false, // 是否显示清晰度切换界面
       isVideoListShow: false,  // 是否显示选集界面
       isShareMenuShow: false,  // 是否显示分享界面
+      isSettingViewShow: false, // 是否显示设置界面
     }
   }
   
@@ -74,9 +76,9 @@ export default class VideoPlayer extends React.Component {
           ref={(ref) => { this.videoRef = ref }}
           source={{uri: this.state.videoUrl}}
           resizeMode="contain"
-          rate={1.0}
+          rate={this.state.playRate}
           volume={1.0}
-          muted={false}
+          muted={this.state.isMuted}
           ignoreSilentSwitch={"ignore"}
           style={{position:'absolute', left: this.state.x, top: 0, width: this.state.videoWidth-2*this.state.x, height: this.state.videoHeight}}
           paused={this.state.isPaused}
@@ -284,6 +286,27 @@ export default class VideoPlayer extends React.Component {
               onCloseWindow={() => { this.setState({isShareMenuShow: false}) }}
             /> : null
         }
+        {
+          this.state.isFullScreen && this.state.isSettingViewShow ?
+            <MoreSettingView
+              style={{
+                position:'absolute',
+                top: 0,
+                left: 0,
+                width: this.state.videoWidth,
+                height: this.state.videoHeight,
+              }}
+              isMuted={this.state.isMuted}
+              selectedRate={this.state.playRate}
+              selectedEndTimeIndex={0}
+              onFavoriteTapped={() => { this.setState({isSettingViewShow: false}) }}
+              onDownloadTapped={() => { this.setState({isSettingViewShow: false}) }}
+              onMuteVolumeTapped={(isMute) => { this.onMuteVolume(isMute); }}
+              onPlayRateChanged={(rate) => { this.onPlayRateChange(rate); }}
+              onEndTimeSelected={(index) => { this.onEndTimeChange(index); }}
+              onCloseWindow={() => { this.setState({isSettingViewShow: false}) }}
+            /> : null
+        }
       </View>
     )
   }
@@ -417,7 +440,10 @@ export default class VideoPlayer extends React.Component {
   
   // 点击更多
   _onTapMoreButton = () => {
-  
+    this.setState({
+      isSettingViewShow: true,
+      isShowControl: false
+    })
   };
   
   onDefinitionItemSelected(index) {
@@ -437,6 +463,24 @@ export default class VideoPlayer extends React.Component {
     this.setState({
       isShareMenuShow: false
     })
+  }
+  
+  onMuteVolume(isMute) {
+    this.setState({
+      isMuted: isMute,
+      isSettingViewShow: false
+    })
+  }
+  
+  onPlayRateChange(rate) {
+    this.setState({
+      playRate: rate,
+      isSettingViewShow: false
+    })
+  }
+  
+  onEndTimeChange(index) {
+  
   }
   
   /// --------外部调用方法--------

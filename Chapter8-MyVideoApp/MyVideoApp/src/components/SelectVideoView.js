@@ -2,6 +2,7 @@ import React from 'react';
 import {ScrollView, Text, TouchableOpacity, StyleSheet} from 'react-native';
 import PropTypes from 'prop-types';
 import {videoList} from "../screen/VideoListScreen";
+import {onePixel} from "./MoreSettingView";
 
 export default class SelectVideoView extends React.Component {
   
@@ -84,7 +85,7 @@ const styles = StyleSheet.create({
     justifyContent:'center',
     paddingLeft:10,
     paddingRight: 10,
-    borderBottomWidth: 1,
+    borderBottomWidth: onePixel,
     borderColor: 'white'
   },
   optionItem_active: {
