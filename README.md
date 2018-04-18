@@ -4,7 +4,7 @@ Sample projects for my react native blog
 use "npm install" to install dependencies，
 recommended IDE: [WebStorm](http://www.jetbrains.com/webstorm/)
 
-### Demo对应的文章
+## Demo对应的文章
 1. Chapter1 - [React Native——ListView的使用详解](https://juejin.im/post/5a8f7f586fb9a063417b3eea)
 2. Chapter2 - [ReactNative——使用FlatList实现豆瓣电影列表](https://juejin.im/post/5a90ca01f265da4e853d70cc)
 3. Chapter3 - [React Native——使用SectionList改造电影列表](https://juejin.im/post/5a93a900f265da4e8c452b36)
