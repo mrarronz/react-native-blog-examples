@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, Image, Text, TouchableOpacity, PixelRatio, StyleSheet} from 'react-native';
+import {View, Image, Text, TouchableOpacity, Slider, PixelRatio, StyleSheet} from 'react-native';
 import PropTypes from 'prop-types';
 
 export default class MoreSettingView extends React.Component {
@@ -8,7 +8,8 @@ export default class MoreSettingView extends React.Component {
     selectedRate: 1.0,
     selectedEndTimeIndex: -1,
     isMuted: false,
-    isDownload: false
+    isDownload: false,
+    volume: 1.0
   };
   
   static propTypes = {
@@ -18,6 +19,7 @@ export default class MoreSettingView extends React.Component {
     onFavoriteTapped: PropTypes.func,
     onDownloadTapped: PropTypes.func,
     onMuteVolumeTapped: PropTypes.func,
+    onVolumeChange: PropTypes.func,
   };
   
   constructor(props) {
@@ -25,6 +27,7 @@ export default class MoreSettingView extends React.Component {
     this.state = {
       isMute: this.props.isMuted,
       isDownload: this.props.isDownload,
+      volume: this.props.volume,
       selectedRate: this.props.selectedRate,
       selectedEndTimeIndex: this.props.selectedEndTimeIndex
     }
@@ -95,6 +98,27 @@ export default class MoreSettingView extends React.Component {
               })
             }
           </View>
+          <View style={styles.optionView}>
+            <Text style={styles.optionText}>调整音量</Text>
+            <Image
+              source={require('../image/icon_volume_off.png')}
+              style={{ marginLeft: 40, marginRight: 5, width: 26, height: 26}}
+            />
+            <Slider
+              style={{flex: 1}}
+              maximumTrackTintColor={'#999999'}//滑块右侧轨道的颜色
+              minimumTrackTintColor={'#ff5500'}//滑块左侧轨道的颜色
+              thumbImage={require('../image/icon_control_slider.png')}
+              value={this.state.volume}
+              minimumValue={0}
+              maximumValue={maxVolume}
+              onValueChange={this._onSliderValueChange}
+            />
+            <Image
+              source={require('../image/icon_volume_up.png')}
+              style={{ marginLeft: 5, marginRight: 5, width: 26, height: 26}}
+            />
+          </View>
         </View>
       </TouchableOpacity>
     )
@@ -117,6 +141,15 @@ export default class MoreSettingView extends React.Component {
     this.props.onMuteVolumeTapped && this.props.onMuteVolumeTapped(isMute);
   };
   
+  _onSliderValueChange = (value) => {
+    let isMute = (value === 0);
+    this.setState({
+      volume: value,
+      isMute: isMute,
+    });
+    this.props.onVolumeChange && this.props.onVolumeChange(value);
+  };
+  
   onChangeRate(item) {
     this.setState({
       selectedRate: item,
@@ -134,6 +167,7 @@ export default class MoreSettingView extends React.Component {
 
 const playRateItems = [1.0, 1.25, 1.5, 2.0];
 const endTimeItems = ['不开启', '播完当前', '30:00', '60:00'];
+const maxVolume = 100; 
 
 export const onePixel = 1/PixelRatio.get();
 const styles = StyleSheet.create({

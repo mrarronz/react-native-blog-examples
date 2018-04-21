@@ -77,7 +77,7 @@ export default class VideoPlayer extends React.Component {
           source={{uri: this.state.videoUrl}}
           resizeMode="contain"
           rate={this.state.playRate}
-          volume={1.0}
+          volume={this.state.volume}
           muted={this.state.isMuted}
           ignoreSilentSwitch={"ignore"}
           style={{position:'absolute', left: this.state.x, top: 0, width: this.state.videoWidth-2*this.state.x, height: this.state.videoHeight}}
@@ -297,6 +297,7 @@ export default class VideoPlayer extends React.Component {
                 height: this.state.videoHeight,
               }}
               isMuted={this.state.isMuted}
+              volume={this.state.volume}
               selectedRate={this.state.playRate}
               selectedEndTimeIndex={0}
               onFavoriteTapped={() => { this.setState({isSettingViewShow: false}) }}
@@ -305,6 +306,7 @@ export default class VideoPlayer extends React.Component {
               onPlayRateChanged={(rate) => { this.onPlayRateChange(rate); }}
               onEndTimeSelected={(index) => { this.onEndTimeChange(index); }}
               onCloseWindow={() => { this.setState({isSettingViewShow: false}) }}
+              onVolumeChange={(volume) => { this.onVolumeChanged(volume); }}
             /> : null
         }
       </View>
@@ -466,8 +468,13 @@ export default class VideoPlayer extends React.Component {
   }
   
   onMuteVolume(isMute) {
+    let volume = this.state.volume;
+    if (!isMute && volume === 0) {
+      volume = 1.0;
+    }
     this.setState({
       isMuted: isMute,
+      volume: volume,
       isSettingViewShow: false
     })
   }
@@ -481,6 +488,14 @@ export default class VideoPlayer extends React.Component {
   
   onEndTimeChange(index) {
   
+  }
+  
+  onVolumeChanged(volume) {
+    let isMute = (volume === 0);
+    this.setState({
+      volume: volume,
+      isMuted: isMute
+    })
   }
   
   /// --------外部调用方法--------
