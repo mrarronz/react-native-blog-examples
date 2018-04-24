@@ -1,13 +1,11 @@
 import React from 'react';
 import {View, Text, Image, TouchableOpacity, FlatList, StyleSheet} from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
-import IconX from 'react-native-vector-icons/Feather';
-import EvilIcon from 'react-native-vector-icons/EvilIcons';
 
 export default class HomeScreen extends React.Component {
   
   static navigationOptions = {
-    headerTitle:'Iconfont Example'
+    headerTitle:'😁Icon font✌️'
   };
   
   render() {
@@ -21,26 +19,42 @@ export default class HomeScreen extends React.Component {
     )
   }
   
-  _renderItem = () => {
+  _renderItem = (item) => {
+    let itemObj = item.item;
     return (
-      <TouchableOpacity style={styles.cellItem}>
-        <Icon name={'align-center'} size={30} color={'#900'}/>
-        <IconX name={'airplay'} size={30} color={'blue'}/>
-        <EvilIcon name={'star'} size={30}/>
-        
-        <Icon.Button name={'facebook'} backgroundColor={'#3b5998'} onPress={() => {
-          this.props.navigation.navigate('Tab')
-        }}>
-          <Text>Login with Facebook</Text>
-        </Icon.Button>
+      <TouchableOpacity style={styles.cellItem} onPress={() => this.itemPressed(item.index)}>
+        <View style={styles.infoView}>
+          <Text style={styles.infoTitle}>{itemObj.title}</Text>
+          <Text style={styles.infoDetail}>{itemObj.detail}</Text>
+        </View>
+        <Icon name={'angle-right'} size={32} color={'#999999'}/>
       </TouchableOpacity>
     )
   };
+  
+  itemPressed(index) {
+    switch (index) {
+      case 0:
+        this.props.navigation.navigate('Tab');
+        break;
+      case 1:
+        
+        break;
+      case 2:
+        
+        break;
+      case 3:
+        
+        break;
+    }
+  }
 }
 
 const items = [
   {title: 'App Store', detail: 'Display icons in TabBar, NavigationBar and empty page'},
-  {title: 'Setting', detail: 'Display icons in Setting page'}
+  {title: 'Setting', detail: 'Display icons in Setting page'},
+  {title: 'Custom icons', detail: 'Display custom icons in grid view'},
+  {title: 'Other usage', detail: 'Show usage of react-native-vector-icons'}
 ];
 const styles = StyleSheet.create({
   container: {
@@ -53,5 +67,19 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
     borderBottomColor: '#dcdcdc',
     padding: 10,
+  },
+  infoView: {
+    flex: 1,
+    marginRight: 10,
+  },
+  infoTitle: {
+    fontSize: 18,
+    fontWeight:'bold',
+    color: '#333'
+  },
+  infoDetail: {
+    fontSize: 13,
+    color: '#999',
+    marginTop: 10
   }
 });
