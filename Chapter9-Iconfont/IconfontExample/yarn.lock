@@ -1492,6 +1492,10 @@ ci-info@^1.0.0:
   version "1.1.3"
   resolved "http://registry.npm.taobao.org/ci-info/download/ci-info-1.1.3.tgz#710193264bb05c77b8c90d02f5aaf22216a667b2"
 
+clamp@^1.0.1:
+  version "1.0.1"
+  resolved "http://registry.npm.taobao.org/clamp/download/clamp-1.0.1.tgz#66a0e64011816e37196828fdc8c8c147312c8634"
+
 class-utils@^0.3.5:
   version "0.3.6"
   resolved "http://registry.npm.taobao.org/class-utils/download/class-utils-0.3.6.tgz#f93369ae8b9a7ce02fd41faad0ca83033190c463"
@@ -2465,6 +2469,10 @@ hoek@4.x.x:
   version "4.2.1"
   resolved "http://registry.npm.taobao.org/hoek/download/hoek-4.2.1.tgz#9634502aa12c445dd5a7c5734b572bb8738aacbb"
 
+hoist-non-react-statics@^2.2.0, hoist-non-react-statics@^2.3.1:
+  version "2.5.0"
+  resolved "http://registry.npm.taobao.org/hoist-non-react-statics/download/hoist-non-react-statics-2.5.0.tgz#d2ca2dfc19c5a91c5a6615ce8e564ef0347e2a40"
+
 home-or-tmp@^2.0.0:
   version "2.0.0"
   resolved "http://registry.npm.taobao.org/home-or-tmp/download/home-or-tmp-2.0.0.tgz#e36c3f2d2cae7d746a857e38d18d5f32a7882db8"
@@ -2763,6 +2771,10 @@ is-utf8@^0.2.0:
 is-windows@^1.0.2:
   version "1.0.2"
   resolved "http://registry.npm.taobao.org/is-windows/download/is-windows-1.0.2.tgz#d1850eb9791ecd18e6182ce12a30f396634bb19d"
+
+isarray@0.0.1:
+  version "0.0.1"
+  resolved "http://registry.npm.taobao.org/isarray/download/isarray-0.0.1.tgz#8a18acfca9a8f4177e09abfc6038939b05d1eedf"
 
 isarray@1.0.0, isarray@~1.0.0:
   version "1.0.0"
@@ -3121,13 +3133,13 @@ jest-validate@^22.4.3:
     leven "^2.1.0"
     pretty-format "^22.4.3"
 
-jest-worker@22.2.2, jest-worker@^22.2.2:
+jest-worker@22.2.2:
   version "22.2.2"
   resolved "http://registry.npm.taobao.org/jest-worker/download/jest-worker-22.2.2.tgz#c1f5dc39976884b81f68ec50cb8532b2cbab3390"
   dependencies:
     merge-stream "^1.0.1"
 
-jest-worker@^22.4.3:
+jest-worker@^22.2.2, jest-worker@^22.4.3:
   version "22.4.3"
   resolved "http://registry.npm.taobao.org/jest-worker/download/jest-worker-22.4.3.tgz#5c421417cba1c0abf64bf56bd5fb7968d79dd40b"
   dependencies:
@@ -3348,7 +3360,7 @@ lodash@^3.5.0:
   version "3.10.1"
   resolved "http://registry.npm.taobao.org/lodash/download/lodash-3.10.1.tgz#5bf45e8e49ba4189e17d482789dfd15bd140b7b6"
 
-lodash@^4.13.1, lodash@^4.14.0, lodash@^4.17.4, lodash@^4.17.5, lodash@^4.2.0, lodash@^4.3.0, lodash@^4.6.1:
+lodash@^4.0.0, lodash@^4.13.1, lodash@^4.14.0, lodash@^4.17.4, lodash@^4.17.5, lodash@^4.2.0, lodash@^4.3.0, lodash@^4.6.1:
   version "4.17.5"
   resolved "http://registry.npm.taobao.org/lodash/download/lodash-4.17.5.tgz#99a92d65c0272debe8c96b6057bc8fbfa3bed511"
 
@@ -3973,6 +3985,12 @@ path-parse@^1.0.5:
   version "1.0.5"
   resolved "http://registry.npm.taobao.org/path-parse/download/path-parse-1.0.5.tgz#3c1adf871ea9cd6c9431b6ea2bd74a0ff055c4c1"
 
+path-to-regexp@^1.7.0:
+  version "1.7.0"
+  resolved "http://registry.npm.taobao.org/path-to-regexp/download/path-to-regexp-1.7.0.tgz#59fde0f435badacba103a84e9d3bc64e96b9937d"
+  dependencies:
+    isarray "0.0.1"
+
 path-type@^1.0.0:
   version "1.1.0"
   resolved "http://registry.npm.taobao.org/path-type/download/path-type-1.1.0.tgz#59c44f7ee491da704da415da5a4070ba4f8fe441"
@@ -4101,7 +4119,7 @@ promise@^7.1.1:
   dependencies:
     asap "~2.0.3"
 
-prop-types@^15.5.8, prop-types@^15.6.0:
+prop-types@^15.5.10, prop-types@^15.5.8, prop-types@^15.6.0:
   version "15.6.1"
   resolved "http://registry.npm.taobao.org/prop-types/download/prop-types-15.6.1.tgz#36644453564255ddda391191fb3a125cbdf654ca"
   dependencies:
@@ -4168,6 +4186,46 @@ react-is@^16.3.1:
   version "16.3.2"
   resolved "http://registry.npm.taobao.org/react-is/download/react-is-16.3.2.tgz#f4d3d0e2f5fbb6ac46450641eb2e25bf05d36b22"
 
+react-lifecycles-compat@^1.0.2:
+  version "1.1.4"
+  resolved "http://registry.npm.taobao.org/react-lifecycles-compat/download/react-lifecycles-compat-1.1.4.tgz#fc005c72849b7ed364de20a0f64ff58ebdc2009a"
+
+react-native-dismiss-keyboard@1.0.0:
+  version "1.0.0"
+  resolved "http://registry.npm.taobao.org/react-native-dismiss-keyboard/download/react-native-dismiss-keyboard-1.0.0.tgz#32886242b3f2317e121f3aeb9b0a585e2b879b49"
+
+react-native-drawer-layout-polyfill@^1.3.2:
+  version "1.3.2"
+  resolved "http://registry.npm.taobao.org/react-native-drawer-layout-polyfill/download/react-native-drawer-layout-polyfill-1.3.2.tgz#192c84d7a5a6b8a6d2be2c7daa5e4164518d0cc7"
+  dependencies:
+    react-native-drawer-layout "1.3.2"
+
+react-native-drawer-layout@1.3.2:
+  version "1.3.2"
+  resolved "http://registry.npm.taobao.org/react-native-drawer-layout/download/react-native-drawer-layout-1.3.2.tgz#b9740d7663a1dc4f88a61b9c6d93d2d948ea426e"
+  dependencies:
+    react-native-dismiss-keyboard "1.0.0"
+
+react-native-safe-area-view@^0.7.0:
+  version "0.7.0"
+  resolved "http://registry.npm.taobao.org/react-native-safe-area-view/download/react-native-safe-area-view-0.7.0.tgz#38f5ab9368d6ef9e5d18ab64212938af3ec39421"
+  dependencies:
+    hoist-non-react-statics "^2.3.1"
+
+"react-native-tab-view@github:react-navigation/react-native-tab-view":
+  version "0.0.74"
+  resolved "https://codeload.github.com/react-navigation/react-native-tab-view/tar.gz/36ebd834d78b841fc19778c966465d02fd1213bb"
+  dependencies:
+    prop-types "^15.6.0"
+
+react-native-vector-icons@^4.6.0:
+  version "4.6.0"
+  resolved "http://registry.npm.taobao.org/react-native-vector-icons/download/react-native-vector-icons-4.6.0.tgz#e4014311ffa6de397d914ffc31b7097a874cc8d5"
+  dependencies:
+    lodash "^4.0.0"
+    prop-types "^15.5.10"
+    yargs "^8.0.2"
+
 react-native@0.55.3:
   version "0.55.3"
   resolved "http://registry.npm.taobao.org/react-native/download/react-native-0.55.3.tgz#6ff1691bd0645d0480fba16377edb9dce5bd28c4"
@@ -4231,6 +4289,19 @@ react-native@0.55.3:
     xcode "^0.9.1"
     xmldoc "^0.4.0"
     yargs "^9.0.0"
+
+react-navigation@^1.5.11:
+  version "1.5.11"
+  resolved "http://registry.npm.taobao.org/react-navigation/download/react-navigation-1.5.11.tgz#fba6ab45d7b9987c1763a5aaac53b4f6d62b7f5c"
+  dependencies:
+    clamp "^1.0.1"
+    hoist-non-react-statics "^2.2.0"
+    path-to-regexp "^1.7.0"
+    prop-types "^15.5.10"
+    react-lifecycles-compat "^1.0.2"
+    react-native-drawer-layout-polyfill "^1.3.2"
+    react-native-safe-area-view "^0.7.0"
+    react-native-tab-view "github:react-navigation/react-native-tab-view"
 
 react-proxy@^1.1.7:
   version "1.1.8"
@@ -5130,11 +5201,11 @@ utils-merge@1.0.1:
   version "1.0.1"
   resolved "http://registry.npm.taobao.org/utils-merge/download/utils-merge-1.0.1.tgz#9f95710f50a267947b2ccc124741c1028427e713"
 
-uuid@3.0.1, uuid@^3.0.0:
+uuid@3.0.1:
   version "3.0.1"
   resolved "http://registry.npm.taobao.org/uuid/download/uuid-3.0.1.tgz#6544bba2dfda8c1cf17e629a3a305e2bb1fee6c1"
 
-uuid@^3.1.0:
+uuid@^3.0.0, uuid@^3.1.0:
   version "3.2.1"
   resolved "http://registry.npm.taobao.org/uuid/download/uuid-3.2.1.tgz#12c528bb9d58d0b9265d9a2f6f0fe8be17ff1f14"
 
@@ -5364,6 +5435,24 @@ yargs@^10.0.3:
     which-module "^2.0.0"
     y18n "^3.2.1"
     yargs-parser "^8.1.0"
+
+yargs@^8.0.2:
+  version "8.0.2"
+  resolved "http://registry.npm.taobao.org/yargs/download/yargs-8.0.2.tgz#6299a9055b1cefc969ff7e79c1d918dceb22c360"
+  dependencies:
+    camelcase "^4.1.0"
+    cliui "^3.2.0"
+    decamelize "^1.1.1"
+    get-caller-file "^1.0.1"
+    os-locale "^2.0.0"
+    read-pkg-up "^2.0.0"
+    require-directory "^2.1.1"
+    require-main-filename "^1.0.1"
+    set-blocking "^2.0.0"
+    string-width "^2.0.0"
+    which-module "^2.0.0"
+    y18n "^3.2.1"
+    yargs-parser "^7.0.0"
 
 yargs@^9.0.0:
   version "9.0.1"

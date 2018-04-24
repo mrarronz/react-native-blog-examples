@@ -5,54 +5,124 @@
  */
 
 import React, { Component } from 'react';
-import {
-  Platform,
-  StyleSheet,
-  Text,
-  View
-} from 'react-native';
-
-const instructions = Platform.select({
-  ios: 'Press Cmd+R to reload,\n' +
-    'Cmd+D or shake for dev menu',
-  android: 'Double tap R on your keyboard to reload,\n' +
-    'Shake or press menu button for dev menu',
-});
+import {StatusBar, TouchableOpacity} from 'react-native';
+import {StackNavigator, TabNavigator, TabBarBottom} from 'react-navigation';
+import HomeScreen from "./src/screen/HomeScreen";
+import TabItemPage from "./src/screen/TabItemPage";
+import Ionicons from 'react-native-vector-icons/Ionicons';
 
 type Props = {};
 export default class App extends Component<Props> {
+  
   render() {
     return (
-      <View style={styles.container}>
-        <Text style={styles.welcome}>
-          Welcome to React Native!
-        </Text>
-        <Text style={styles.instructions}>
-          To get started, edit App.js
-        </Text>
-        <Text style={styles.instructions}>
-          {instructions}
-        </Text>
-      </View>
+      <RootScreen/>
     );
   }
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
+class RootScreen extends React.Component {
+  
+  constructor() {
+    super();
+    StatusBar.setBarStyle('light-content');
+  }
+  
+  render(){
+    return <Navigator />
+  }
+}
+
+const TabComponent = TabNavigator(
+  {
+    First: {
+      screen: TabItemPage,
+      navigationOptions: ({navigation}) => ({
+        title: 'Featured',
+        tabBarIcon: ({focused}) => (
+          <Ionicons name={'ios-star-outline'} size={24} color={focused ? '#f57495' : '#888888'}/>
+        ),
+        headerRight: (
+          <TouchableOpacity style={{width: 44, height: 44, alignItems:'center', justifyContent:'center'}}>
+            <Ionicons name={'ios-list'} size={44} color={'white'}/>
+          </TouchableOpacity>
+        )
+      }),
+    },
+    Second: {
+      screen: TabItemPage,
+      navigationOptions: ({navigation}) => ({
+        title: 'Categories',
+        tabBarIcon: ({focused}) => (
+          <Ionicons name={'ios-albums-outline'} size={24} color={focused ? '#f57495' : '#888888'}/>
+        ),
+        headerRight: (
+          <TouchableOpacity style={{width: 44, height: 44, alignItems:'center', justifyContent:'center'}}>
+            <Ionicons name={'ios-happy-outline'} size={32} color={'white'}/>
+          </TouchableOpacity>
+        )
+      }),
+    },
+    Third: {
+      screen: TabItemPage,
+      navigationOptions: ({navigation}) => ({
+        title: 'Top Charts',
+        tabBarIcon: ({focused}) => (
+          <Ionicons name={'ios-list-box-outline'} size={24} color={focused ? '#f57495' : '#888888'}/>
+        )
+      }),
+    },
+    Fourth: {
+      screen: TabItemPage,
+      navigationOptions: ({navigation}) => ({
+        title: 'Search',
+        tabBarIcon: ({focused}) => (
+          <Ionicons name={'ios-search-outline'} size={24} color={focused ? '#f57495' : '#888888'}/>
+        )
+      }),
+    },
+    Fifth: {
+      screen: TabItemPage,
+      navigationOptions: ({navigation}) => ({
+        title: 'Updates',
+        tabBarIcon: ({focused}) => (
+          <Ionicons name={'ios-download-outline'} size={24} color={focused ? '#f57495' : '#888888'}/>
+        )
+      }),
+    }
   },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
+  {
+    tabBarComponent: TabBarBottom,
+    tabBarPosition: 'bottom',
+    swipeEnabled: true,
+    animationEnabled: true,
+    lazy: true,
+    tabBarOptions: {
+      activeTintColor: '#f57495',
+      inactiveTintColor: '#888888',
+      style: {backgroundColor: 'white'}
+    }
+  }
+);
+
+const Navigator = StackNavigator(
+  {
+    Home: {screen: HomeScreen},
+    Tab: {screen: TabComponent}
   },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-  },
-});
+  {
+    navigationOptions: {
+      headerBackTitle: null,
+      headerTintColor: 'white',
+      headerStyle: {backgroundColor: '#f57495'},
+      headerTitleStyle: {fontSize: 18, fontWeight: 'bold'},
+      showIcon: true,
+    },
+    initialRouteName: 'Home',
+    headerMode: 'screen'
+  }
+);
+
+
+
+
