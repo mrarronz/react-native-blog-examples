@@ -10,6 +10,7 @@ import {StackNavigator, TabNavigator, TabBarBottom} from 'react-navigation';
 import HomeScreen from "./src/screen/HomeScreen";
 import TabItemPage from "./src/screen/TabItemPage";
 import Ionicons from 'react-native-vector-icons/Ionicons';
+import SettingScreen from "./src/screen/SettingScreen";
 
 type Props = {};
 export default class App extends Component<Props> {
@@ -108,7 +109,8 @@ const TabComponent = TabNavigator(
 const Navigator = StackNavigator(
   {
     Home: {screen: HomeScreen},
-    Tab: {screen: TabComponent}
+    Tab: {screen: TabComponent},
+    Setting: {screen: SettingScreen}
   },
   {
     navigationOptions: {

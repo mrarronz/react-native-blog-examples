@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, Text, Image, TouchableOpacity, FlatList, StyleSheet} from 'react-native';
+import {View, Text, TouchableOpacity, FlatList, StyleSheet} from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
 export default class HomeScreen extends React.Component {
@@ -38,7 +38,7 @@ export default class HomeScreen extends React.Component {
         this.props.navigation.navigate('Tab');
         break;
       case 1:
-        
+        this.props.navigation.navigate('Setting');
         break;
       case 2:
         
