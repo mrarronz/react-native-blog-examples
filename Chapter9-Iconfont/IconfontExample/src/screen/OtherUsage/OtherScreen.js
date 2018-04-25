@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, ScrollView, Text, Image, TouchableOpacity, Linking, PixelRatio, StyleSheet} from 'react-native';
+import {View, ScrollView, Text, Image, TouchableOpacity, Linking, PixelRatio, Platform, StyleSheet} from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
 export default class OtherScreen extends React.Component {
@@ -11,7 +11,9 @@ export default class OtherScreen extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      userIcon: null
+      userIcon: null,
+      showError: false,
+      errorText: null
     };
     Icon.getImageSource('user', 50, '#999').then((source) => {
       this.setState({
@@ -58,6 +60,10 @@ export default class OtherScreen extends React.Component {
               )
             })
           }
+          {
+            this.state.showError ?
+              <Text style={styles.errorText}>{this.state.errorText}</Text> : null
+          }
         </View>
       </ScrollView>
     )
@@ -86,17 +92,53 @@ export default class OtherScreen extends React.Component {
     switch (index) {
       case 1:
         // Show usage in TabBarIOS
-        this.props.navigation.navigate('tabBar');
+      {
+        if (Platform.OS === 'ios') {
+          this.props.navigation.navigate('tabBar');
+        } else {
+          this.showErrorTip('Only support iOS!!!');
+        }
+      }
         break;
       case 2:
         // Show usage in NavigatorIOS
-        this.props.navigation.navigate('navigator');
+      {
+        if (Platform.OS === 'ios') {
+          this.props.navigation.navigate('navigator');
+        } else {
+          this.showErrorTip('Only support iOS!!!');
+        }
+      }
         break;
       case 3:
         // Show usage in ToolbarAndroid
+      {
+        if (Platform.OS === 'android') {
         
+        } else {
+          this.showErrorTip('Only support Android!!!');
+        }
+      }
         break;
     }
+  }
+  
+  showErrorTip(errorMessage) {
+    this.setState(
+      {
+        showError: true,
+        errorText: errorMessage
+      },
+      () => {
+        setTimeout(
+          () => {
+            this.setState({
+              showError: false
+            })
+          }, 2000
+        )
+      }
+    )
   }
 }
 
@@ -145,4 +187,10 @@ const styles = StyleSheet.create({
     borderColor:'#dcdcdc',
     backgroundColor: '#D6ECF6'
   },
+  errorText: {
+    fontSize: 15,
+    color: 'red',
+    marginTop: 20,
+    textAlign:'center'
+  }
 });
