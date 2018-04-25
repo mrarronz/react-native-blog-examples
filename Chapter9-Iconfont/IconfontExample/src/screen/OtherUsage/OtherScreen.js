@@ -86,7 +86,7 @@ export default class OtherScreen extends React.Component {
     switch (index) {
       case 1:
         // Show usage in TabBarIOS
-        
+        this.props.navigation.navigate('tabBar');
         break;
       case 2:
         // Show usage in NavigatorIOS

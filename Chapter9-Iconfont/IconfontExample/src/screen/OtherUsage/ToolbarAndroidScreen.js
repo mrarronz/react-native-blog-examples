@@ -1,7 +1,7 @@
 import React from 'react';
 import {View} from 'react-native';
 
-export default class ToolbarAndroid extends React.Component {
+export default class ToolbarAndroidScreen extends React.Component {
   
   render() {
     return <View/>

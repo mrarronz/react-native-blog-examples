@@ -14,6 +14,9 @@ import SettingScreen from "./src/screen/SettingScreen";
 import IconFontBasicScreen from "./src/screen/IconfontBasic/IconFontBasicScreen";
 import IconFontAdvancedScreen from "./src/screen/IconfontAdvanced/IconFontAdvancedScreen";
 import OtherScreen from "./src/screen/OtherUsage/OtherScreen";
+import TabBarIOSScreen from "./src/screen/OtherUsage/TabBarIOSScreen";
+import NavigatorIOSScreen from "./src/screen/OtherUsage/NavigatorIOSScreen";
+import ToolbarAndroidScreen from "./src/screen/OtherUsage/ToolbarAndroidScreen";
 
 type Props = {};
 export default class App extends Component<Props> {
@@ -116,7 +119,10 @@ const Navigator = StackNavigator(
     Setting: {screen: SettingScreen},
     iconBasic: {screen: IconFontBasicScreen},
     iconAdvanced: {screen: IconFontAdvancedScreen},
-    other: {screen: OtherScreen}
+    other: {screen: OtherScreen},
+    tabBar: {screen: TabBarIOSScreen},
+    navigator: {screen: NavigatorIOSScreen},
+    toolbar: {screen: ToolbarAndroidScreen}
   },
   {
     navigationOptions: {
