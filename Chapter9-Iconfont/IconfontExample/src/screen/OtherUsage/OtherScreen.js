@@ -90,7 +90,7 @@ export default class OtherScreen extends React.Component {
         break;
       case 2:
         // Show usage in NavigatorIOS
-        
+        this.props.navigation.navigate('navigator');
         break;
       case 3:
         // Show usage in ToolbarAndroid
