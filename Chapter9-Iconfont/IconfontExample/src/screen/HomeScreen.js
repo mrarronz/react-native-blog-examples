@@ -47,7 +47,7 @@ export default class HomeScreen extends React.Component {
         
         break;
       case 4:
-    
+        this.props.navigation.navigate('other');
         break;
     }
   }
@@ -58,7 +58,7 @@ const items = [
   {title: 'Setting', detail: 'Display icons in Setting page'},
   {title: 'Iconfont basic usage', detail: 'Display icons which downloaded from http://www.iconfont.cn'},
   {title: 'Iconfont advanced usage',
-    detail: '1. Download icon material from http://www.iconfont.cn\n2. Automatically convert icon svg to mapping json file by script\n3. Create custom icon font component and display icon'},
+    detail: 'Display custom font icons from http://www.iconfont.cn with react-native-vector-icons'},
   {title: 'Other usage', detail: 'Show other usage of react-native-vector-icons'}
 ];
 const styles = StyleSheet.create({
