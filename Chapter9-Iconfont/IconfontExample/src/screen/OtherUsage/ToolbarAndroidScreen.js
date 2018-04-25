@@ -5,48 +5,33 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 export default class ToolbarAndroidScreen extends React.Component {
   
   static navigationOptions = {
-    header: null
+    headerTitle:'Usage with ToolbarAndroid'
   };
   
   constructor(props) {
     super(props);
     this.state = {
       appLogo: null,
-      settingIcon: null
     };
   }
   
   componentWillMount() {
-    Icon.getImageSource('react', 36).then((source) => {
+    Icon.getImageSource('android', 36, '#92c029').then((source) => {
       this.setState({
         appLogo: source
       })
     });
-    Icon.getImageSource('cog', 30).then((source) => {
-      this.setState({
-        settingIcon: source
-      })
-    })
   }
   
   render() {
     return (
-      <View>
+      <View style={{flex: 1, backgroundColor:'#f0f0f0'}}>
         <ToolbarAndroid
-          navIcon={this.state.appLogo}
-          title="Usage with ToolbarAndroid"
-          actions={
-            [
-              {title: 'Settings', icon: this.state.settingIcon, show: 'always'}
-            ]
-          }
-          onActionSelected={this.onActionSelected}
+          style={{height: 60, backgroundColor:'#7DF0E5'}}
+          logo={this.state.appLogo}
+          title={'This is an android toolbar'}
         />
       </View>
     )
   }
-  
-  onActionSelected = (position) => {
-  
-  };
 }
