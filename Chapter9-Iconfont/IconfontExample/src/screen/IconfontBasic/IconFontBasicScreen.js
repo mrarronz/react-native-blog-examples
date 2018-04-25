@@ -54,7 +54,7 @@ export default class IconFontBasicScreen extends React.Component {
   }
 }
 
-function getColor() {
+export function getColor() {
   let number = Math.floor(Math.random()*4);
   let color = 'black';
   switch (number) {

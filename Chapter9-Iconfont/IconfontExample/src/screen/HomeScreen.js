@@ -44,7 +44,7 @@ export default class HomeScreen extends React.Component {
         this.props.navigation.navigate('iconBasic');
         break;
       case 3:
-        
+        this.props.navigation.navigate('iconAdvanced');
         break;
       case 4:
         this.props.navigation.navigate('other');

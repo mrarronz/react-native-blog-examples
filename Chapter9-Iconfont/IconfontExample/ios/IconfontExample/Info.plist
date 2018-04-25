@@ -54,6 +54,7 @@
 		<string>SimpleLineIcons.ttf</string>
 		<string>MaterialIcons.ttf</string>
 		<string>iconfont.ttf</string>
+		<string>CustomIconFont</string>
 	</array>
 	<key>NSAppTransportSecurity</key>
 	<dict>

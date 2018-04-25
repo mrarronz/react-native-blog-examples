@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, ToolbarAndroid} from 'react-native';
+import {View, ToolbarAndroid, StyleSheet} from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
 export default class ToolbarAndroidScreen extends React.Component {
@@ -25,13 +25,34 @@ export default class ToolbarAndroidScreen extends React.Component {
   
   render() {
     return (
-      <View style={{flex: 1, backgroundColor:'#f0f0f0'}}>
+      <View style={styles.container}>
         <ToolbarAndroid
-          style={{height: 60, backgroundColor:'#7DF0E5'}}
+          style={styles.toolbar_system}
           logo={this.state.appLogo}
           title={'This is an android toolbar'}
+        />
+        <Icon.ToolbarAndroid
+          navIconName={'amazon'}
+          style={styles.toolbar_iconfont}
+          titleColor="white"
+          title={'This is an Icon toolbar'}
         />
       </View>
     )
   }
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor:'#f0f0f0'
+  },
+  toolbar_system: {
+    height: 60,
+    backgroundColor:'#7DF0E5'
+  },
+  toolbar_iconfont: {
+    height: 60,
+    backgroundColor:'#a9a9a9'
+  }
+});
