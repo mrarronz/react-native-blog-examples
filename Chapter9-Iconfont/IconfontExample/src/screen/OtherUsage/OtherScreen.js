@@ -114,7 +114,7 @@ export default class OtherScreen extends React.Component {
         // Show usage in ToolbarAndroid
       {
         if (Platform.OS === 'android') {
-        
+          // this.props.navigation.navigate('toolbar');
         } else {
           this.showErrorTip('Only support Android!!!');
         }
@@ -124,6 +124,9 @@ export default class OtherScreen extends React.Component {
   }
   
   showErrorTip(errorMessage) {
+    if (this.state.showError) {
+      return;
+    }
     this.setState(
       {
         showError: true,
