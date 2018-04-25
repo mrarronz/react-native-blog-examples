@@ -27,7 +27,7 @@ export default class HomeScreen extends React.Component {
           <Text style={styles.infoTitle}>{itemObj.title}</Text>
           <Text style={styles.infoDetail}>{itemObj.detail}</Text>
         </View>
-        <Icon name={'angle-right'} size={32} color={'#999999'}/>
+        <Icon name={'angle-right'} size={28} color={'#ccc'}/>
       </TouchableOpacity>
     )
   };
@@ -41,10 +41,13 @@ export default class HomeScreen extends React.Component {
         this.props.navigation.navigate('Setting');
         break;
       case 2:
-        
+        this.props.navigation.navigate('iconBasic');
         break;
       case 3:
         
+        break;
+      case 4:
+    
         break;
     }
   }
@@ -53,8 +56,10 @@ export default class HomeScreen extends React.Component {
 const items = [
   {title: 'App Store', detail: 'Display icons in TabBar, NavigationBar and empty page'},
   {title: 'Setting', detail: 'Display icons in Setting page'},
-  {title: 'Custom icons', detail: 'Display custom icons in grid view'},
-  {title: 'Other usage', detail: 'Show usage of react-native-vector-icons'}
+  {title: 'Iconfont basic usage', detail: 'Display icons which downloaded from http://www.iconfont.cn'},
+  {title: 'Iconfont advanced usage',
+    detail: '1. Download icon material from http://www.iconfont.cn\n2. Automatically convert icon svg to mapping json file by script\n3. Create custom icon font component and display icon'},
+  {title: 'Other usage', detail: 'Show other usage of react-native-vector-icons'}
 ];
 const styles = StyleSheet.create({
   container: {
@@ -75,11 +80,10 @@ const styles = StyleSheet.create({
   infoTitle: {
     fontSize: 18,
     fontWeight:'bold',
-    color: '#333'
   },
   infoDetail: {
     fontSize: 13,
-    color: '#999',
+    color: '#666',
     marginTop: 10
   }
 });

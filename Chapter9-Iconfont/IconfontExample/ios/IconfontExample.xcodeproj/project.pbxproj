@@ -60,6 +60,7 @@
 		E26A5E8E208EDC6400723D9D /* SimpleLineIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E26A5E5E208EDC6300723D9D /* SimpleLineIcons.ttf */; };
 		E26A5E8F208EDC6400723D9D /* MaterialIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E26A5E5F208EDC6300723D9D /* MaterialIcons.ttf */; };
 		E26A5EC7208EE01300723D9D /* libRNVectorIcons.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E26A5EC6208EE00000723D9D /* libRNVectorIcons.a */; };
+		E26A5EC92090180200723D9D /* iconfont.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E26A5EC82090180200723D9D /* iconfont.ttf */; };
 		F95E99D38E484640BCB12EEF /* MaterialIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BC89062DB0C54D8B9330D556 /* MaterialIcons.ttf */; };
 /* End PBXBuildFile section */
 
@@ -395,6 +396,7 @@
 		E26A5E5D208EDC6300723D9D /* EvilIcons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = EvilIcons.ttf; sourceTree = "<group>"; };
 		E26A5E5E208EDC6300723D9D /* SimpleLineIcons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = SimpleLineIcons.ttf; sourceTree = "<group>"; };
 		E26A5E5F208EDC6300723D9D /* MaterialIcons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = MaterialIcons.ttf; sourceTree = "<group>"; };
+		E26A5EC82090180200723D9D /* iconfont.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = iconfont.ttf; sourceTree = "<group>"; };
 		EAEA6907CB574E6E832262C5 /* FontAwesome.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome.ttf"; sourceTree = "<group>"; };
 		F11291F4B1BE4086BEA9F4A8 /* Entypo.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Entypo.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Entypo.ttf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -684,6 +686,7 @@
 		E26A5E54208EDC6300723D9D /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
+				E26A5EC82090180200723D9D /* iconfont.ttf */,
 				E26A5E55208EDC6300723D9D /* Octicons.ttf */,
 				E26A5E56208EDC6300723D9D /* Feather.ttf */,
 				E26A5E57208EDC6300723D9D /* Entypo.ttf */,
@@ -1194,6 +1197,7 @@
 				F95E99D38E484640BCB12EEF /* MaterialIcons.ttf in Resources */,
 				3DFFA52FE6D4480586954C97 /* Octicons.ttf in Resources */,
 				7C5E360D846B48CFAB50A5FD /* SimpleLineIcons.ttf in Resources */,
+				E26A5EC92090180200723D9D /* iconfont.ttf in Resources */,
 				095831863EAC446DA1C7BEDB /* Zocial.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

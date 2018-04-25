@@ -39,7 +39,7 @@
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string/>
+	<string></string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>Octicons.ttf</string>
@@ -53,6 +53,7 @@
 		<string>EvilIcons.ttf</string>
 		<string>SimpleLineIcons.ttf</string>
 		<string>MaterialIcons.ttf</string>
+		<string>iconfont.ttf</string>
 	</array>
 	<key>NSAppTransportSecurity</key>
 	<dict>
