@@ -38,4 +38,7 @@ recommended IDE: [WebStorm](http://www.jetbrains.com/webstorm/)
 
 ![image](https://github.com/mrarronz/react-native-blog-examples/raw/master/Chapter8-MyVideoApp/MyVideoApp/screenshots/portrait.gif)
 
+## iconfont
+自定义iconfont在React Native中的使用，[看这一篇文章就足够了...](https://juejin.im/post/5ae1685bf265da0b8a675199)
 
+![image](https://github.com/mrarronz/react-native-blog-examples/raw/master/Chapter9-Iconfont/IconfontExample/screenshots/screenshot6.png)
