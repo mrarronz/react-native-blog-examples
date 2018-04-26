@@ -12,7 +12,7 @@ recommended IDE: [WebStorm](http://www.jetbrains.com/webstorm/)
 5. Chapter5 - [react-navigation使用介绍及UI组件外实现统一跳转](https://juejin.im/post/5a9668a8f265da4e9d226176)
 6. Chapter7 - [ReactNative——react-native-video实现视频全屏播放](https://juejin.im/post/5a9f9fde518825557207e7b0)
 7. Chapter8 - [ReactNative干货分享——视频播放器App](https://juejin.im/post/5ad7288cf265da50407bc8ce)
-8. Chapter9 - [React Native——自定义iconfont图标的使用详解](https://juejin.im/post/5ae1685bf265da0b8a675199)
+8. Chapter9 - [ReactNative干货分享——自定义iconfont图标的使用](https://juejin.im/post/5ae1685bf265da0b8a675199)
 
 ## 视频播放器功能
 
