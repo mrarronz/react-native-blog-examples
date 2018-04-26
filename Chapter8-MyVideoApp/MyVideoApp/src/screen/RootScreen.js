@@ -1,6 +1,7 @@
 import React from 'react';
 import {StatusBar} from 'react-native';
 import {StackNavigator, TabNavigator, TabBarBottom} from 'react-navigation';
+import Icon from 'react-native-vector-icons/Feather';
 import VideoListScreen from './VideoListScreen';
 import VideoPlayScreen from './VideoPlayScreen';
 import FullScreenPlayer from "../components/FullScreenPlayer";
@@ -21,9 +22,21 @@ const TabNav = TabNavigator(
   {
     Mode1: {
       screen: VideoListScreen,
+      navigationOptions: ({navigation}) => ({
+        title: '列表模式',
+        tabBarIcon: ({focused}) => (
+          <Icon name={'list'} size={24} color={focused ? '#707ee2' : '#888888'}/>
+        ),
+      }),
     },
     Mode2: {
-      screen: VideoListScreen
+      screen: VideoListScreen,
+      navigationOptions: ({navigation}) => ({
+        title: '全屏模式',
+        tabBarIcon: ({focused}) => (
+          <Icon name={'maximize'} size={24} color={focused ? '#707ee2' : '#888888'}/>
+        ),
+      }),
     }
   },
   {
