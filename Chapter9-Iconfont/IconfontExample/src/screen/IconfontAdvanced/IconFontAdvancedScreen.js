@@ -38,6 +38,11 @@ export default class IconFontAdvancedScreen extends React.Component {
           <CustomIconFont name={'tubiaozhizuomobanyihuifu_22'} size={24} color={getColor()}/>
           <CustomIconFont name={'tubiaozhizuomobanyihuifu_23'} size={24} color={getColor()}/>
         </View>
+        <View style={styles.iconButton}>
+          <CustomIconFont.Button name={'tubiaozhizuomobanyihuifu_23'} backgroundColor={'#59ACEA'}>
+            Test icon button
+          </CustomIconFont.Button>
+        </View>
         <Text style={styles.title}>Usage Steps:</Text>
         <Text style={styles.description}>1. Download icon material from <Text style={styles.link}>http://www.iconfont.cn</Text>.</Text>
         <Text style={styles.description}>2. Drag iconfont.ttf to specified Android and iOS project directory and complete related config.</Text>
@@ -60,6 +65,9 @@ const styles = StyleSheet.create({
   collectionView: {
     flexDirection:'row',
     flexWrap:'wrap'
+  },
+  iconButton: {
+    marginTop: 20,
   },
   title: {
     fontSize: 18,
