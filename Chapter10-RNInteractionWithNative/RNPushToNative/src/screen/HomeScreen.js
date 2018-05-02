@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, Text, Button, NativeModules, Platform} from 'react-native';
+import {View, Text, Button, NativeModules} from 'react-native';
 
 var nativeModule = NativeModules.OpenNativeModule;
 
@@ -20,8 +20,6 @@ export default class HomeScreen extends React.Component {
   }
   
   jumpToNativeView() {
-    if (Platform.OS === 'ios') {
-      nativeModule.openNativeVC();
-    }
+    nativeModule.openNativeVC();
   }
 }
