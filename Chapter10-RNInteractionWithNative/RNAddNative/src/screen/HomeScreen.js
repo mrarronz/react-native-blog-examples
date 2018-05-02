@@ -17,6 +17,9 @@ export default class HomeScreen extends React.Component {
             screen:'Detail',
             title: '详情页',
             subtitle: '这是子标题',
+            navigatorStyle:{
+              tabBarHidden: true
+            }
           });
         }}/>
       </View>

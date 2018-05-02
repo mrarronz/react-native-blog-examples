@@ -2,12 +2,14 @@ import {Navigation, ScreenVisibilityListener} from 'react-native-navigation';
 import HomeScreen from "./HomeScreen";
 import ProfileScreen from "./ProfileScreen";
 import DetailScreen from "./DetailScreen";
+import ModalPage from "./ModalPage";
 
 
 export function registerScreens() {
   Navigation.registerComponent('Home', () => HomeScreen);
   Navigation.registerComponent('Profile', () => ProfileScreen);
   Navigation.registerComponent('Detail', () => DetailScreen);
+  Navigation.registerComponent('Modal', () => ModalPage);
 }
 
 export function registerScreenVisibilityListener() {
