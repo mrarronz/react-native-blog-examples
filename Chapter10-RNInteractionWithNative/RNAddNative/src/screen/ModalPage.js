@@ -19,7 +19,7 @@ export default class ModalPage extends React.Component {
   
   render() {
     return (
-      <View>
+      <View style={{flex: 1, backgroundColor:'white'}}>
         <Text>弹窗页</Text>
       </View>
     )

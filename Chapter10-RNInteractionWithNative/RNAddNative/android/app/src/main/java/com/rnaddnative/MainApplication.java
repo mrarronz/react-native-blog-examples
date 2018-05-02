@@ -1,9 +1,9 @@
 package com.rnaddnative;
-import android.support.annotation.Nullable;
 
 import com.reactnativenavigation.NavigationApplication;
 import com.facebook.react.ReactPackage;
 
+import java.util.Arrays;
 import java.util.List;
 
 public class MainApplication extends NavigationApplication {
@@ -13,15 +13,21 @@ public class MainApplication extends NavigationApplication {
           return BuildConfig.DEBUG;
       }
 
-      @Nullable
-      @Override
-      public List<ReactPackage> createAdditionalReactPackages() {
-          return null;
+      protected List<ReactPackage> getPackages() {
+          return Arrays.<ReactPackage>asList(
+                  new OpenNativePackage()
+          );
       }
 
-      @Nullable
+      @Override
+      public List<ReactPackage> createAdditionalReactPackages() {
+          return getPackages();
+      }
+
       @Override
       public String getJSMainModuleName() {
           return "index";
       }
+
+
 }

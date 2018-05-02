@@ -8,6 +8,9 @@ export default class HomeScreen extends React.Component {
   constructor() {
     super();
     StatusBar.setBarStyle('light-content');
+    this.state = {
+      isNavBarHidden: false
+    }
   }
   
   render() {
@@ -27,13 +30,24 @@ export default class HomeScreen extends React.Component {
         <Button title={'跳转到原生页面'} onPress={() => {
           this.jumpToNativeView();
         }}/>
+        <Button title={this.state.isNavBarHidden ? '显示navBar' : '隐藏navBar'} onPress={() => {
+          this.hideNavBar();
+        }}/>
       </View>
     )
   }
   
   jumpToNativeView() {
-    if (Platform.OS === 'ios') {
-      nativeModule.openNativeVC();
-    }
+    nativeModule.openNativeVC();
+  }
+  
+  hideNavBar() {
+    let isHidden = !this.state.isNavBarHidden;
+    this.props.navigator.setStyle({
+      navBarHidden: isHidden,
+    });
+    this.setState({
+      isNavBarHidden: isHidden
+    });
   }
 }
