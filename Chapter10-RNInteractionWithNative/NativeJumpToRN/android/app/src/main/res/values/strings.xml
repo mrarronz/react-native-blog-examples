@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">NativeJumpToRN</string>
+    <string name="title_activity_test">TestActivity</string>
 </resources>
