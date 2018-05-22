@@ -4,6 +4,20 @@ Sample projects for my react native blog
 use "npm install" to install dependencies，
 recommended IDE: [WebStorm](http://www.jetbrains.com/webstorm/)
 
+## Overview
+RN优点是跨平台、JS代码和样式开发UI迅速、HotReload、热修复，缺点在于性能、开发集成时配置略麻烦，带来的问题也略多，但它值得一学。对于功能复杂型应用还是应该以原生为主RN为辅。
+
+本仓库是对React Native系列开发知识的经验总结，目的是使用React Native实现原生开发的绝大部分功能，能够基本适应各种常见的应用场景。Example由基础常用控件ListView，FlatList等开始逐步深入，涵盖控件使用、页面导航跳转、视频播放器、iconfont、RN与原生的交互等内容，持续更新中(不定期更新)，感兴趣的可以关注下。
+
+### 后续更新计划(暂定)：
+1. RN与原生基本数据交互
+2. RN调用原生端SQLite数据库
+3. 第三方二维码生成和扫描
+4. 消息推送功能的集成和处理
+5. 微信登录和分享
+6. 微信和支付宝支付
+7. Animated动画的使用
+
 ## Demo对应的文章
 1. Chapter1 - [React Native——ListView的使用详解](https://juejin.im/post/5a8f7f586fb9a063417b3eea)
 2. Chapter2 - [ReactNative——使用FlatList实现豆瓣电影列表](https://juejin.im/post/5a90ca01f265da4e853d70cc)
