@@ -6,16 +6,41 @@
 
 import React, { Component } from 'react';
 import {
+  Platform,
   StyleSheet,
   Text,
   View,
   Alert,
   ScrollView,
+  NativeModules,
+  DeviceEventEmitter,
+  NativeEventEmitter,
   TouchableHighlight,
 } from 'react-native';
 
+const DataTransferModule = NativeModules.DataTransferModule;
+
 type Props = {};
 export default class App extends Component<Props> {
+  
+  componentDidMount() {
+    this.listener = null;
+    if (Platform.OS === 'ios') {
+      let eventEmitter = new NativeEventEmitter(DataTransferModule);
+      this.listener = eventEmitter.addListener("CustomEventName", (result) => {
+        this.showAlert("获取到事件通知" + result);
+      })
+    } else {
+      this.listener = DeviceEventEmitter.addListener("CustomEventName", (result) => {
+        this.showAlert("获取到事件通知" + result);
+      });
+    }
+  }
+  
+  componentWillUnmount() {
+    this.listener && this.listener.remove();
+  }
+  
   render() {
     return (
       <ScrollView style={styles.container} contentContainerStyle={styles.content}>
@@ -62,13 +87,15 @@ export default class App extends Component<Props> {
   sectionOneItemClicked(index) {
     switch (index) {
       case 0:
-        
+        DataTransferModule.getStringFromReactNative("哈哈哈");
         break;
       case 1:
-        
+        let dict = {id: '1', title: 'test'};
+        DataTransferModule.getDictionaryFromRN(dict);
         break;
       case 2:
-        
+        let list = ["哈哈哈", "呵呵呵", "嘿嘿嘿", "傻笑三连"];
+        DataTransferModule.getArrayFromRN(list);
         break;
     }
   }
@@ -76,16 +103,34 @@ export default class App extends Component<Props> {
   sectionTwoItemClicked(index) {
     switch (index) {
       case 0:
-      
+        DataTransferModule.passStringBackToRN((str) => {
+          this.showAlert(str);
+        });
         break;
       case 1:
-      
+        DataTransferModule.passDictionaryBackToRN((dict) => {
+          console.log(dict);
+          let name = dict.name;
+          this.showAlert(name);
+        });
         break;
       case 2:
-      
+        DataTransferModule.passArrayBackToRN((array) => {
+          console.log(array);
+          let joinString = array.join(', ');
+          this.showAlert(joinString);
+        });
         break;
       case 3:
-    
+        DataTransferModule.passPromiseBackToRN("Hello").then((result) => {
+          console.log(result);
+          if (result) {
+            this.showAlert("获取promise成功");
+          }
+        }).catch((error) => {
+          console.log(error);
+          this.showAlert(error.message);
+        });
         break;
     }
   }
@@ -93,12 +138,17 @@ export default class App extends Component<Props> {
   sectionThreeItemClicked(index) {
     switch (index) {
       case 0:
-      
+        let customConstant = DataTransferModule.CustomConstant;
+        this.showAlert(customConstant);
         break;
       case 1:
-      
+        DataTransferModule.jumpToNativeView();
         break;
     }
+  }
+  
+  showAlert(msg) {
+    Alert.alert("显示结果", msg, [{text:'确定'}], {cancelable: false});
   }
   
 }

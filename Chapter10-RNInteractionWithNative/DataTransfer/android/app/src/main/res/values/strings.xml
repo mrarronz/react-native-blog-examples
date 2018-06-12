@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">DataTransfer</string>
+    <string name="test_button">点击button跳转回RN页面并传递参数</string>
 </resources>
