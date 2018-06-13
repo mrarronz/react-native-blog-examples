@@ -27,7 +27,7 @@ RN优点是跨平台、JS代码和样式开发UI迅速、HotReload、热修复�
 7. Chapter8 - [ReactNative干货分享——视频播放器App](https://juejin.im/post/5ad7288cf265da50407bc8ce)
 8. Chapter9 - [ReactNative干货分享——自定义iconfont图标的使用](https://juejin.im/post/5ae1685bf265da0b8a675199)
 9. Chapter10 - [RN与原生交互（一）——基本页面跳转](https://juejin.im/post/5b20810ff265da6e432e697c)
-10. Chapter10 - [RN与原生交互（二）——数据传递](https://juejin.im/post/5b20ceb16fb9a01e4f47cd49)
+10. Chapter10/DataTransfer - [RN与原生交互（二）——数据传递](https://juejin.im/post/5b20ceb16fb9a01e4f47cd49)
 
 ## 视频播放器功能
 
