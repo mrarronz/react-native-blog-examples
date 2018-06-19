@@ -23,7 +23,7 @@ RN优点是跨平台、JS代码和样式开发UI迅速、HotReload、热修复�
 3. Chapter3 - [React Native——使用SectionList改造电影列表](https://juejin.im/post/5a93a900f265da4e8c452b36)
 4. Chapter4 - [React Native——自定义下拉刷新上拉加载的列表](https://juejin.im/post/5a94d26d6fb9a0636263fd16)
 5. Chapter5 - [react-navigation使用介绍及UI组件外实现统一跳转](https://juejin.im/post/5a9668a8f265da4e9d226176)
-6. Chapter6 - TextInput组件的使用示例和最基本的表单校验
+6. Chapter6 - [TextInput组件的使用示例和最基本的表单校验](#)
 7. Chapter7 - [ReactNative——react-native-video实现视频全屏播放](https://juejin.im/post/5a9f9fde518825557207e7b0)
 8. Chapter8 - [ReactNative干货分享——视频播放器App](https://juejin.im/post/5ad7288cf265da50407bc8ce)
 9. Chapter9 - [ReactNative干货分享——自定义iconfont图标的使用](https://juejin.im/post/5ae1685bf265da0b8a675199)
