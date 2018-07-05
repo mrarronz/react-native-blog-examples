@@ -34,6 +34,9 @@
 		9CCC69A7D4534D4789BF9400 /* Zocial.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 02EAE4A764B74C8AB242E4AA /* Zocial.ttf */; };
 		ADBDB9381DFEBF1600ED6528 /* libRCTBlob.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ADBDB9271DFEBF0700ED6528 /* libRCTBlob.a */; };
 		C5BFD73443AC4BDAAD36209A /* Feather.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2D5548C7F68F47C1BAE49ACA /* Feather.ttf */; };
+		E289605920EDFE2900DE0100 /* DBHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = E289605820EDFE2900DE0100 /* DBHelper.m */; };
+		E289605C20EE00D600DE0100 /* DBManagerModule.m in Sources */ = {isa = PBXBuildFile; fileRef = E289605B20EE00D600DE0100 /* DBManagerModule.m */; };
+		E289605E20EE011D00DE0100 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = E289605D20EE011D00DE0100 /* libsqlite3.tbd */; };
 		E2B73A0020D8D6C70035AA31 /* libReactNativeNavigation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E2B739FF20D8D6B30035AA31 /* libReactNativeNavigation.a */; };
 		E2B73A3920D8DD750035AA31 /* libRNVectorIcons.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E2B73A3820D8DD620035AA31 /* libRNVectorIcons.a */; };
 		FF86F52B642F47D697FF2D87 /* SimpleLineIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 207735A8673544EEA2989F05 /* SimpleLineIcons.ttf */; };
@@ -352,6 +355,11 @@
 		BFA963802A4949818BBE15C5 /* ReactNativeNavigation.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = ReactNativeNavigation.xcodeproj; path = "../node_modules/react-native-navigation/ios/ReactNativeNavigation.xcodeproj"; sourceTree = "<group>"; };
 		CCAE1B445A724DD08DA04C35 /* libRNVectorIcons.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNVectorIcons.a; sourceTree = "<group>"; };
 		CECF1DE7C45F41FABC2AB3FF /* Foundation.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Foundation.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Foundation.ttf"; sourceTree = "<group>"; };
+		E289605720EDFE2900DE0100 /* DBHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = DBHelper.h; path = SQLiteStorage/DBHelper/DBHelper.h; sourceTree = "<group>"; };
+		E289605820EDFE2900DE0100 /* DBHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = DBHelper.m; path = SQLiteStorage/DBHelper/DBHelper.m; sourceTree = "<group>"; };
+		E289605A20EE00D600DE0100 /* DBManagerModule.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = DBManagerModule.h; path = SQLiteStorage/DBHelper/DBManagerModule.h; sourceTree = "<group>"; };
+		E289605B20EE00D600DE0100 /* DBManagerModule.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = DBManagerModule.m; path = SQLiteStorage/DBHelper/DBManagerModule.m; sourceTree = "<group>"; };
+		E289605D20EE011D00DE0100 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
 		E664320A985843CAA21D2A07 /* Ionicons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Ionicons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Ionicons.ttf"; sourceTree = "<group>"; };
 		EF2C02C6F28449A7B7F7FB55 /* EvilIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = EvilIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/EvilIcons.ttf"; sourceTree = "<group>"; };
 		F180B746F539A3C5FB9A8B70 /* Pods-SQLiteStorage.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SQLiteStorage.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SQLiteStorage/Pods-SQLiteStorage.debug.xcconfig"; sourceTree = "<group>"; };
@@ -364,6 +372,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E289605E20EE011D00DE0100 /* libsqlite3.tbd in Frameworks */,
 				E2B73A3920D8DD750035AA31 /* libRNVectorIcons.a in Frameworks */,
 				E2B73A0020D8D6C70035AA31 /* libReactNativeNavigation.a in Frameworks */,
 				ADBDB9381DFEBF1600ED6528 /* libRCTBlob.a in Frameworks */,
@@ -468,6 +477,7 @@
 		13B07FAE1A68108700A75B9A /* SQLiteStorage */ = {
 			isa = PBXGroup;
 			children = (
+				E289602F20EDFE0200DE0100 /* DBHelper */,
 				008F07F21AC5B25A0029DE68 /* main.jsbundle */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
 				13B07FB01A68108700A75B9A /* AppDelegate.m */,
@@ -505,6 +515,7 @@
 		2D16E6871FA4F8E400B85C8A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				E289605D20EE011D00DE0100 /* libsqlite3.tbd */,
 				2D16E6891FA4F8E400B85C8A /* libReact.a */,
 				A1C4E94A60619A18454628BB /* libPods-SQLiteStorage.a */,
 			);
@@ -609,6 +620,17 @@
 				02EAE4A764B74C8AB242E4AA /* Zocial.ttf */,
 			);
 			name = Resources;
+			sourceTree = "<group>";
+		};
+		E289602F20EDFE0200DE0100 /* DBHelper */ = {
+			isa = PBXGroup;
+			children = (
+				E289605720EDFE2900DE0100 /* DBHelper.h */,
+				E289605820EDFE2900DE0100 /* DBHelper.m */,
+				E289605A20EE00D600DE0100 /* DBManagerModule.h */,
+				E289605B20EE00D600DE0100 /* DBManagerModule.m */,
+			);
+			name = DBHelper;
 			sourceTree = "<group>";
 		};
 		E2B739D520D8D6A90035AA31 /* Recovered References */ = {
@@ -1098,6 +1120,8 @@
 			files = (
 				13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */,
 				13B07FC11A68108700A75B9A /* main.m in Sources */,
+				E289605920EDFE2900DE0100 /* DBHelper.m in Sources */,
+				E289605C20EE00D600DE0100 /* DBManagerModule.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
