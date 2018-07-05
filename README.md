@@ -10,12 +10,11 @@ RN优点是跨平台、JS代码和样式开发UI迅速、HotReload、热修复�
 本仓库是对React Native系列开发知识的经验总结，目的是使用React Native实现原生开发的绝大部分功能，能够基本适应各种常见的应用场景。Example由基础常用控件ListView，FlatList等开始逐步深入，涵盖控件使用、页面导航跳转、视频播放器、iconfont、RN与原生的交互等内容，持续更新中(不定期更新)，感兴趣的可以关注下。
 
 ### 后续更新计划(暂定)：
-1. RN调用原生端SQLite数据库
-2. 第三方二维码生成和扫描
-3. 消息推送功能的集成和处理
-4. 微信登录和分享
-5. 微信和支付宝支付
-6. Animated动画的使用
+1. 第三方二维码生成和扫描
+2. 消息推送功能的集成和处理
+3. 微信登录和分享
+4. 微信和支付宝支付
+5. Animated动画的使用
 
 ## Demo对应的文章及说明
 1. Chapter1 - [React Native——ListView的使用详解](https://juejin.im/post/5a8f7f586fb9a063417b3eea)
@@ -29,6 +28,7 @@ RN优点是跨平台、JS代码和样式开发UI迅速、HotReload、热修复�
 9. Chapter9 - [ReactNative干货分享——自定义iconfont图标的使用](https://juejin.im/post/5ae1685bf265da0b8a675199)
 10. Chapter10 - [RN与原生交互（一）——基本页面跳转](https://juejin.im/post/5b20810ff265da6e432e697c)
 11. Chapter10/DataTransfer - [RN与原生交互（二）——数据传递](https://juejin.im/post/5b20ceb16fb9a01e4f47cd49)
+12. Chapter11 - [RN调用原生端SQLite数据库](#)
 
 ## 视频播放器功能
 
