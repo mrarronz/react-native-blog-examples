@@ -15,6 +15,9 @@ RN优点是跨平台、JS代码和样式开发UI迅速、HotReload、热修复�
 3. 微信登录和分享
 4. 微信和支付宝支付
 5. Animated动画的使用
+6. 原生控件在RN中的封装和使用，自定义Android和iOS扫描二维码
+7. 使用Code Push实现RN的热更新
+8. React Native性能优化总结
 
 ## Demo对应的文章及说明
 1. Chapter1 - [React Native——ListView的使用详解](https://juejin.im/post/5a8f7f586fb9a063417b3eea)
