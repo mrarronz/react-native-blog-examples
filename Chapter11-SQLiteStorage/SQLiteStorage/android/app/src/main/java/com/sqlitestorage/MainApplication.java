@@ -3,6 +3,7 @@ package com.sqlitestorage;
 import com.oblador.vectoricons.VectorIconsPackage;
 import com.reactnativenavigation.NavigationApplication;
 import com.facebook.react.ReactPackage;
+import com.sqlitestorage.database.DBManagerPackage;
 
 import java.util.Arrays;
 import java.util.List;
@@ -16,7 +17,8 @@ public class MainApplication extends NavigationApplication {
 
         protected List<ReactPackage> getPackages() {
             return Arrays.<ReactPackage>asList(
-                    new VectorIconsPackage()
+                new VectorIconsPackage(),
+                new DBManagerPackage()
             );
         }
 

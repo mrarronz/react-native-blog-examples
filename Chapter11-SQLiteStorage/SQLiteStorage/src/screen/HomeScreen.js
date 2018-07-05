@@ -1,18 +1,21 @@
 import React from 'react';
-import {View, DeviceEventEmitter} from 'react-native';
+import {View, FlatList, Text, TouchableOpacity, StyleSheet, Image, DeviceEventEmitter} from 'react-native';
 
 export default class HomeScreen extends React.Component {
   
   constructor(props) {
     super(props);
     this.state = {
-      newsList: []
+      studentList: []
     };
   }
   
   componentWillMount() {
     this.listener = DeviceEventEmitter.addListener('AddButtonPressed', () => {
-      // TODO: 点击增加新的条目
+      this.props.navigator.push({
+        screen: 'AddItem',
+        title: 'Add Student'
+      });
     });
   }
   
@@ -21,6 +24,28 @@ export default class HomeScreen extends React.Component {
   }
   
   render() {
-    return <View/>
+    return (
+      <View style={styles.container}>
+        <FlatList
+          data={this.state.studentList}
+          keyExtractor={(item, index) => String(index)}
+          renderItem={this._renderRow}
+        />
+      </View>
+    )
+  }
+  
+  _renderRow = (item) => {
+    let student = item.item;
+    return (
+      <View/>
+    )
   }
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor:'#eeeeee'
+  }
+});

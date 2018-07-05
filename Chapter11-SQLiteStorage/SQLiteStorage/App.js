@@ -17,7 +17,8 @@ Navigation.startSingleScreenApp({
     title: 'Home',
     navigatorStyle: {
       navBarTextColor:'white',
-      navBarBackgroundColor:'#2E95DD'
+      navBarBackgroundColor:'#707aa2',
+      navBarButtonColor: 'white',
     },
     navigatorButtons: {
       rightButtons: [
@@ -32,7 +33,14 @@ Navigation.startSingleScreenApp({
 
 const CustomAddButton = () => (
   <TouchableOpacity
-    style={{width: 44, height: 44, alignItems:'center', justifyContent:'center'}}
+    style={{
+      width: 44,
+      height: 44,
+      backgroundColor:'#707aa2',
+      alignItems:'center',
+      justifyContent:'center'
+    }}
+    activeOpacity={1.0}
     onPress={() => {DeviceEventEmitter.emit('AddButtonPressed')}}
   >
     <Icon size={24} name={'plus'} color={'white'}/>
