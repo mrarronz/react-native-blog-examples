@@ -73,11 +73,10 @@ export default class HomeScreen extends React.Component {
           )}
           renderHiddenRow={ (data, secId, rowId, rowMap) => (
             <View style={styles.rowBack}>
-              <Text>Left</Text>
               <TouchableOpacity style={[styles.backRightBtn, styles.backRightBtnLeft]} onPress={ () => this.closeRow(rowMap, `${secId}${rowId}`) }>
                 <Text style={styles.backTextWhite}>Close</Text>
               </TouchableOpacity>
-              <TouchableOpacity style={[styles.backRightBtn, styles.backRightBtnRight]} onPress={ () => this.deleteRow(rowMap, `${secId}${rowId}`) }>
+              <TouchableOpacity style={[styles.backRightBtn, styles.backRightBtnRight]} onPress={ () => this.deleteRow(data, rowMap, `${secId}${rowId}`) }>
                 <Text style={styles.backTextWhite}>Delete</Text>
               </TouchableOpacity>
             </View>
@@ -95,15 +94,24 @@ export default class HomeScreen extends React.Component {
     }
   }
   
-  deleteRow(rowMap, rowKey) {
+  deleteRow(data, rowMap, rowKey) {
     this.closeRow(rowMap, rowKey);
-    const newData = [...this.state.studentList];
-    const prevIndex = this.state.studentList.findIndex(item => item.key === rowKey);
-    let student = this.state.studentList[prevIndex + 1];
-    console.log(student);
-    DBManagerModule.deleteStudent(student.studentName);
-    newData.splice(prevIndex, 1);
-    this.setState({studentList: newData});
+    DBManagerModule.deleteStudent(data.studentName);
+    let index = -1;
+    let tempList = this.state.studentList;
+    for (let i = 0; i < tempList.length; i++) {
+      let obj = tempList[i];
+      if (obj.studentName === data.studentName) {
+        index = i;
+        break;
+      }
+    }
+    if (index >= 0) {
+      tempList.splice(index, 1);
+      this.setState({
+        studentList: tempList
+      })
+    }
   }
 }
 
