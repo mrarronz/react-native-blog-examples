@@ -25,13 +25,18 @@ public class DBManagerModule extends ReactContextBaseJavaModule {
     @ReactMethod
     public void saveStudent(String studentName, String schoolName, String className) {
         DBManager dbManager = new DBManager(mReactContext);
-        dbManager.saveStudent(studentName, schoolName, className);
+        if (!dbManager.isStudentExists(studentName)) {
+            dbManager.saveStudent(studentName, schoolName, className);
+        }
     }
 
     @ReactMethod
     public void saveStudentWithMap(ReadableMap map) {
         DBManager dbManager = new DBManager(mReactContext);
-        dbManager.saveStudentWithMap(map);
+        String studentName = map.getString("studentName");
+        if (!dbManager.isStudentExists(studentName)) {
+            dbManager.saveStudentWithMap(map);
+        }
     }
 
     @ReactMethod

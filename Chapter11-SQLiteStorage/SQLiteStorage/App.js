@@ -14,7 +14,7 @@ registerScreens();
 Navigation.startSingleScreenApp({
   screen: {
     screen: 'Home',
-    title: 'Home',
+    title: 'Student List',
     navigatorStyle: {
       navBarTextColor:'white',
       navBarBackgroundColor:'#707aa2',

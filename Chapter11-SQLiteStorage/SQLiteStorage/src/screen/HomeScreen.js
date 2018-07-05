@@ -1,10 +1,22 @@
 import React from 'react';
-import {View, FlatList, Text, TouchableOpacity, StyleSheet, Image, DeviceEventEmitter} from 'react-native';
+import {
+  View,
+  Text,
+  TouchableOpacity,
+  StyleSheet,
+  ListView,
+  DeviceEventEmitter,
+  NativeModules
+} from 'react-native';
+import {SwipeListView} from 'react-native-swipe-list-view';
+
+const DBManagerModule = NativeModules.DBManagerModule;
 
 export default class HomeScreen extends React.Component {
   
   constructor(props) {
     super(props);
+    this.ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
     this.state = {
       studentList: []
     };
@@ -17,29 +29,81 @@ export default class HomeScreen extends React.Component {
         title: 'Add Student'
       });
     });
+    this.refreshData();
+    this.dbListener = DeviceEventEmitter.addListener('DataChangedEvent', () => {
+      this.refreshData();
+    });
+  }
+  
+  refreshData() {
+    DBManagerModule.getAllStudent((result) => {
+      let students = [];
+      if (result != null) {
+        students = result;
+        this.setState({
+          studentList: students
+        })
+      }
+    });
   }
   
   componentWillUnmount() {
     this.listener && this.listener.remove();
+    this.dbListener && this.dbListener.remove();
   }
   
   render() {
     return (
       <View style={styles.container}>
-        <FlatList
-          data={this.state.studentList}
-          keyExtractor={(item, index) => String(index)}
-          renderItem={this._renderRow}
+        <SwipeListView
+          enableEmptySections
+          dataSource={this.ds.cloneWithRows(this.state.studentList)}
+          renderRow={ (data) => (
+            <TouchableOpacity
+              activeOpacity={1.0}
+              onPress={() => {
+                console.log('clicked....')
+              }}
+              style={styles.rowFront}
+            >
+              <Text style={styles.itemText}>I am {data.studentName}</Text>
+              <Text style={styles.itemText}>I am from {data.schoolName}</Text>
+              <Text style={styles.itemText}>I am in {data.className}</Text>
+            </TouchableOpacity>
+          )}
+          renderHiddenRow={ (data, secId, rowId, rowMap) => (
+            <View style={styles.rowBack}>
+              <Text>Left</Text>
+              <TouchableOpacity style={[styles.backRightBtn, styles.backRightBtnLeft]} onPress={ () => this.closeRow(rowMap, `${secId}${rowId}`) }>
+                <Text style={styles.backTextWhite}>Close</Text>
+              </TouchableOpacity>
+              <TouchableOpacity style={[styles.backRightBtn, styles.backRightBtnRight]} onPress={ () => this.deleteRow(rowMap, `${secId}${rowId}`) }>
+                <Text style={styles.backTextWhite}>Delete</Text>
+              </TouchableOpacity>
+            </View>
+          )}
+          leftOpenValue={0}
+          rightOpenValue={-150}
         />
       </View>
     )
   }
   
-  _renderRow = (item) => {
-    let student = item.item;
-    return (
-      <View/>
-    )
+  closeRow(rowMap, rowKey) {
+    if (rowMap[rowKey]) {
+      rowMap[rowKey].closeRow();
+    }
+  }
+  
+  deleteRow(rowMap, rowKey) {
+    this.closeRow(rowMap, rowKey);
+    const newData = [...this.state.studentList];
+    const prevIndex = this.state.studentList.findIndex(item => item.key === rowKey);
+    let student = this.state.studentList[prevIndex + 1];
+    console.log(student);
+    DBManagerModule.deleteStudent(student.studentName);
+    newData.splice(prevIndex, 1);
+    this.setState({studentList: newData});
   }
 }
 
@@ -47,5 +111,46 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor:'#eeeeee'
-  }
+  },
+  rowFront: {
+    backgroundColor: 'white',
+    borderBottomColor: '#dcdcdc',
+    borderBottomWidth: 1,
+    paddingLeft: 15,
+    paddingRight: 15,
+    paddingTop: 10,
+    paddingBottom: 10
+  },
+  rowBack: {
+    alignItems: 'center',
+    backgroundColor: 'white',
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'flex-end',
+  },
+  itemText: {
+    marginTop: 5,
+    marginBottom: 5
+  },
+  backRightBtn: {
+    alignItems: 'center',
+    bottom: 0,
+    justifyContent: 'center',
+    position: 'absolute',
+    top: 0,
+    width: 75
+  },
+  backRightBtnLeft: {
+    backgroundColor: '#00c06d',
+    right: 75
+  },
+  backRightBtnRight: {
+    backgroundColor: 'red',
+    right: 0
+  },
+  backTextWhite: {
+    fontSize: 17,
+    fontWeight:'bold',
+    color:'white'
+  },
 });

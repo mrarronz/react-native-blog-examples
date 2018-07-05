@@ -7,9 +7,13 @@ import {
   TouchableOpacity,
   Text,
   StyleSheet,
-  Keyboard
+  Keyboard,
+  DeviceEventEmitter,
+  NativeModules
 } from 'react-native';
 import {Toast} from 'teaset';
+
+const DBManagerModule = NativeModules.DBManagerModule;
 
 export default class AddItemScreen extends React.Component {
   
@@ -40,7 +44,7 @@ export default class AddItemScreen extends React.Component {
               this.schoolTextField.focus();
             }}
             onChangeText={(text) => {
-              this.setState({nickname: text.replace(/\s/g, '')}); // 替换输入的空格
+              this.setState({nickname: text}); // 替换输入的空格
             }}
             value={this.state.nickname}
           />
@@ -59,7 +63,7 @@ export default class AddItemScreen extends React.Component {
               this.classTextField.focus();
             }}
             onChangeText={(text) => {
-              this.setState({schoolName: text.replace(/\s/g, '')}); // 替换输入的空格
+              this.setState({schoolName: text}); // 替换输入的空格
             }}
             value={this.state.schoolName}
           />
@@ -76,12 +80,12 @@ export default class AddItemScreen extends React.Component {
             underlineColorAndroid={'transparent'}
             onSubmitEditing={() => {Keyboard.dismiss()}}
             onChangeText={(text) => {
-              this.setState({className: text.replace(/\s/g, '')}); // 替换输入的空格
+              this.setState({className: text}); // 替换输入的空格
             }}
             value={this.state.className}
           />
           <TouchableOpacity activeOpacity={0.7} style={styles.submitButton} onPress={() => this.onClickSubmitButton()}>
-            <Text style={styles.submitText}>确定</Text>
+            <Text style={styles.submitText}>Submit</Text>
           </TouchableOpacity>
         </KeyboardAvoidingView>
       </View>
@@ -102,6 +106,14 @@ export default class AddItemScreen extends React.Component {
       Toast.message('Please enter class name!');
       return;
     }
+    let studentInfo = {
+      "studentName": this.state.nickname,
+      "schoolName": this.state.schoolName,
+      "className": this.state.className
+    };
+    DBManagerModule.saveStudent(studentInfo);
+    DeviceEventEmitter.emit('DataChangedEvent');
+    this.props.navigator.pop({animated: true, animationType:'fade'});
   }
 }
 
