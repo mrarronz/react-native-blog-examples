@@ -12,14 +12,13 @@ RN优点是跨平台、JS代码和样式开发UI迅速、HotReload、热修复�
 虽然RN的热度已经过去了，但是在实践过程中它也给我带来了很多帮助，值得一学。所以花点时间写写文章和代码，坚持写完留下点记录，也不算白忙活一场。
 
 ### 后续更新计划(暂定)：
-1. 第三方二维码生成和扫描
-2. 消息推送功能的集成和处理
-3. 微信登录和分享
-4. 微信和支付宝支付
-5. Animated动画的使用
-6. 原生控件在RN中的封装和使用，自定义Android和iOS扫描二维码
-7. 使用Code Push实现RN的热更新
-8. React Native性能优化总结
+1. 消息推送功能的集成和处理
+2. 微信登录和分享
+3. 微信和支付宝支付
+4. Animated动画的使用
+5. 原生控件在RN中的封装和使用，自定义Android和iOS扫描二维码
+6. 使用Code Push实现RN的热更新
+7. React Native性能优化总结
 
 ## Demo对应的文章及说明
 1. Chapter1 - [React Native——ListView的使用详解](https://juejin.im/post/5a8f7f586fb9a063417b3eea)
