@@ -8,7 +8,10 @@
   },
   "dependencies": {
     "react": "16.4.1",
-    "react-native": "0.56.0"
+    "react-native": "0.56.0",
+    "react-native-camera": "^1.1.4",
+    "react-native-qrcode-svg": "^5.1.0",
+    "react-native-svg": "^6.4.1"
   },
   "devDependencies": {
     "babel-jest": "23.2.0",
