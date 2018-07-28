@@ -9,16 +9,14 @@ RN优点是跨平台、JS代码和样式开发UI迅速、HotReload、热修复�
 
 本仓库是对React Native系列开发知识的经验总结，目的是使用React Native实现原生开发的绝大部分功能，能够基本适应各种常见的应用场景。Example由基础常用控件ListView，FlatList等开始逐步深入，涵盖控件使用、页面导航跳转、视频播放器、iconfont、RN与原生的交互等内容，持续更新中(工作原因不定期更新)，感兴趣的可以关注下。
 
-虽然RN的热度已经过去了，但是在实践过程中它也给我带来了很多帮助，值得一学。所以花点时间写写文章和代码，坚持写完留下点记录，也不算白忙活一场。
+虽然RN的热度已经过去了，但是在实践过程中它也给我带来了很多帮助，值得一学。
 
 ### 后续更新计划(暂定)：
-1. 消息推送功能的集成和处理
-2. 微信登录和分享
-3. 微信和支付宝支付
-4. Animated动画的使用
-5. 原生控件在RN中的封装和使用，自定义Android和iOS扫描二维码
-6. 使用Code Push实现RN的热更新
-7. React Native性能优化总结
+1. 微信登录、分享和支付
+3. Animated动画的使用
+4. 原生控件在RN中的封装和使用，自定义Android和iOS扫描二维码
+5. 使用Code Push实现RN的热更新
+6. React Native性能优化总结
 
 ## Demo对应的文章及说明
 1. Chapter1 - [React Native——ListView的使用详解](https://juejin.im/post/5a8f7f586fb9a063417b3eea)
