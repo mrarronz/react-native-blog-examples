@@ -7,10 +7,11 @@
     "test": "jest"
   },
   "dependencies": {
-    "jcore-react-native": "^1.2.8",
+    "jcore-react-native": "1.2.6",
     "jpush-react-native": "^2.2.7",
     "react": "16.4.1",
     "react-native": "0.56.0",
+    "react-native-vector-icons": "^4.6.0",
     "react-navigation": "1.5.11"
   },
   "devDependencies": {

@@ -3,6 +3,8 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW"/>
+    <!--下面这行权限必须要加上，格式为"app包名.permission.JPUSH_MESSAGE"，这里仅为示例-->
+    <!--<uses-permission android:name="com.pushnotification.permission.JPUSH_MESSAGE"/>-->
 
     <application
       android:name=".MainApplication"
