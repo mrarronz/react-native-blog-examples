@@ -1923,6 +1923,10 @@ eventemitter3@^3.0.0:
   version "3.1.0"
   resolved "http://registry.npm.taobao.org/eventemitter3/download/eventemitter3-3.1.0.tgz#090b4d6cdbd645ed10bf750d4b5407942d7ba163"
 
+events@1.0.2:
+  version "1.0.2"
+  resolved "http://registry.npm.taobao.org/events/download/events-1.0.2.tgz#75849dcfe93d10fb057c30055afdbd51d06a8e24"
+
 exec-sh@^0.2.0:
   version "0.2.2"
   resolved "http://registry.npm.taobao.org/exec-sh/download/exec-sh-0.2.2.tgz#2a5e7ffcbd7d0ba2755bdecb16e5a427dfbdec36"
@@ -3063,13 +3067,13 @@ jest-watcher@^23.4.0:
     chalk "^2.0.1"
     string-length "^2.0.0"
 
-jest-worker@23.0.1, jest-worker@^23.0.1:
+jest-worker@23.0.1:
   version "23.0.1"
   resolved "http://registry.npm.taobao.org/jest-worker/download/jest-worker-23.0.1.tgz#9e649dd963ff4046026f91c4017f039a6aa4a7bc"
   dependencies:
     merge-stream "^1.0.1"
 
-jest-worker@^23.2.0:
+jest-worker@^23.0.1, jest-worker@^23.2.0:
   version "23.2.0"
   resolved "http://registry.npm.taobao.org/jest-worker/download/jest-worker-23.2.0.tgz#faf706a8da36fae60eb26957257fa7b5d8ea02b9"
   dependencies:
@@ -4161,6 +4165,12 @@ react-devtools-core@^3.2.2:
 react-is@^16.4.1:
   version "16.4.1"
   resolved "http://registry.npm.taobao.org/react-is/download/react-is-16.4.1.tgz#d624c4650d2c65dbd52c72622bbf389435d9776e"
+
+react-native-wechat@^1.9.9:
+  version "1.9.9"
+  resolved "http://registry.npm.taobao.org/react-native-wechat/download/react-native-wechat-1.9.9.tgz#acc4f7f22a3aeae13671108bcee39cbcb023c23a"
+  dependencies:
+    events "1.0.2"
 
 react-native@0.56.0:
   version "0.56.0"

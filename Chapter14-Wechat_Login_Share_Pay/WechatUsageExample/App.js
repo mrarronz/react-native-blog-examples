@@ -7,25 +7,47 @@
  */
 
 import React, {Component} from 'react';
-import {Platform, StyleSheet, Text, View} from 'react-native';
-
-const instructions = Platform.select({
-  ios: 'Press Cmd+R to reload,\n' + 'Cmd+D or shake for dev menu',
-  android:
-    'Double tap R on your keyboard to reload,\n' +
-    'Shake or press menu button for dev menu',
-});
+import {StyleSheet, TouchableOpacity, Text, View, Dimensions} from 'react-native';
 
 type Props = {};
 export default class App extends Component<Props> {
   render() {
     return (
       <View style={styles.container}>
-        <Text style={styles.welcome}>Welcome to React Native!</Text>
-        <Text style={styles.instructions}>To get started, edit App.js</Text>
-        <Text style={styles.instructions}>{instructions}</Text>
+        <TouchableOpacity style={styles.button} onPress={() => this.wechatLogin()}>
+          <Text style={styles.buttonTitleBig}>微信登录</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.button} onPress={() => this.shareToFriend()}>
+          <Text style={styles.buttonTitleBig}>分享到微信好友</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.button} onPress={() => this.shareToTimeline()}>
+          <Text style={styles.buttonTitleBig}>分享到朋友圈</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.button} onPress={() => this.wechatPay()}>
+          <Text style={styles.buttonTitleBig}>微信￥0.01支付</Text>
+        </TouchableOpacity>
       </View>
     );
+  }
+  
+  // 登录
+  wechatLogin() {
+  
+  }
+  
+  // 分享到好友
+  shareToFriend() {
+  
+  }
+  
+  // 分享到朋友圈
+  shareToTimeline() {
+  
+  }
+  
+  // 支付
+  wechatPay() {
+  
   }
 }
 
@@ -36,14 +58,18 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: '#F5FCFF',
   },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
+  buttonTitleBig: {
+    fontSize: 18,
+    fontWeight:'bold',
+    color: 'white',
   },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-  },
+  button: {
+    backgroundColor:'#00c06d',
+    borderRadius: 6,
+    height: 50,
+    width: Dimensions.get('window').width - 60,
+    margin: 20,
+    justifyContent: 'center',
+    alignItems: 'center',
+  }
 });
