@@ -10,9 +10,12 @@ import React, {Component} from 'react';
 import {StyleSheet, TouchableOpacity, Text, Alert, View, Dimensions} from 'react-native';
 import * as WeChat from 'react-native-wechat';
 import ProgressHUD from "./ProgressHUD";
+import MD5 from './MD5';
 
-const wxAppId = "";
-const wxAppSecret = "";
+const wxAppId = ""; // 微信开放平台注册的app id
+const wxAppSecret = ""; // 微信开放平台注册得到的app secret
+const wxMerchantId = ""; // 微信商户ID
+const wxTransSecret = ""; // 商户api秘钥
 
 type Props = {};
 export default class App extends Component<Props> {
@@ -22,6 +25,7 @@ export default class App extends Component<Props> {
     this.state = {
       isWXInstalled: true // 默认用户已安装微信app
     };
+    // 使用微信SDK之前需要注册，这里由于wxAppId是空字符串，所以demo中点击button没有反应，需要换成用户自己的appId
     WeChat.registerApp(wxAppId);
   }
   
@@ -69,7 +73,7 @@ export default class App extends Component<Props> {
     }).catch((error) => {
       let errorCode = Number(error.code);
       if (errorCode === -2) {
-        this.showAlert('已取消授权登录'); // 用户主动取消的情况
+        this.showAlert('已取消授权登录'); // errorCode = -2 表示用户主动取消的情况，下同
       } else {
         this.showAlert('微信授权登录失败');
       }
@@ -96,9 +100,7 @@ export default class App extends Component<Props> {
       console.log('获取微信unionid成功');
       console.log(json);
       // TODO: 这里openId和unionId都已经成功获取了，调用用户自己的接口传递openId或unionId登录或注册
-  
-      this.progressHUD.hide();
-      
+      // put your login method here...
     }).catch((error) => {
       this.progressHUD.hide();
       this.showAlert('微信授权登录失败');
@@ -160,8 +162,61 @@ export default class App extends Component<Props> {
       this.showAlert('微信未安装');
       return;
     }
-    // TODO: 添加支付处理过程
+    /**************添加支付处理过程****************/
     
+    // 第一步，获取预订单prepayId，生成预订单最好让做后台接口的童鞋来完成，app端调用接口获取预订单
+    let prepayId = ""; // 这里预订单是从接口获取的，这里简写仅做演示
+    let tempTime = Date.parse(new Date());
+    let timestamp = (tempTime/1000).toString();
+    let nonce_str = MD5.hexMD5(timestamp);
+  
+    // 第二步，拼装参数
+    let params = {
+      "appid": wxAppId,
+      "noncestr": nonce_str,
+      "package": "Sign=WXPay",
+      "partnerid": wxMerchantId,
+      "timestamp": timestamp,
+      "prepayid": prepayId,
+    };
+    let paramsList = [];
+    let sortedKeys = Object.keys(params).sort();
+    for (let i = 0; i < sortedKeys.length; i++) {
+      let keyValueCombo = sortedKeys[i] + "=" + params[sortedKeys[i]];
+      paramsList.push(keyValueCombo);
+    }
+    let paramsString = paramsList.join('&');
+    let finalString = paramsString + "&key=" + wxTransSecret;
+    let encryptedStr = MD5.hexMD5(finalString).toUpperCase(); // MD5加密后转为大写
+  
+    // 第三步，调起微信客户端支付
+    WeChat.pay({
+      appId: wxAppId,
+      partnerId: wxMerchantId,
+      prepayId: prepayId,
+      nonceStr: nonce_str,
+      timeStamp: timestamp,
+      package: 'Sign=WXPay',
+      sign: encryptedStr
+    }).then((response) => {
+      console.log('支付成功');
+      console.log(response);
+      let errorCode = Number(response.errCode);
+      if (errorCode === 0) {
+        this.showAlert('支付成功');
+        // TODO: 这里处理支付成功后的业务逻辑，比如支付成功跳转页面、清空购物车。。。。
+        // .....
+      } else {
+        this.showAlert(response.errStr);
+      }
+    }).catch((error) => {
+      let errorCode = Number(error.code);
+      if (errorCode === -2) {
+        this.showAlert('已取消支付');
+      } else {
+        this.showAlert('支付失败');
+      }
+    });
   }
   
   showAlert(msg) {
