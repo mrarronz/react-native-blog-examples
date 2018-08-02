@@ -1,5 +1,7 @@
 package com.pushnotification;
 
+import android.os.Bundle;
+
 import com.facebook.react.ReactActivity;
 import cn.jpush.android.api.JPushInterface;
 
