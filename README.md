@@ -32,6 +32,8 @@ RN优点是跨平台、JS代码和样式开发UI迅速、HotReload、热修复�
 11. Chapter10/DataTransfer - [RN与原生交互（二）——数据传递](https://juejin.im/post/5b20ceb16fb9a01e4f47cd49)
 12. Chapter11 - [RN调用原生端SQLite数据库](https://www.jianshu.com/p/7e6c98f221ff)
 13. Chapter12 - [React Native二维码的生成和扫描](https://www.jianshu.com/p/bfad4c158f07)
+14. Chapter13 - [极光推送的集成和使用](#)
+15. Chapter14 - [使用react-native-wechat实现微信登录、分享和支付](#)
 
 ## 视频播放器功能
 
