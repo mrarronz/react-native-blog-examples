@@ -34,7 +34,7 @@ link完毕后，android端会在AndroidManifest.xml文件中自动增加 ```<met
 接下来，需要加入JPushPackage：
 
 在`MainApplication.java`中修改代码，增加JPushPackage的初始化方法
-```
+```java
 import cn.jpush.reactnativejpush.JPushPackage;
 
 public class MainApplication extends Application implements ReactApplication {
@@ -70,7 +70,7 @@ public class MainApplication extends Application implements ReactApplication {
 
 ```
 在`MainActivity.java`中加入JPushInterface的初始化等方法
-```
+```java
 import cn.jpush.android.api.JPushInterface;
 
 public class MainActivity extends ReactActivity {
@@ -131,7 +131,7 @@ iOS的推送功能需要在TARGET ——> Capabilities中打开Push Notification
 
 ### Step 3
 然后，检查下AppDelegate.m中JPush在执行`react-native link`命令后自动为我们生成的代码，我们要做的只是如下修改：
-```
+```objective-c
 #import <React/RCTLinkingManager.h>
 
 ......
@@ -168,7 +168,7 @@ iOS的推送功能需要在TARGET ——> Capabilities中打开Push Notification
 ```
 ### Step 4
 最后需要在`application:didFinishLaunchingWithOptions`方法中增加JPush的初始化方法：
-```
+```objective-c
 JPUSHRegisterEntity * entity = [[JPUSHRegisterEntity alloc] init];
   entity.types = JPAuthorizationOptionAlert|JPAuthorizationOptionBadge|JPAuthorizationOptionSound;
   [JPUSHService registerForRemoteNotificationConfig:entity delegate:self];
@@ -183,7 +183,7 @@ JPUSHRegisterEntity * entity = [[JPUSHRegisterEntity alloc] init];
 以上就是android和iOS端的配置。
 
 ## JPush的使用
-```
+```javascript
 /**
  * Sample React Native App
  * https://github.com/facebook/react-native
