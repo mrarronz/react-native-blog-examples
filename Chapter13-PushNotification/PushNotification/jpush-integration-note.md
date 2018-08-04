@@ -114,11 +114,22 @@ distributionUrl=https\://services.gradle.org/distributions/gradle-4.4-all.zip
 至此，android端配置完毕
 
 ## iOS
+### Step 1
 iOS端在执行link命令后，build phases的link binary with libraries下面会多出静态库libRCTJPushModule.a和libRCTJCoreModule.a。
 同时我们还需要手动添加以下系统库：
 ![image](https://github.com/mrarronz/react-native-blog-examples/raw/master/Chapter13-PushNotification/PushNotification/screenshots/ios_support_library.png)
 注意UserNotifications.framework是Optional的，因为这个库是iOS10推出的SDK，如果我们的项目是基于iOS 8以上部署的，设置为Required会导致app运行在iOS 10以下系统的手机上一启动就闪退。
 
+### Step 2
+iOS的推送功能需要在TARGET ——> Capabilities中打开Push Notifications选项，工程目录下会生成Entitlement文件，这个是iOS推送必要的配置文件
+![image](https://github.com/mrarronz/react-native-blog-examples/raw/master/Chapter13-PushNotification/PushNotification/screenshots/ios_push_config.png)
+
+![image](https://github.com/mrarronz/react-native-blog-examples/raw/master/Chapter13-PushNotification/PushNotification/screenshots/ios_entitlement.png)
+
+在info.plist文件中加入以下配置
+![image](https://github.com/mrarronz/react-native-blog-examples/raw/master/Chapter13-PushNotification/PushNotification/screenshots/ios_info_plist.png)
+
+### Step 3
 然后，检查下AppDelegate.m中JPush在执行`react-native link`命令后自动为我们生成的代码，我们要做的只是如下修改：
 ```
 #import <React/RCTLinkingManager.h>
@@ -155,13 +166,14 @@ iOS端在执行link命令后，build phases的link binary with libraries下面�
 }
 
 ```
+### Step 4
 最后需要在`application:didFinishLaunchingWithOptions`方法中增加JPush的初始化方法：
 ```
 JPUSHRegisterEntity * entity = [[JPUSHRegisterEntity alloc] init];
   entity.types = JPAuthorizationOptionAlert|JPAuthorizationOptionBadge|JPAuthorizationOptionSound;
   [JPUSHService registerForRemoteNotificationConfig:entity delegate:self];
   [JPUSHService setupWithOption:launchOptions
-                         appKey:@"xxxxxxxxxxxxxxxxxxxx" // replace with your own appkey
+                         appKey:@"xxxxxxxxxxxxxxxxxxxx" // 替换为开发者自己的appKey，从极光推送官网创建app之后可得到
                         channel:@"App Store"
                apsForProduction:YES
           advertisingIdentifier:nil];
