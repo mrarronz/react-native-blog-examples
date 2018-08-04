@@ -43,7 +43,7 @@
 		E28FF599210C173B00F2C153 /* libRNVectorIcons.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E28FF598210C172700F2C153 /* libRNVectorIcons.a */; };
 		E2B93CC7210ABFC800FD09AC /* libRCTJCoreModule.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E2B93CA6210ABFAD00FD09AC /* libRCTJCoreModule.a */; };
 		E2B93CC8210ABFC800FD09AC /* libRCTJPushModule.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E2B93CA9210ABFAD00FD09AC /* libRCTJPushModule.a */; };
-		E3E93FE4ADB0475BB923242D /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00223B59CDDD4CC696F3D536 /* UserNotifications.framework */; };
+		E3E93FE4ADB0475BB923242D /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00223B59CDDD4CC696F3D536 /* UserNotifications.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		E6BF3CB9768A401EB091FBEF /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B6712F5AD3AA4C05A053BB32 /* UIKit.framework */; };
 		EB2E13F5E8DD47B0888134FE /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05FAF805CC91482BA9D32017 /* CoreTelephony.framework */; };
 		F23D01D2E42F4531A902F9F6 /* SimpleLineIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 53663B1AC5D64718BA084C79 /* SimpleLineIcons.ttf */; };
