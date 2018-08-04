@@ -60,22 +60,12 @@ public class MainApplication extends Application implements ReactApplication {
       );
     }
 
-    @Override
-    protected String getJSMainModuleName() {
-      return "index";
-    }
+    ......
+    
   };
-
-  @Override
-  public ReactNativeHost getReactNativeHost() {
-    return mReactNativeHost;
-  }
-
-  @Override
-  public void onCreate() {
-    super.onCreate();
-    SoLoader.init(this, /* native exopackage */ false);
-  }
+  
+  ......
+  
 }
 
 ```
@@ -85,14 +75,7 @@ import cn.jpush.android.api.JPushInterface;
 
 public class MainActivity extends ReactActivity {
 
-    /**
-     * Returns the name of the main component registered from JavaScript.
-     * This is used to schedule rendering of the component.
-     */
-    @Override
-    protected String getMainComponentName() {
-        return "PushNotification";
-    }
+    ......
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -153,6 +136,8 @@ iOS端在执行link命令后，build phases的link binary with libraries下面�
   completionHandler(UNNotificationPresentationOptionAlert|UNNotificationPresentationOptionSound);
 }
 
+// 添加以下代理方法
+
 #pragma mark - Handle URL
 
 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url
@@ -170,7 +155,7 @@ iOS端在执行link命令后，build phases的link binary with libraries下面�
 }
 
 ```
-最后需要在application:didFinishLaunchingWithOptions方法中增加JPush的初始化方法：
+最后需要在`application:didFinishLaunchingWithOptions`方法中增加JPush的初始化方法：
 ```
 JPUSHRegisterEntity * entity = [[JPUSHRegisterEntity alloc] init];
   entity.types = JPAuthorizationOptionAlert|JPAuthorizationOptionBadge|JPAuthorizationOptionSound;
