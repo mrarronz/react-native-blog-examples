@@ -130,3 +130,121 @@ distributionUrl=https\://services.gradle.org/distributions/gradle-4.4-all.zip
 ```
 至此，android端配置完毕
 
+## iOS
+iOS端在执行link命令后，build phases的link binary with libraries下面会多出静态库libRCTJPushModule.a和libRCTJCoreModule.a。
+同时我们还需要手动添加以下系统库：
+![image](https://github.com/mrarronz/react-native-blog-examples/raw/master/Chapter13-PushNotification/PushNotification/screenshots/ios_support_library.png)
+注意UserNotifications.framework是Optional的，因为这个库是iOS10推出的SDK，如果我们的项目是基于iOS 8以上部署的，设置为Required会导致app运行在iOS 10以下系统的手机上一启动就闪退。
+
+然后，检查下AppDelegate.m中JPush在执行`react-native link`命令后自动为我们生成的代码，我们要做的只是如下修改：
+```
+#import <React/RCTLinkingManager.h>
+
+......
+
+- (void)jpushNotificationCenter:(UNUserNotificationCenter *)center willPresentNotification:(UNNotification *)notification withCompletionHandler:(void (^)(NSInteger))completionHandler
+{
+  NSDictionary * userInfo = notification.request.content.userInfo;
+  if ([notification.request.trigger isKindOfClass:[UNPushNotificationTrigger class]]) {
+    [JPUSHService handleRemoteNotification:userInfo];
+    [[NSNotificationCenter defaultCenter] postNotificationName:kJPFDidReceiveRemoteNotification object:userInfo];
+  }
+
+  completionHandler(UNNotificationPresentationOptionAlert|UNNotificationPresentationOptionSound);
+}
+
+#pragma mark - Handle URL
+
+- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url
+  sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
+{
+  return [RCTLinkingManager application:application openURL:url
+                      sourceApplication:sourceApplication annotation:annotation];
+}
+
+// ios 9.0+
+- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url
+            options:(NSDictionary<NSString*, id> *)options
+{
+  return [RCTLinkingManager application:application openURL:url options:options];
+}
+
+```
+最后需要在application:didFinishLaunchingWithOptions方法中增加JPush的初始化方法：
+```
+JPUSHRegisterEntity * entity = [[JPUSHRegisterEntity alloc] init];
+  entity.types = JPAuthorizationOptionAlert|JPAuthorizationOptionBadge|JPAuthorizationOptionSound;
+  [JPUSHService registerForRemoteNotificationConfig:entity delegate:self];
+  [JPUSHService setupWithOption:launchOptions
+                         appKey:@"xxxxxxxxxxxxxxxxxxxx" // replace with your own appkey
+                        channel:@"App Store"
+               apsForProduction:YES
+          advertisingIdentifier:nil];
+```
+把初始化推送的代码放到这里，是为了在app一启动的时候就去做这件事，虽然jpush-react-native中也提供了RN端js代码初始化推送的方法，但是延迟到了RN页面加载出来的时刻，耗时太久了。
+
+以上就是android和iOS端的配置。
+
+## JPush的使用
+```
+/**
+ * Sample React Native App
+ * https://github.com/facebook/react-native
+ *
+ * @format
+ * @flow
+ */
+
+import React, {Component} from 'react';
+import {Platform} from 'react-native';
+import RootScreen from "./src/screen/RootScreen";
+import JPushModule from 'jpush-react-native';
+
+type Props = {};
+export default class App extends Component<Props> {
+  
+  componentDidMount() {
+    if (Platform.OS === 'android') {
+      JPushModule.initPush();
+      // 设置android端监听
+      JPushModule.notifyJSDidLoad(resultCode => {
+        if (resultCode === 0) {
+          console.log("设置监听成功");
+        }
+        JPushModule.addGetRegistrationIdListener((registrationId) => {
+          console.log("设备注册成功，registrationId: " + registrationId);
+        });
+      });
+    }
+    JPushModule.addReceiveNotificationListener((map) => {
+      console.log("收到推送消息");
+      console.log(map);
+      // TODO: 处理通知消息
+    });
+    JPushModule.addReceiveOpenNotificationListener((map) => {
+      console.log("监听到点击通知的事件");
+      console.log(map);
+      // TODO: 跳转界面
+    
+    });
+  }
+  
+  componentWillUnmount() {
+    console.log("Will clear all notifications");
+    JPushModule.clearAllNotifications();
+  }
+  
+  render() {
+    return (
+      <RootScreen/>
+    );
+  }
+}
+
+```
+我把初始化和监听都放到了App.js中，实际项目中不一定要在启动页App.js中，也可以放到首页，方便页面跳转。
+
+这种配置类说明文档实在毫无营养，不过为了以后少踩坑，还是有必要写一写。
+
+
+
