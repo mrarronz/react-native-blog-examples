@@ -155,7 +155,7 @@ WeChat.registerApp(wxAppId);
 ```
 
 ### 登录
-在使用微信登录前，我们需要判断下微信是否安装，否则在iOS上发布审核时是会被拒的
+在使用微信登录前，我们需要判断下微信是否安装，否则在iOS上发布审核时是会被拒的。如果未安装微信，就不显示微信登录按钮
 ```javascript
 WeChat.isWXAppInstalled().then((isInstalled) => {
       this.setState({
