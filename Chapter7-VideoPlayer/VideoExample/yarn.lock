@@ -4159,9 +4159,9 @@ react-native-tab-view@^0.0.74:
   dependencies:
     prop-types "^15.6.0"
 
-react-native-video@^2.0.0:
-  version "2.0.0"
-  resolved "http://registry.npm.taobao.org/react-native-video/download/react-native-video-2.0.0.tgz#f33fa6fb7e7e3c93ab5787944cefd58bf7355867"
+react-native-video@^3.2.0:
+  version "3.2.0"
+  resolved "http://registry.npm.taobao.org/react-native-video/download/react-native-video-3.2.0.tgz#5f336acb3e3d23c93e1990327a444ac97296b194"
   dependencies:
     keymirror "0.1.1"
     prop-types "^15.5.10"
