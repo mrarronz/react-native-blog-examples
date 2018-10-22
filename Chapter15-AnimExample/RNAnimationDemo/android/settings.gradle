@@ -1,0 +1,3 @@
+rootProject.name = 'RNAnimationDemo'
+
+include ':app'
