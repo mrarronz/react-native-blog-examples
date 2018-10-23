@@ -22,7 +22,7 @@ const tabs = [
     title: 'LayoutAnimation',
   },
   {
-    label: '动画实例',
+    label: 'Demos',
     screen: 'Demos',
     icon: require('./src/images/D.png'),
     selectedIcon: require('./src/images/D_selected.png'),
@@ -34,10 +34,10 @@ Navigation.startTabBasedApp({
   tabs,
   tabsStyle: {
     tabBarButtonColor: '#999',
-    tabBarSelectedButtonColor: '#4ca5ff',
+    tabBarSelectedButtonColor: '#ff449f',
     tabBarBackgroundColor: '#fff',
     tabBarLabelColor:'#999',
-    tabBarSelectedLabelColor:'#4ca5ff',
+    tabBarSelectedLabelColor:'#ff449f',
     initialTabIndex: 0,
   },
   appStyle: {
@@ -47,7 +47,7 @@ Navigation.startTabBasedApp({
     hideBackButtonTitle: true,
     navBarTextColor: '#ffffff',
     navBarButtonColor: 'white',
-    navBarBackgroundColor: '#4ca5ff',
+    navBarBackgroundColor: '#ff449f',
     navBarSubtitleColor: 'white',
     navBarSubtitleFontSize: 13,
   },
