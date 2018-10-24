@@ -82,6 +82,15 @@ export class AnimatedUsageScreen extends React.Component {
           }
         });
         break;
+      case 4:
+        this.props.navigator.push({
+          screen:'Group',
+          title:'Group Animation',
+          navigatorStyle:{
+            tabBarHidden: true
+          }
+        });
+        break;
     }
   }
 }
