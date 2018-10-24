@@ -109,6 +109,24 @@ export class AnimatedUsageScreen extends React.Component {
           }
         });
         break;
+      case 7:
+        this.props.navigator.push({
+          screen:'RequestFrame',
+          title:'requestAnimationFrame',
+          navigatorStyle:{
+            tabBarHidden: true
+          }
+        });
+        break;
+      case 8:
+        this.props.navigator.push({
+          screen:'NativeDriver',
+          title:'useNativeDriver',
+          navigatorStyle:{
+            tabBarHidden: true
+          }
+        });
+        break;
     }
   }
 }

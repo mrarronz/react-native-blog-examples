@@ -11,6 +11,9 @@ import InterpolateAnimation from "./screen/animated/InterpolateAnimation";
 import GroupAnimation from "./screen/animated/GroupAnimation";
 import CustomAnimComponent from "./screen/animated/CustomAnimComponent";
 import GestureAnimation from "./screen/animated/GestureAnimation";
+import RequestFrameAnimation from "./screen/animated/RequestFrameAnimation";
+import AnimateWithNativeDriver from "./screen/animated/AnimateWithNativeDriver";
+import CustomAnimation from "./screen/layout/CustomAnimation";
 
 
 export function registerScreens() {
@@ -24,8 +27,11 @@ export function registerScreens() {
   Navigation.registerComponent('Group', () => GroupAnimation);
   Navigation.registerComponent('CustomComponent', () => CustomAnimComponent);
   Navigation.registerComponent('Gesture', () => GestureAnimation);
+  Navigation.registerComponent('RequestFrame', () => RequestFrameAnimation);
+  Navigation.registerComponent('NativeDriver', () => AnimateWithNativeDriver);
   Navigation.registerComponent('ShoppingButton', () => ShoppingButtonDemo);
   Navigation.registerComponent('Common', () => CommonAnimation);
+  Navigation.registerComponent('CustomAnim', () => CustomAnimation);
 }
 
 export function registerScreenVisibilityListener() {

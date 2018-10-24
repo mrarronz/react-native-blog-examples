@@ -10,7 +10,8 @@ const demoItems = [
   "菜单按钮动画",
   "弹窗动画",
   "自定义Loading动画",
-  "模拟弹幕动画"
+  "模拟弹幕动画",
+  "卡片缩放动画"
 ];
 
 export class RealWorldDemoScreen extends React.Component {

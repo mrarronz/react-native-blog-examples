@@ -22,9 +22,9 @@ export class LayoutAnimationScreen extends React.Component {
     )
   }
   
-  _renderItem = ({item}) => {
+  _renderItem = ({item, index}) => {
     return (
-      <TouchableHighlight underlayColor={'#ccc'} onPress={() =>this.onClickListItem(item)}>
+      <TouchableHighlight underlayColor={'#ccc'} onPress={() =>this.onClickListItem(item, index)}>
         <View style={styles.listItem}>
           <Text style={styles.title}>{item}</Text>
           <Icon name={'chevron-right'} size={24} color={'#999'}/>
@@ -33,7 +33,26 @@ export class LayoutAnimationScreen extends React.Component {
     )
   };
   
-  onClickListItem(item) {
-  
+  onClickListItem(item, index) {
+    switch (index) {
+      case 0:
+        this.props.navigator.push({
+          screen:'Common',
+          title:'Common Animation',
+          navigatorStyle:{
+            tabBarHidden: true
+          }
+        });
+        break;
+      case 1:
+        this.props.navigator.push({
+          screen:'CustomAnim',
+          title:'Custom Animation',
+          navigatorStyle:{
+            tabBarHidden: true
+          }
+        });
+        break;
+    }
   }
 }
