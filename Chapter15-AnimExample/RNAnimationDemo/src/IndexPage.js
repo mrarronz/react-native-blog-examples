@@ -2,12 +2,20 @@ import {Navigation, ScreenVisibilityListener} from 'react-native-navigation';
 import {AnimatedUsageScreen} from "./screen/AnimatedUsageScreen";
 import {LayoutAnimationScreen} from "./screen/LayoutAnimationScreen";
 import {RealWorldDemoScreen} from "./screen/RealWorldDemoScreen";
+import SpringAnimation from "./screen/animated/SpringAnimation";
+import ShoppingButtonDemo from "./screen/demos/ShoppingButtonDemo";
+import CommonAnimation from "./screen/layout/CommonAnimation";
+import TimingAnimation from "./screen/animated/TimingAnimation";
 
 
 export function registerScreens() {
   Navigation.registerComponent('Animated', () => AnimatedUsageScreen);
   Navigation.registerComponent('LayoutAnimation', () => LayoutAnimationScreen);
   Navigation.registerComponent('Demos', () => RealWorldDemoScreen);
+  Navigation.registerComponent('Spring', () => SpringAnimation);
+  Navigation.registerComponent('Timing', () => TimingAnimation);
+  Navigation.registerComponent('ShoppingButton', () => ShoppingButtonDemo);
+  Navigation.registerComponent('Common', () => CommonAnimation);
 }
 
 export function registerScreenVisibilityListener() {
