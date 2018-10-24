@@ -91,6 +91,15 @@ export class AnimatedUsageScreen extends React.Component {
           }
         });
         break;
+      case 5:
+        this.props.navigator.push({
+          screen:'CustomComponent',
+          title:'CreateAnimatedComponent',
+          navigatorStyle:{
+            tabBarHidden: true
+          }
+        });
+        break;
     }
   }
 }

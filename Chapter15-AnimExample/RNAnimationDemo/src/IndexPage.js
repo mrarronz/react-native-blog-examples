@@ -9,6 +9,7 @@ import TimingAnimation from "./screen/animated/TimingAnimation";
 import DecayAnimation from "./screen/animated/DecayAnimation";
 import InterpolateAnimation from "./screen/animated/InterpolateAnimation";
 import GroupAnimation from "./screen/animated/GroupAnimation";
+import CustomAnimComponent from "./screen/animated/CustomAnimComponent";
 
 
 export function registerScreens() {
@@ -20,6 +21,7 @@ export function registerScreens() {
   Navigation.registerComponent('Decay', () => DecayAnimation);
   Navigation.registerComponent('Interpolate', () => InterpolateAnimation);
   Navigation.registerComponent('Group', () => GroupAnimation);
+  Navigation.registerComponent('CustomComponent', () => CustomAnimComponent);
   Navigation.registerComponent('ShoppingButton', () => ShoppingButtonDemo);
   Navigation.registerComponent('Common', () => CommonAnimation);
 }

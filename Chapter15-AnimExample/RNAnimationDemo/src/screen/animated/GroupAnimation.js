@@ -17,6 +17,11 @@ export default class GroupAnimation extends React.Component {
     }
   }
   
+  componentDidMount() {
+    this.horizontalStaggerAnimation();
+    this.verticalParallelAnimation();
+  }
+  
   render() {
     return (
       <View style={styles.container}>
