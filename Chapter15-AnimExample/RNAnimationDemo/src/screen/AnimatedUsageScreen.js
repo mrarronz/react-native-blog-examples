@@ -64,6 +64,24 @@ export class AnimatedUsageScreen extends React.Component {
           }
         });
         break;
+      case 2:
+        this.props.navigator.push({
+          screen:'Decay',
+          title:'Decay Animation',
+          navigatorStyle:{
+            tabBarHidden: true
+          }
+        });
+        break;
+      case 3:
+        this.props.navigator.push({
+          screen:'Interpolate',
+          title:'Interpolate Animation',
+          navigatorStyle:{
+            tabBarHidden: true
+          }
+        });
+        break;
     }
   }
 }

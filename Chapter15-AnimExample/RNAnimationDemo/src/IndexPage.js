@@ -6,6 +6,8 @@ import SpringAnimation from "./screen/animated/SpringAnimation";
 import ShoppingButtonDemo from "./screen/demos/ShoppingButtonDemo";
 import CommonAnimation from "./screen/layout/CommonAnimation";
 import TimingAnimation from "./screen/animated/TimingAnimation";
+import DecayAnimation from "./screen/animated/DecayAnimation";
+import InterpolateAnimation from "./screen/animated/InterpolateAnimation";
 
 
 export function registerScreens() {
@@ -14,6 +16,8 @@ export function registerScreens() {
   Navigation.registerComponent('Demos', () => RealWorldDemoScreen);
   Navigation.registerComponent('Spring', () => SpringAnimation);
   Navigation.registerComponent('Timing', () => TimingAnimation);
+  Navigation.registerComponent('Decay', () => DecayAnimation);
+  Navigation.registerComponent('Interpolate', () => InterpolateAnimation);
   Navigation.registerComponent('ShoppingButton', () => ShoppingButtonDemo);
   Navigation.registerComponent('Common', () => CommonAnimation);
 }

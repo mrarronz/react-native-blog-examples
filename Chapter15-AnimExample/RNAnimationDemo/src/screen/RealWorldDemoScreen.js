@@ -9,7 +9,8 @@ const demoItems = [
   "二维码扫描动画",
   "菜单按钮动画",
   "弹窗动画",
-  "自定义Loading动画"
+  "自定义Loading动画",
+  "模拟弹幕动画"
 ];
 
 export class RealWorldDemoScreen extends React.Component {
