@@ -100,6 +100,15 @@ export class AnimatedUsageScreen extends React.Component {
           }
         });
         break;
+      case 6:
+        this.props.navigator.push({
+          screen:'Gesture',
+          title:'Gesture Animation',
+          navigatorStyle:{
+            tabBarHidden: true
+          }
+        });
+        break;
     }
   }
 }
