@@ -50,6 +50,24 @@ export class RealWorldDemoScreen extends React.Component {
           }
         });
         break;
+      case 1:
+        this.props.navigator.push({
+          screen:'ShoppingCart',
+          title:'添加商品到购物车动画2',
+          navigatorStyle:{
+            tabBarHidden: true
+          }
+        });
+        break;
+      case 2:
+        this.props.navigator.push({
+          screen:'ScanQR',
+          title:'二维码扫描动画',
+          navigatorStyle:{
+            tabBarHidden: true
+          }
+        });
+        break;
     }
   }
 }
