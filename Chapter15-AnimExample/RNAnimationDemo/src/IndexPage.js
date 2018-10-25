@@ -19,6 +19,8 @@ import ShoppingCartDemo from "./screen/demos/ShoppingCartDemo";
 import MenuButtonAnimation from "./screen/demos/MenuButtonAnimation";
 import LoadingAnimation from "./screen/demos/LoadingAnimation";
 import DanmuAnimation from "./screen/demos/DanmuAnimation";
+import ScrollCardAnimation from "./screen/demos/ScrollCardAnimation";
+import AlertAnimation from "./screen/demos/AlertAnimation";
 
 
 export function registerScreens() {
@@ -40,8 +42,10 @@ export function registerScreens() {
   Navigation.registerComponent('ShoppingCart', () => ShoppingCartDemo);
   Navigation.registerComponent('ScanQR', () => ScanQRCodeAnimation);
   Navigation.registerComponent('MenuButton', () => MenuButtonAnimation);
+  Navigation.registerComponent('Alert', () => AlertAnimation);
   Navigation.registerComponent('Loading', () => LoadingAnimation);
   Navigation.registerComponent('Danmu', () => DanmuAnimation);
+  Navigation.registerComponent('ScrollCard', () => ScrollCardAnimation);
 }
 
 export function registerScreenVisibilityListener() {

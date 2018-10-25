@@ -78,7 +78,13 @@ export class RealWorldDemoScreen extends React.Component {
         });
         break;
       case 4:
-        
+        this.props.navigator.push({
+          screen:'Alert',
+          title:'弹窗动画',
+          navigatorStyle:{
+            tabBarHidden: true
+          }
+        });
         break;
       case 5:
         this.props.navigator.push({
@@ -93,6 +99,15 @@ export class RealWorldDemoScreen extends React.Component {
         this.props.navigator.push({
           screen:'Danmu',
           title:'模拟弹幕动画',
+          navigatorStyle:{
+            tabBarHidden: true
+          }
+        });
+        break;
+      case 7:
+        this.props.navigator.push({
+          screen:'ScrollCard',
+          title:'卡片滑动缩放动画',
           navigatorStyle:{
             tabBarHidden: true
           }
