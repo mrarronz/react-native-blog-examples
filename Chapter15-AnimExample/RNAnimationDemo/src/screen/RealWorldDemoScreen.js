@@ -68,6 +68,15 @@ export class RealWorldDemoScreen extends React.Component {
           }
         });
         break;
+      case 3:
+        this.props.navigator.push({
+          screen:'MenuButton',
+          title:'菜单按钮动画',
+          navigatorStyle:{
+            tabBarHidden: true
+          }
+        });
+        break;
     }
   }
 }

@@ -16,6 +16,7 @@ import AnimateWithNativeDriver from "./screen/animated/AnimateWithNativeDriver";
 import CustomAnimation from "./screen/layout/CustomAnimation";
 import ScanQRCodeAnimation from "./screen/demos/ScanQRCodeAnimation";
 import ShoppingCartDemo from "./screen/demos/ShoppingCartDemo";
+import MenuButtonAnimation from "./screen/demos/MenuButtonAnimation";
 
 
 export function registerScreens() {
@@ -36,6 +37,7 @@ export function registerScreens() {
   Navigation.registerComponent('ShoppingButton', () => ShoppingButtonDemo);
   Navigation.registerComponent('ShoppingCart', () => ShoppingCartDemo);
   Navigation.registerComponent('ScanQR', () => ScanQRCodeAnimation);
+  Navigation.registerComponent('MenuButton', () => MenuButtonAnimation);
 }
 
 export function registerScreenVisibilityListener() {

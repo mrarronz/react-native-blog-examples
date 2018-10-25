@@ -1,13 +1,20 @@
 import React from 'react';
-import {View} from 'react-native';
+import {View, Animated, StyleSheet} from 'react-native';
 
 export default class ShoppingCartDemo extends React.Component {
   
   render() {
     return (
-      <View>
+      <View style={styles.container}>
         
       </View>
     )
   }
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor:'#f0f0f0'
+  }
+});
