@@ -1,5 +1,7 @@
 import React from 'react';
-import {View, Animated, TouchableOpacity, Dimensions, StyleSheet} from 'react-native';
+import {
+  View, Animated, TouchableOpacity, Dimensions, StyleSheet
+} from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 export default class MenuButtonAnimation extends React.Component {
@@ -25,37 +27,10 @@ export default class MenuButtonAnimation extends React.Component {
       animValue6: new Animated.Value(-400),
       animValue7: new Animated.Value(-400),
       animValue8: new Animated.Value(-400),
+      
+      rotateValue: new Animated.Value(0),
+      isMenuShow: false,
     };
-  }
-  
-  componentDidMount() {
-    Animated.stagger(100, [
-  
-      Animated.spring(this.state.animValue1, {
-        toValue: bottomHeight,
-      }),
-      Animated.spring(this.state.animValue2, {
-        toValue: bottomHeight,
-      }),
-      Animated.spring(this.state.animValue3, {
-        toValue: bottomHeight,
-      }),
-      Animated.spring(this.state.animValue4, {
-        toValue: bottomHeight,
-      }),
-      Animated.spring(this.state.animValue5, {
-        toValue: closeViewHeight,
-      }),
-      Animated.spring(this.state.animValue6, {
-        toValue: closeViewHeight,
-      }),
-      Animated.spring(this.state.animValue7, {
-        toValue: closeViewHeight,
-      }),
-      Animated.spring(this.state.animValue8, {
-        toValue: closeViewHeight,
-      })
-    ]).start();
   }
   
   render() {
@@ -81,9 +56,19 @@ export default class MenuButtonAnimation extends React.Component {
           })
         }
         <View style={styles.buttonView}>
-          <TouchableOpacity style={styles.closeButton} activeOpacity={0.7} onPress={() => this.onClickCloseButton()}>
-            <Icon name={'close'} size={24} color={'#999'}/>
-          </TouchableOpacity>
+          <Animated.View style={[
+            styles.closeButton,
+            {transform: [
+                {rotate: this.state.rotateValue.interpolate({
+                    inputRange: [0, 1],
+                    outputRange: ['-45deg', '180deg']
+                  })}
+              ]}
+          ]}>
+            <TouchableOpacity activeOpacity={0.5} onPress={() => this.onClickCloseButton()}>
+              <Icon name={'close'} size={24} color={'#fff'}/>
+            </TouchableOpacity>
+          </Animated.View>
         </View>
       </View>
     )
@@ -111,34 +96,96 @@ export default class MenuButtonAnimation extends React.Component {
     return this.state.animValue1;
   }
   
-  onClickCloseButton() {
-    Animated.stagger(60, [
-    
-      Animated.spring(this.state.animValue8, {
-        toValue: -400,
-      }),
-      Animated.spring(this.state.animValue7, {
-        toValue: -400,
-      }),
-      Animated.spring(this.state.animValue6, {
-        toValue: -400,
-      }),
-      Animated.spring(this.state.animValue5, {
-        toValue: -400,
-      }),
-      Animated.spring(this.state.animValue4, {
-        toValue: -400,
-      }),
-      Animated.spring(this.state.animValue3, {
-        toValue: -400,
-      }),
-      Animated.spring(this.state.animValue2, {
-        toValue: -400,
-      }),
-      Animated.spring(this.state.animValue1, {
-        toValue: -400,
+  showAnimation() {
+    Animated.parallel([
+      Animated.stagger(100, [
+        Animated.spring(this.state.animValue1, {
+          toValue: bottomHeight,
+        }),
+        Animated.spring(this.state.animValue2, {
+          toValue: bottomHeight,
+        }),
+        Animated.spring(this.state.animValue3, {
+          toValue: bottomHeight,
+        }),
+        Animated.spring(this.state.animValue4, {
+          toValue: bottomHeight,
+        }),
+        Animated.spring(this.state.animValue5, {
+          toValue: closeViewHeight,
+        }),
+        Animated.spring(this.state.animValue6, {
+          toValue: closeViewHeight,
+        }),
+        Animated.spring(this.state.animValue7, {
+          toValue: closeViewHeight,
+        }),
+        Animated.spring(this.state.animValue8, {
+          toValue: closeViewHeight,
+        }),
+      ]),
+      Animated.timing(this.state.rotateValue, {
+        toValue: 1,
+        duration: 500
       })
     ]).start();
+  }
+  
+  dismissAnimation() {
+    Animated.parallel([
+      Animated.stagger(60, [
+        Animated.spring(this.state.animValue8, {
+          toValue: -400,
+        }),
+        Animated.spring(this.state.animValue7, {
+          toValue: -400,
+        }),
+        Animated.spring(this.state.animValue6, {
+          toValue: -400,
+        }),
+        Animated.spring(this.state.animValue5, {
+          toValue: -400,
+        }),
+        Animated.spring(this.state.animValue4, {
+          toValue: -400,
+        }),
+        Animated.spring(this.state.animValue3, {
+          toValue: -400,
+        }),
+        Animated.spring(this.state.animValue2, {
+          toValue: -400,
+        }),
+        Animated.spring(this.state.animValue1, {
+          toValue: -400,
+        })
+      ]),
+      Animated.timing(this.state.rotateValue, {
+        toValue: 0,
+        duration: 500
+      })
+    ]).start();
+  }
+  
+  onClickCloseButton() {
+    if (this.state.isMenuShow) {
+      this.setState(
+        {
+          isMenuShow: false,
+        },
+        () => {
+          this.dismissAnimation();
+        }
+      )
+    } else {
+      this.setState(
+        {
+          isMenuShow: true,
+        },
+        () => {
+          this.showAnimation();
+        }
+      )
+    }
   }
 }
 
@@ -153,6 +200,7 @@ const bottomHeight = closeViewHeight + itemSize + verticalPadding;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    alignItems:'center'
   },
   itemButton: {
     width: itemSize,
@@ -169,23 +217,11 @@ const styles = StyleSheet.create({
     justifyContent:'center'
   },
   closeButton: {
-    width: 44,
-    height: 44,
+    width: 60,
+    height: 60,
+    borderRadius: 30,
+    backgroundColor:'#ffb805',
     alignItems:'center',
     justifyContent:'center'
   },
-  button: {
-    width:150,
-    height:40,
-    borderRadius:6,
-    backgroundColor:'#41a2ff',
-    alignItems:'center',
-    justifyContent:'center',
-    marginTop: 10,
-  },
-  buttonText: {
-    fontSize: 16,
-    fontWeight: 'bold',
-    color: 'white'
-  }
 });
