@@ -63,195 +63,162 @@ export default class GroupAnimation extends React.Component {
   }
   
   horizontalSequenceAnimation() {
-    this.setState(
-      {
-        wValue1: new Animated.Value(8),
-        wValue2: new Animated.Value(8),
-        wValue3: new Animated.Value(8),
-      },
-      () => {
-        Animated.sequence([
-          Animated.timing(this.state.wValue1, {
-            toValue: progressWidth,
-            duration: 2000,
-            easing: Easing.linear
-          }),
-          Animated.timing(this.state.wValue2, {
-            toValue: 100,
-            duration: 1500,
-            easing: Easing.linear
-          }),
-          Animated.timing(this.state.wValue3, {
-            toValue: 200,
-            duration: 2500,
-            easing: Easing.linear
-          }),
-        ]).start();
-      }
-    )
+    this.state.wValue1.setValue(8);
+    this.state.wValue2.setValue(8);
+    this.state.wValue3.setValue(8);
+    Animated.sequence([
+      Animated.timing(this.state.wValue1, {
+        toValue: progressWidth,
+        duration: 2000,
+        easing: Easing.linear
+      }),
+      Animated.timing(this.state.wValue2, {
+        toValue: 100,
+        duration: 1500,
+        easing: Easing.linear
+      }),
+      Animated.timing(this.state.wValue3, {
+        toValue: 200,
+        duration: 2500,
+        easing: Easing.linear
+      }),
+    ]).start();
   }
   
   horizontalParallelAnimation() {
-    this.setState(
-      {
-        wValue1: new Animated.Value(8),
-        wValue2: new Animated.Value(8),
-        wValue3: new Animated.Value(8),
-      },
-      () => {
-        Animated.parallel([
-          Animated.timing(this.state.wValue1, {
-            toValue: progressWidth,
-            duration: 2000,
-            easing: Easing.linear
-          }),
-          Animated.timing(this.state.wValue2, {
-            toValue: 100,
-            duration: 1500,
-            easing: Easing.linear
-          }),
-          Animated.timing(this.state.wValue3, {
-            toValue: 200,
-            duration: 2500,
-            easing: Easing.linear
-          }),
-        ]).start();
-      }
-    )
+    this.state.wValue1.setValue(8);
+    this.state.wValue2.setValue(8);
+    this.state.wValue3.setValue(8);
+    Animated.parallel([
+      Animated.timing(this.state.wValue1, {
+        toValue: progressWidth,
+        duration: 2000,
+        easing: Easing.linear
+      }),
+      Animated.timing(this.state.wValue2, {
+        toValue: 100,
+        duration: 1500,
+        easing: Easing.linear
+      }),
+      Animated.timing(this.state.wValue3, {
+        toValue: 200,
+        duration: 2500,
+        easing: Easing.linear
+      }),
+    ]).start();
   }
   
   horizontalStaggerAnimation() {
-    this.setState(
-      {
-        wValue1: new Animated.Value(8),
-        wValue2: new Animated.Value(8),
-        wValue3: new Animated.Value(8),
-      },
-      () => {
-        Animated.stagger(500, [
-          Animated.timing(this.state.wValue1, {
-            toValue: progressWidth,
-            duration: 2000,
-            easing: Easing.linear
-          }),
-          Animated.timing(this.state.wValue2, {
-            toValue: 100,
-            duration: 1500,
-            easing: Easing.linear
-          }),
-          Animated.timing(this.state.wValue3, {
-            toValue: 200,
-            duration: 2500,
-            easing: Easing.linear
-          }),
-        ]).start();
-      }
-    )
+    this.state.wValue1.setValue(8);
+    this.state.wValue2.setValue(8);
+    this.state.wValue3.setValue(8);
+    Animated.stagger(500, [
+      Animated.timing(this.state.wValue1, {
+        toValue: progressWidth,
+        duration: 2000,
+        easing: Easing.linear
+      }),
+      Animated.timing(this.state.wValue2, {
+        toValue: 100,
+        duration: 1500,
+        easing: Easing.linear
+      }),
+      Animated.timing(this.state.wValue3, {
+        toValue: 200,
+        duration: 2500,
+        easing: Easing.linear
+      }),
+    ]).start();
   }
   
   verticalSequenceAnimation() {
-    this.setState(
-      {
-        hValue1: new Animated.Value(5),
-        hValue2: new Animated.Value(5),
-        hValue3: new Animated.Value(5),
-        hValue4: new Animated.Value(5)
-      },
-      () => {
-        Animated.sequence([
-          Animated.timing(this.state.hValue1, {
-            toValue: progressHeight,
-            duration: 2000,
-            easing: Easing.linear
-          }),
-          Animated.spring(this.state.hValue2, {
-            toValue: 100,
-            friction: 3,
-            tension: 40,
-          }),
-          Animated.timing(this.state.hValue3, {
-            toValue: 50,
-            duration: 2500,
-            easing: Easing.linear
-          }),
-          Animated.spring(this.state.hValue4, {
-            toValue: 200,
-            friction: 3,
-            tension: 40,
-          }),
-        ]).start();
-      }
-    )
+    this.state.hValue1.setValue(5);
+    this.state.hValue2.setValue(5);
+    this.state.hValue3.setValue(5);
+    this.state.hValue4.setValue(5);
+  
+    Animated.sequence([
+      Animated.timing(this.state.hValue1, {
+        toValue: progressHeight,
+        duration: 2000,
+        easing: Easing.linear
+      }),
+      Animated.spring(this.state.hValue2, {
+        toValue: 100,
+        friction: 3,
+        tension: 40,
+      }),
+      Animated.timing(this.state.hValue3, {
+        toValue: 50,
+        duration: 2500,
+        easing: Easing.linear
+      }),
+      Animated.spring(this.state.hValue4, {
+        toValue: 200,
+        friction: 3,
+        tension: 40,
+      }),
+    ]).start();
   }
   
   verticalParallelAnimation() {
-    this.setState(
-      {
-        hValue1: new Animated.Value(5),
-        hValue2: new Animated.Value(5),
-        hValue3: new Animated.Value(5),
-        hValue4: new Animated.Value(5)
-      },
-      () => {
-        Animated.parallel([
-          Animated.timing(this.state.hValue1, {
-            toValue: progressHeight,
-            duration: 2000,
-            easing: Easing.linear
-          }),
-          Animated.timing(this.state.hValue2, {
-            toValue: 100,
-            duration: 2500,
-            easing: Easing.linear
-          }),
-          Animated.timing(this.state.hValue3, {
-            toValue: 50,
-            duration: 2500,
-            easing: Easing.linear
-          }),
-          Animated.timing(this.state.hValue4, {
-            toValue: 200,
-            duration: 2500,
-            easing: Easing.linear
-          }),
-        ]).start();
-      }
-    )
+    this.state.hValue1.setValue(5);
+    this.state.hValue2.setValue(5);
+    this.state.hValue3.setValue(5);
+    this.state.hValue4.setValue(5);
+  
+    Animated.parallel([
+      Animated.timing(this.state.hValue1, {
+        toValue: progressHeight,
+        duration: 2000,
+        easing: Easing.linear
+      }),
+      Animated.timing(this.state.hValue2, {
+        toValue: 100,
+        duration: 2500,
+        easing: Easing.linear
+      }),
+      Animated.timing(this.state.hValue3, {
+        toValue: 50,
+        duration: 2500,
+        easing: Easing.linear
+      }),
+      Animated.timing(this.state.hValue4, {
+        toValue: 200,
+        duration: 2500,
+        easing: Easing.linear
+      }),
+    ]).start();
   }
   
   verticalStaggerAnimation() {
-    this.setState(
-      {
-        hValue1: new Animated.Value(5),
-        hValue2: new Animated.Value(5),
-        hValue3: new Animated.Value(5),
-        hValue4: new Animated.Value(5)
-      },
-      () => {
-        Animated.stagger(500, [
-          Animated.spring(this.state.hValue1, {
-            toValue: progressHeight,
-            friction: 3,
-            tension: 40,
-          }),
-          Animated.spring(this.state.hValue2, {
-            toValue: 100,
-            friction: 3,
-            tension: 40,
-          }),
-          Animated.spring(this.state.hValue3, {
-            toValue: 180,
-            friction: 3,
-            tension: 40,
-          }),
-          Animated.spring(this.state.hValue4, {
-            toValue: 200,
-            friction: 3,
-            tension: 40,
-          }),
-        ]).start();
-      }
-    )
+    this.state.hValue1.setValue(5);
+    this.state.hValue2.setValue(5);
+    this.state.hValue3.setValue(5);
+    this.state.hValue4.setValue(5);
+  
+    Animated.stagger(500, [
+      Animated.spring(this.state.hValue1, {
+        toValue: progressHeight,
+        friction: 3,
+        tension: 40,
+      }),
+      Animated.spring(this.state.hValue2, {
+        toValue: 100,
+        friction: 3,
+        tension: 40,
+      }),
+      Animated.spring(this.state.hValue3, {
+        toValue: 180,
+        friction: 3,
+        tension: 40,
+      }),
+      Animated.spring(this.state.hValue4, {
+        toValue: 200,
+        friction: 3,
+        tension: 40,
+      }),
+    ]).start();
   }
 }
 
