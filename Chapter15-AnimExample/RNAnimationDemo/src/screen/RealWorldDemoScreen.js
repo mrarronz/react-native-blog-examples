@@ -77,6 +77,18 @@ export class RealWorldDemoScreen extends React.Component {
           }
         });
         break;
+      case 4:
+        
+        break;
+      case 5:
+        this.props.navigator.push({
+          screen:'Loading',
+          title:'Loading动画',
+          navigatorStyle:{
+            tabBarHidden: true
+          }
+        });
+        break;
     }
   }
 }
