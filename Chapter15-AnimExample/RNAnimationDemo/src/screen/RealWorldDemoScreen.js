@@ -28,9 +28,9 @@ export class RealWorldDemoScreen extends React.Component {
     )
   }
   
-  _renderItem = ({item}) => {
+  _renderItem = ({item, index}) => {
     return (
-      <TouchableHighlight underlayColor={'#ccc'} onPress={() =>this.onClickListItem(item)}>
+      <TouchableHighlight underlayColor={'#ccc'} onPress={() =>this.onClickListItem(item, index)}>
         <View style={styles.listItem}>
           <Text style={styles.title}>{item}</Text>
           <Icon name={'chevron-right'} size={24} color={'#999'}/>
@@ -39,7 +39,17 @@ export class RealWorldDemoScreen extends React.Component {
     )
   };
   
-  onClickListItem(item) {
-  
+  onClickListItem(item, index) {
+    switch (index) {
+      case 0:
+        this.props.navigator.push({
+          screen:'ShoppingButton',
+          title:'添加商品到购物车动画1',
+          navigatorStyle:{
+            tabBarHidden: true
+          }
+        });
+        break;
+    }
   }
 }

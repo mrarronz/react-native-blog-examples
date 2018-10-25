@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, LayoutAnimation, TouchableOpacity, Text, StyleSheet, NativeModules} from 'react-native';
+import {View, LayoutAnimation, TouchableOpacity, Text, StyleSheet, UIManager} from 'react-native';
 
 export default class CommonAnimation extends React.Component {
   
@@ -10,7 +10,6 @@ export default class CommonAnimation extends React.Component {
       height: 100,
     };
     ///下面代码是必须要添加的，否则没有动画效果，这里iOS是默认开启LayoutAnimation的，只针对android
-    let UIManager= NativeModules.UIManager;
     UIManager.setLayoutAnimationEnabledExperimental && UIManager.setLayoutAnimationEnabledExperimental(true);
   }
   

@@ -29,9 +29,9 @@ export function registerScreens() {
   Navigation.registerComponent('Gesture', () => GestureAnimation);
   Navigation.registerComponent('RequestFrame', () => RequestFrameAnimation);
   Navigation.registerComponent('NativeDriver', () => AnimateWithNativeDriver);
-  Navigation.registerComponent('ShoppingButton', () => ShoppingButtonDemo);
   Navigation.registerComponent('Common', () => CommonAnimation);
   Navigation.registerComponent('CustomAnim', () => CustomAnimation);
+  Navigation.registerComponent('ShoppingButton', () => ShoppingButtonDemo);
 }
 
 export function registerScreenVisibilityListener() {
