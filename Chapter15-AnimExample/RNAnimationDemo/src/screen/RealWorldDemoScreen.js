@@ -89,6 +89,15 @@ export class RealWorldDemoScreen extends React.Component {
           }
         });
         break;
+      case 6:
+        this.props.navigator.push({
+          screen:'Danmu',
+          title:'模拟弹幕动画',
+          navigatorStyle:{
+            tabBarHidden: true
+          }
+        });
+        break;
     }
   }
 }
