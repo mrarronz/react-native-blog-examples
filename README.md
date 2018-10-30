@@ -12,7 +12,7 @@ RN优点是跨平台、JS代码和样式开发UI迅速、HotReload、热修复�
 本仓库是对React Native系列开发知识的经验总结，目的是使用React Native实现原生开发常见的应用场景。Example由基础常用控件ListView，FlatList等开始逐步深入，涵盖控件使用、页面导航跳转、视频播放器、iconfont、RN与原生的交互等内容，持续更新中(工作原因不定期更新)，感兴趣的可以关注下。
 
 ### 后续更新计划(暂定)：
-1. Animated动画的使用
+1. Redux的集成和使用
 2. 原生控件在RN中的封装和使用，自定义Android和iOS扫描二维码
 3. 使用Code Push实现RN的热更新
 4. React Native性能优化总结
@@ -62,3 +62,11 @@ RN优点是跨平台、JS代码和样式开发UI迅速、HotReload、热修复�
 自定义iconfont在React Native中的使用，[看这一篇文章就足够了...](https://juejin.im/post/5ae1685bf265da0b8a675199)
 
 ![image](https://github.com/mrarronz/react-native-blog-examples/raw/master/Chapter9-Iconfont/IconfontExample/screenshots/screenshot6.png)
+
+## Animated
+项目演示了RN中动画的使用，RN中复杂动画使用Animated来实现。此处列举几个实现的动画效果：
+
+![image](https://github.com/mrarronz/react-native-blog-examples/raw/master/Chapter15-AnimExample/RNAnimationDemo/screenshots/anim1.gif)
+![image](https://github.com/mrarronz/react-native-blog-examples/raw/master/Chapter15-AnimExample/RNAnimationDemo/screenshots/anim2.gif)
+![image](https://github.com/mrarronz/react-native-blog-examples/raw/master/Chapter15-AnimExample/RNAnimationDemo/screenshots/anim3.gif)
+![image](https://github.com/mrarronz/react-native-blog-examples/raw/master/Chapter15-AnimExample/RNAnimationDemo/screenshots/anim4.gif)
