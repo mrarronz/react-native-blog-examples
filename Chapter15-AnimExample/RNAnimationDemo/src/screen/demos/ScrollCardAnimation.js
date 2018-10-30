@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, ScrollView, Animated, Easing, Dimensions, StyleSheet} from 'react-native';
+import {View, ScrollView, Animated, Dimensions, StyleSheet} from 'react-native';
 
 export default class ScrollCardAnimation extends React.Component {
   
