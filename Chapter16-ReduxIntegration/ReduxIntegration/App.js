@@ -7,43 +7,91 @@
  */
 
 import React, {Component} from 'react';
-import {Platform, StyleSheet, Text, View} from 'react-native';
+import {StackNavigator, createBottomTabNavigator} from 'react-navigation';
+import HomeScreen from "./src/screen/HomeScreen";
+import ProfileScreen from "./src/screen/ProfileScreen";
+import LoginScreen from "./src/screen/LoginScreen";
+import {Provider} from 'react-redux';
+import configStore from "./src/store/ConfigStore";
+import DetailScreen from "./src/screen/DetailScreen";
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
-const instructions = Platform.select({
-  ios: 'Press Cmd+R to reload,\n' + 'Cmd+D or shake for dev menu',
-  android:
-    'Double tap R on your keyboard to reload,\n' +
-    'Shake or press menu button for dev menu',
-});
+const store = configStore();
 
-type Props = {};
-export default class App extends Component<Props> {
+export default class App extends Component {
   render() {
     return (
-      <View style={styles.container}>
-        <Text style={styles.welcome}>Welcome to React Native!</Text>
-        <Text style={styles.instructions}>To get started, edit App.js</Text>
-        <Text style={styles.instructions}>{instructions}</Text>
-      </View>
-    );
+      <Provider store={store}>
+        <AppNavigator/>
+      </Provider>
+    )
   }
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
+const Main = createBottomTabNavigator({
+  Home: {
+    screen: HomeScreen,
+    navigationOptions: {
+      tabBarLabel:'主页',
+      tabBarIcon: ({focused}) => (
+        <Icon name={'home'} size={24} color={focused ? '#4ca5ff' : '#888'}/>
+      )
+    }
   },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-  },
+  Profile: {
+    screen: ProfileScreen,
+    navigationOptions: {
+      tabBarLabel:'我的',
+      tabBarIcon: ({focused}) => (
+        <Icon name={'account'} size={24} color={focused ? '#4ca5ff' : '#888'}/>
+      )
+    }
+  }
+}, {
+  tabBarOptions: {
+    activeTintColor: '#4ca5ff',
+    inactiveTintColor: '#888888'
+  }
 });
+
+Main.navigationOptions = ({navigation}) => {
+  const { routeName } = navigation.state.routes[navigation.state.index];
+  let title = "";
+  switch (routeName) {
+    case 'Home':
+      title = '主页';
+      break;
+    case 'Profile':
+      title = '我的';
+      break;
+  }
+  return {
+    headerTitle:title
+  }
+};
+
+const AppNavigator = StackNavigator({
+  Login: {
+    screen: LoginScreen,
+    navigationOptions: {
+      headerTitle: '登录'
+    }
+  },
+  Main: {
+    screen: Main
+  },
+  Detail: {
+    screen: DetailScreen
+  }
+}, {
+    navigationOptions: {
+      headerBackTitle: null,
+      headerTintColor: 'white',
+      headerStyle: {backgroundColor: '#4ca5ff'},
+      headerTitleStyle: {fontSize: 18, fontWeight: 'bold'},
+      showIcon: true,
+    },
+    headerMode: 'screen'
+  }
+);
+
