@@ -7,7 +7,7 @@
  */
 
 import React, {Component} from 'react';
-import {StackNavigator, createBottomTabNavigator} from 'react-navigation';
+import {createStackNavigator, createBottomTabNavigator} from 'react-navigation';
 import HomeScreen from "./src/screen/HomeScreen";
 import ProfileScreen from "./src/screen/ProfileScreen";
 import LoginScreen from "./src/screen/LoginScreen";
@@ -70,12 +70,9 @@ Main.navigationOptions = ({navigation}) => {
   }
 };
 
-const AppNavigator = StackNavigator({
+const AppNavigator = createStackNavigator({
   Login: {
     screen: LoginScreen,
-    navigationOptions: {
-      headerTitle: '登录'
-    }
   },
   Main: {
     screen: Main

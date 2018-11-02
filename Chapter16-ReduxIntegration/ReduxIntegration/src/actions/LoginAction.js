@@ -20,14 +20,14 @@ export function login() {
 
 function isLoginOnGoing() {
   return {
-    type: types.login_processing,
+    type: types.LOGIN_PROCESSING,
     loading: true,
   }
 }
 
 function loginSuccess(user) {
   return {
-    type: types.login_success,
+    type: types.LOGIN_SUCCESS,
     user: user,
     loading: false
   }
@@ -35,7 +35,7 @@ function loginSuccess(user) {
 
 function loginFail(errorMsg) {
   return {
-    type: types.login_fail,
+    type: types.LOGIN_FAIL,
     errorMsg: errorMsg,
     loading: false
   }

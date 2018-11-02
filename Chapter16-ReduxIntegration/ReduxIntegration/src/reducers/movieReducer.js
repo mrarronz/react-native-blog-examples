@@ -1,37 +1,35 @@
 import * as types from '../constants/ActionTypes';
 
-const initialState = {
+const initState = {
   loading: false,
   errorMessage:'',
   isSuccess:false,
-  user:null,
+  movieList: []
 };
 
-export default function loginIn(state=initialState, action) {
+export default function getMovieList(state=initState, action) {
   switch (action.type) {
-    case types.LOGIN_PROCESSING:
+    case types.GET_MOVIE_LOADING:
       return {
         ...state,
         loading: true,
-        errorMessage: "",
-        isSuccess: false,
-        user: null
+        isSuccess:false,
+        movieList: [],
       };
-    case types.LOGIN_SUCCESS:
+    case types.GET_MOVIE_SUCCESS:
       return {
         ...state,
         loading: false,
-        errorMessage: "",
-        isSuccess: true,
-        user: action.user
+        isSuccess:true,
+        movieList: action.movies
       };
-    case types.LOGIN_FAIL:
+    case types.GET_MOVIE_FAIL:
       return {
         ...state,
         loading: false,
-        errorMessage: action.errorMsg,
         isSuccess: false,
-        user: null
+        movieList: [],
+        errorMessage:action.errorMessage
       };
     default:
       return state;

@@ -7,6 +7,7 @@
     "test": "jest"
   },
   "dependencies": {
+    "antd-mobile-rn": "^2.3.1",
     "react": "16.4.1",
     "react-native": "0.56.0",
     "react-native-vector-icons": "^6.0.2",

@@ -13,6 +13,10 @@ const resetAction = StackActions.reset({
 
 class LoginScreen extends React.Component {
   
+  static navigationOptions = {
+    headerTitle:'登录'
+  };
+  
   componentDidMount() {
     console.log(this.props);
   }
@@ -63,7 +67,7 @@ export default connect(
     errorMessage:state.loginIn.errorMessage,
     isSuccess: state.loginIn.isSuccess,
     user: state.loginIn.user,
-    loadingText: state.loginIn.loadingText
+    loading: state.loginIn.loading
   }),
   (dispatch) => ({
     login: () =>dispatch(loginAction.login())
