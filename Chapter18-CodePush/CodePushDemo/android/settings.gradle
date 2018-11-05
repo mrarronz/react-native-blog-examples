@@ -1,0 +1,3 @@
+rootProject.name = 'CodePushDemo'
+
+include ':app'
