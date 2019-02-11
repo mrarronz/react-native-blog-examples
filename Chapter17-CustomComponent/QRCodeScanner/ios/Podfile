@@ -1,0 +1,7 @@
+platform :ios, '8.0'
+
+target 'QRCodeScanner' do
+
+pod 'QRCodeScanner', :git => "https://github.com/mrarronz/QRCodeScanner.git"
+
+end
