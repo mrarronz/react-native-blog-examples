@@ -33,7 +33,7 @@ RN优点是跨平台、JS代码和样式开发UI迅速、HotReload、热修复�
 15. Chapter14 - [使用react-native-wechat实现微信登录、分享和支付](https://github.com/mrarronz/react-native-blog-examples/blob/master/Chapter14-Wechat_Login_Share_Pay/WechatUsageExample/ExampleNote.md)
 16. Chapter15 - [RN中的动画Animated使用示例](#)
 17. Chapter16 - [Redux的集成和使用，实现简单登录和电影列表加载](#)
-18. Chapter17 - [在RN中实现原生扫瞄二维码功能](#)
+18. Chapter17 - [在RN中实现原生扫瞄二维码功能](https://github.com/mrarronz/react-native-blog-examples/blob/master/Chapter17-CustomComponent/QRCodeScanner/README.md)
 
 ## 视频播放器功能
 
