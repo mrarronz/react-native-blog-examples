@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, Button, StyleSheet, NativeModules} from 'react-native';
+import {View, Button, StyleSheet, Alert, NativeModules} from 'react-native';
 
 const nativeModule = NativeModules.OpenNativeModule;
 
@@ -14,7 +14,14 @@ export default class IndexScreen extends React.PureComponent {
   }
   
   scanQRCode() {
-    nativeModule.openScanVC();
+    nativeModule.scanQRCode((result) => {
+      Alert.alert('扫描结果', result,
+        [
+          {text:'确定', onPress:() => {}}
+        ],
+        {cancelable: false}
+      );
+    });
   }
 }
 

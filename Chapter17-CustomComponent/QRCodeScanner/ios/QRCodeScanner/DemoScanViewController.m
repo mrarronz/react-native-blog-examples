@@ -41,6 +41,10 @@
 
 - (void)handleScanResult {
   NSLog(@"扫描结果：%@", self.scanResult);
+  if (self.completionBlock) {
+    self.completionBlock(self.scanResult);
+  }
+  [self.navigationController popViewControllerAnimated:YES];
 }
 
 @end

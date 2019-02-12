@@ -12,6 +12,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface DemoScanViewController : QRScannerViewController
 
+@property (nonatomic, copy) void(^completionBlock)(NSString *result);
+
 @end
 
 NS_ASSUME_NONNULL_END
