@@ -1,5 +1,7 @@
 import React from 'react';
-import {View, Button, StyleSheet} from 'react-native';
+import {View, Button, StyleSheet, NativeModules} from 'react-native';
+
+const nativeModule = NativeModules.OpenNativeModule;
 
 export default class IndexScreen extends React.PureComponent {
   
@@ -12,7 +14,7 @@ export default class IndexScreen extends React.PureComponent {
   }
   
   scanQRCode() {
-    this.props.navigation.navigate('Scan');
+    nativeModule.openScanVC();
   }
 }
 
