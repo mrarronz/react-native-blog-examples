@@ -1,6 +1,12 @@
 ## 在RN中集成原生端二维码扫描功能
 
-之前在RN中实现扫描二维码功能都是借助于第三方库`react-native-camera`。配置繁琐容易出错，因此打算直接用原生代码实现扫码功能。本仓库中演示项目Chapter17实现了此功能，下面主要说明android和iOS端如何实现，以及集成到RN的全过程。
+之前在RN中实现扫描二维码功能都是借助于第三方库`react-native-camera`。配置繁琐容易出错，因此打算直接用原生代码实现扫码功能。本仓库中演示项目Chapter17实现了此功能，并且相对于RN组件形式有以下优点：
+
+* UI可配置
+* 扫码区域限制在矩形框内，iOS默认限制框内识别，android可配置全屏识别或框内识别。
+
+
+下面主要说明android和iOS端如何实现，以及集成到RN的全过程。
 
 ### iOS实现
 
@@ -14,7 +20,7 @@ iOS端实现扫码用的是我之前创建的一个简易的库[`QRCodeScanner`]
 
 ### Android实现
 
-Android端实现扫码一般都是用Zxing这个库，怎么集成的就不多说了，这方面资料太多了。集成这个库一般就两个过程：集成过程和UI定制过程。这里为了简便，我使用了第三方作者基于zxing封装好的库[`zxing`](https://github.com/yuzhiqiang1993/zxing)，其UI配置风格恰好与我所写的iOS库相似，因此扫码界面UI可以达到比较统一的效果。
+Android端实现扫码一般都是用Zxing这个库，这方面资料太多了，具体集成步骤不赘述。集成这个库一般就两个过程：集成过程和UI定制过程。这里为了简便，我使用了第三方作者基于zxing封装好的库[`zxing`](https://github.com/yuzhiqiang1993/zxing)，其UI配置风格恰好与我所写的iOS库相似，因此扫码界面UI可以达到比较统一的效果。
 
 另外android端动态获取扫码相应的权限是基于[`AndPermission `](https://github.com/yanzhenjie/AndPermission)这个库实现的。
 
