@@ -6,6 +6,10 @@
 * 扫码区域限制在矩形框内，iOS默认限制框内识别，android可配置全屏识别或框内识别。
 
 
+![image](https://github.com/mrarronz/react-native-blog-examples/raw/master/Chapter17-CustomComponent/QRCodeScanner/screenshots/android.png)
+![image](https://github.com/mrarronz/react-native-blog-examples/raw/master/Chapter17-CustomComponent/QRCodeScanner/screenshots/ios.jpg)
+
+
 下面主要说明android和iOS端如何实现，以及集成到RN的全过程。
 
 ### iOS实现
