@@ -2,7 +2,7 @@
 Sample projects for my react native blog
 
 use "npm install" to install dependencies，
-recommended IDE: [WebStorm](http://www.jetbrains.com/webstorm/)
+recommended IDE: [WebStorm](http://www.jetbrains.com/webstorm/) or [VSCode](https://code.visualstudio.com/Download)
 
 ## Overview
 RN优点是跨平台、JS代码和样式开发UI迅速、HotReload、热修复，缺点在于性能、开发集成时配置略麻烦，带来的问题也略多，但它值得一学。对于功能复杂型应用还是应该以原生为主RN为辅。
