@@ -13,7 +13,6 @@ RN优点是跨平台、JS代码和样式开发UI迅速、HotReload、热修复�
 
 ### 后续更新计划(暂定)：
 1. 使用Code Push实现RN的热更新
-2. React Native性能优化总结
 
 ## Demo对应的文章及说明
 1. Chapter1 - [React Native——ListView的使用详解](https://juejin.im/post/5a8f7f586fb9a063417b3eea)
