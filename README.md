@@ -34,6 +34,7 @@ RN优点是跨平台、JS代码和样式开发UI迅速、HotReload、热修复�
 16. Chapter15 - [RN中的动画Animated使用示例](#)
 17. Chapter16 - [Redux的集成和使用，实现简单登录和电影列表加载](#)
 18. Chapter17 - [在RN中实现原生扫瞄二维码功能](https://github.com/mrarronz/react-native-blog-examples/blob/master/Chapter17-CustomComponent/QRCodeScanner/README.md)
+19. Chapter19 - [React Native性能优化总结](https://github.com/mrarronz/react-native-blog-examples/blob/master/Chapter19-PerformanceSummary.md) 
 
 ## 视频播放器功能
 
