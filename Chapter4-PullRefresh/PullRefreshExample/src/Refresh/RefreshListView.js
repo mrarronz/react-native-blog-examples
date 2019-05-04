@@ -52,6 +52,12 @@ export default class RefreshListView extends Component {
   /// 开始下拉刷新
   beginHeaderRefresh() {
     if (this.shouldStartHeaderRefreshing()) {
+      const nowTimestamp = new Date().getTime();
+      const subTimestamp = nowTimestamp - this.lastTimesttamp;
+      if (subTimestamp < 500) {
+        return;
+      }
+      this.lastTimesttamp = new Date().getTime();
       this.startHeaderRefreshing();
     }
   }
@@ -59,6 +65,12 @@ export default class RefreshListView extends Component {
   /// 开始上拉加载更多
   beginFooterRefresh() {
     if (this.shouldStartFooterRefreshing()) {
+      const nowTimestamp = new Date().getTime();
+      const subTimestamp = nowTimestamp - this.lastTimesttamp;
+      if (subTimestamp < 500) {
+        return;
+      }
+      this.lastTimesttamp = new Date().getTime();
       this.startFooterRefreshing();
     }
   }
