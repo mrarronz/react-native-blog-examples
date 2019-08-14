@@ -1,27 +1,28 @@
 import React from 'react';
-import {ScrollView, Text, TouchableOpacity, StyleSheet} from 'react-native';
+import { ScrollView, Text, TouchableOpacity, StyleSheet } from 'react-native';
 import PropTypes from 'prop-types';
-import {videoList} from "../screen/VideoListScreen";
-import {onePixel} from "./MoreSettingView";
+
+import { videoList } from "../view/VideoListScreen";
+import { onePixel } from "./MoreSettingView";
 
 export default class SelectVideoView extends React.Component {
-  
+
   static defaultProps = {
     currentUrl: null
   };
-  
+
   static propTypes = {
     onItemSelected: PropTypes.func,
     onCloseWindow: PropTypes.func
   };
-  
+
   constructor(props) {
     super(props);
     this.state = {
       currentUrl: this.props.currentUrl
     }
   }
-  
+
   render() {
     return (
       <TouchableOpacity
@@ -38,9 +39,9 @@ export default class SelectVideoView extends React.Component {
                   key={index}
                   activeOpacity={0.7}
                   style={[styles.optionItem, isSelected ? styles.optionItem_active : null]}
-                  onPress={() => {this.onTapItemAtIndex(item)}}
+                  onPress={() => { this.onTapItemAtIndex(item) }}
                 >
-                  <Text style={[styles.optionText, isSelected ? styles.optionText_active: null]}>这是视频{index+1}</Text>
+                  <Text style={[styles.optionText, isSelected ? styles.optionText_active : null]}>这是视频{index + 1}</Text>
                 </TouchableOpacity>
               )
             })
@@ -49,18 +50,18 @@ export default class SelectVideoView extends React.Component {
       </TouchableOpacity>
     )
   }
-  
+
   _onTapBackground = () => {
     this.props.onCloseWindow && this.props.onCloseWindow();
   };
-  
+
   onTapItemAtIndex(videoUrl) {
     this.setState({
       currentUrl: videoUrl
     });
     this.props.onItemSelected && this.props.onItemSelected(videoUrl);
   }
-  
+
   updateVideo(url) {
     this.setState({
       currentUrl: url
@@ -71,19 +72,19 @@ export default class SelectVideoView extends React.Component {
 const styles = StyleSheet.create({
   container: {
     backgroundColor: 'rgba(0, 0, 0, 0.5)',
-    alignItems:'center',
-    justifyContent:'center'
+    alignItems: 'center',
+    justifyContent: 'center'
   },
   optionView: {
-    alignItems:'center',
-    justifyContent:'center',
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   optionItem: {
     width: 200,
     height: 50,
-    alignItems:'center',
-    justifyContent:'center',
-    paddingLeft:10,
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingLeft: 10,
     paddingRight: 10,
     borderBottomWidth: onePixel,
     borderColor: 'white'
