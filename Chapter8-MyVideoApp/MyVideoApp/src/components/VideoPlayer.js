@@ -3,7 +3,6 @@ import {
   View,
   Text,
   Image,
-  Slider,
   Dimensions,
   StyleSheet,
   TouchableOpacity,
@@ -12,8 +11,10 @@ import {
   Platform
 } from 'react-native';
 import PropTypes from 'prop-types';
+import Slider from '@react-native-community/slider';
 import Video from 'react-native-video';
 import Orientation from "react-native-orientation";
+
 import SelectDefinitionView from "./SelectDefinitionView";
 import SelectVideoView from "./SelectVideoView";
 import ShareOptionView from "./ShareOptionView";
@@ -25,7 +26,7 @@ export default class VideoPlayer extends React.Component {
     onChangeOrientation: PropTypes.func,
     onTapBackButton: PropTypes.func
   };
-  
+
   static defaultProps = {
     videoWidth: screenWidth,    // 默认视频宽度，竖屏下为屏幕宽度
     videoHeight: defaultVideoHeight, // 默认视频高度，竖屏下为宽度的9/16，使视频保持16：9的宽高比
@@ -35,7 +36,7 @@ export default class VideoPlayer extends React.Component {
     enableSwitchScreen: true, // 是否允许视频切换大小
     tag: 0
   };
-  
+
   constructor(props) {
     super(props);
     let hasCover = true;
@@ -67,20 +68,30 @@ export default class VideoPlayer extends React.Component {
       isSettingViewShow: false, // 是否显示设置界面
     }
   }
-  
+
   render() {
     return (
       <View
-        style={[{width: this.state.videoWidth, height: this.state.videoHeight,backgroundColor:'#000'}, this.props.style]}>
+        style={[{
+          width: this.state.videoWidth,
+          height: this.state.videoHeight,
+          backgroundColor: '#000'
+        }, this.props.style]}>
         <Video
           ref={(ref) => { this.videoRef = ref }}
-          source={{uri: this.state.videoUrl}}
+          source={{ uri: this.state.videoUrl }}
           resizeMode="contain"
           rate={this.state.playRate}
           volume={this.state.volume}
           muted={this.state.isMuted}
           ignoreSilentSwitch={"ignore"}
-          style={{position:'absolute', left: this.state.x, top: 0, width: this.state.videoWidth-2*this.state.x, height: this.state.videoHeight}}
+          style={{
+            position: 'absolute',
+            left: this.state.x,
+            top: 0,
+            width: this.state.videoWidth - 2 * this.state.x,
+            height: this.state.videoHeight
+          }}
           paused={this.state.isPaused}
           onLoadStart={this._onLoadStart}
           onBuffer={this._onBuffering}
@@ -94,8 +105,14 @@ export default class VideoPlayer extends React.Component {
         {
           this.state.hasCover && this.state.isShowVideoCover ?
             <Image
-              style={{position: 'absolute', top: 0, left: 0, width: this.state.videoWidth, height: this.state.videoHeight}}
-              source={{uri: this.state.videoCover}}
+              style={{
+                position: 'absolute',
+                top: 0,
+                left: 0,
+                width: this.state.videoWidth,
+                height: this.state.videoHeight
+              }}
+              source={{ uri: this.state.videoCover }}
             /> : null
         }
         <TouchableWithoutFeedback onPress={this._onTapVideo}>
@@ -107,8 +124,8 @@ export default class VideoPlayer extends React.Component {
               width: this.state.videoWidth,
               height: this.state.videoHeight,
               backgroundColor: this.state.isPaused ? 'rgba(0, 0, 0, 0.2)' : 'transparent',
-              alignItems:'center',
-              justifyContent:'center'
+              alignItems: 'center',
+              justifyContent: 'center'
             }}>
             {
               this.state.isPaused ?
@@ -123,20 +140,22 @@ export default class VideoPlayer extends React.Component {
         </TouchableWithoutFeedback>
         {
           this.state.isShowControl ?
-            <View style={[styles.bottomControl, {width: this.state.videoWidth}]}>
+            <View style={[styles.bottomControl, { width: this.state.videoWidth }]}>
               <Image
                 source={require('../image/img_bottom_shadow.png')}
-                style={{position:'absolute', top: 0, left: 0, width: this.state.videoWidth, height:50}}
+                style={{ position: 'absolute', top: 0, left: 0, width: this.state.videoWidth, height: 50 }}
               />
               <TouchableOpacity activeOpacity={0.3} onPress={this._onTapPlayButton}>
                 <Image
                   style={styles.control_play_btn}
-                  source={this.state.isPaused ? require('../image/icon_control_play.png') : require('../image/icon_control_pause.png')}
+                  source={this.state.isPaused
+                    ? require('../image/icon_control_play.png')
+                    : require('../image/icon_control_pause.png')}
                 />
               </TouchableOpacity>
               <Text style={styles.timeText}>{formatTime(this.state.currentTime)}</Text>
               <Slider
-                style={{flex: 1}}
+                style={{ flex: 1 }}
                 maximumTrackTintColor={'#999999'}//滑块右侧轨道的颜色
                 minimumTrackTintColor={'#00c06d'}//滑块左侧轨道的颜色
                 thumbImage={require('../image/icon_control_slider.png')}
@@ -151,7 +170,9 @@ export default class VideoPlayer extends React.Component {
                   <TouchableOpacity activeOpacity={0.3} onPress={this._onTapSwitchButton}>
                     <Image
                       style={styles.control_switch_btn}
-                      source={this.state.isFullScreen ? require('../image/icon_control_shrink_screen.png') : require('../image/icon_control_full_screen.png')}
+                      source={this.state.isFullScreen
+                        ? require('../image/icon_control_shrink_screen.png')
+                        : require('../image/icon_control_full_screen.png')}
                     />
                   </TouchableOpacity> : null
               }
@@ -162,9 +183,9 @@ export default class VideoPlayer extends React.Component {
                       <Text style={styles.bottomOptionText}>高清</Text>
                     </TouchableOpacity>
                     <TouchableOpacity onPress={this._onTapSelectVideo}>
-                      <Text style={[styles.bottomOptionText, {marginLeft: 10}]}>选集</Text>
+                      <Text style={[styles.bottomOptionText, { marginLeft: 10 }]}>选集</Text>
                     </TouchableOpacity>
-                  </View>: null
+                  </View> : null
               }
             </View> : null
         }
@@ -172,22 +193,22 @@ export default class VideoPlayer extends React.Component {
           this.state.isFullScreen && this.state.isShowControl ?
             <View
               style={{
-                position:'absolute',
+                position: 'absolute',
                 top: 0,
                 left: 0,
                 width: this.state.videoWidth,
                 height: 50,
-                flexDirection:'row',
-                alignItems:'center'
+                flexDirection: 'row',
+                alignItems: 'center'
               }}>
               <Image
                 source={require('../image/img_top_shadow.png')}
-                style={{position:'absolute', top: 0, left: 0, width: this.state.videoWidth, height:50}}
+                style={{ position: 'absolute', top: 0, left: 0, width: this.state.videoWidth, height: 50 }}
               />
               <TouchableOpacity style={styles.backButton} onPress={this._onTapBackButton}>
                 <Image
                   source={require('../image/icon_back.png')}
-                  style={{width: 26, height: 26}}
+                  style={{ width: 26, height: 26 }}
                 />
               </TouchableOpacity>
               <Text style={styles.videoTitle} numberOfLines={1}>{this.state.videoTitle}</Text>
@@ -197,7 +218,7 @@ export default class VideoPlayer extends React.Component {
                     <TouchableOpacity style={styles.topOptionItem} onPress={this._onTapCaptureImage}>
                       <Image
                         source={require('../image/icon_video_capture.png')}
-                        style={{width: 26, height: 26}}
+                        style={{ width: 26, height: 26 }}
                       />
                     </TouchableOpacity>
                     <TouchableOpacity style={styles.topOptionItem} onPress={this._onTapAirplayButton}>
@@ -209,7 +230,7 @@ export default class VideoPlayer extends React.Component {
                     <TouchableOpacity style={styles.topOptionItem} onPress={this._onTapShareButton}>
                       <Image
                         source={require('../image/icon_video_share.png')}
-                        style={{width: 22, height: 22}}
+                        style={{ width: 22, height: 22 }}
                       />
                     </TouchableOpacity>
                     <TouchableOpacity style={styles.topOptionItem} onPress={this._onTapMoreButton}>
@@ -226,7 +247,7 @@ export default class VideoPlayer extends React.Component {
           this.state.isFullScreen ? null :
             <TouchableOpacity
               style={{
-                position:'absolute',
+                position: 'absolute',
                 top: 10,
                 left: 10,
                 width: 44,
@@ -238,7 +259,7 @@ export default class VideoPlayer extends React.Component {
             >
               <Image
                 source={require('../image/icon_back.png')}
-                style={{width: 26, height: 26}}
+                style={{ width: 26, height: 26 }}
               />
             </TouchableOpacity>
         }
@@ -247,14 +268,14 @@ export default class VideoPlayer extends React.Component {
             <SelectDefinitionView
               selectedIndex={2}
               style={{
-                position:'absolute',
+                position: 'absolute',
                 top: 0,
                 left: 0,
                 width: this.state.videoWidth,
                 height: this.state.videoHeight,
               }}
               onItemSelected={(index) => this.onDefinitionItemSelected(index)}
-              onCloseWindow={() => { this.setState({isDefinitionShow: false}) }}
+              onCloseWindow={() => { this.setState({ isDefinitionShow: false }) }}
             /> : null
         }
         {
@@ -262,35 +283,35 @@ export default class VideoPlayer extends React.Component {
             <SelectVideoView
               currentUrl={this.state.videoUrl}
               style={{
-                position:'absolute',
+                position: 'absolute',
                 top: 0,
                 left: 0,
                 width: this.state.videoWidth,
                 height: this.state.videoHeight,
               }}
               onItemSelected={(url) => this.onVideoListSwitch(url)}
-              onCloseWindow={() => { this.setState({isVideoListShow: false}) }}
+              onCloseWindow={() => { this.setState({ isVideoListShow: false }) }}
             /> : null
         }
         {
           this.state.isFullScreen && this.state.isShareMenuShow ?
             <ShareOptionView
               style={{
-                position:'absolute',
+                position: 'absolute',
                 top: 0,
                 left: 0,
                 width: this.state.videoWidth,
                 height: this.state.videoHeight,
               }}
-              onShareItemSelected={(index) => {this.onShareMenuPressed(index)}}
-              onCloseWindow={() => { this.setState({isShareMenuShow: false}) }}
+              onShareItemSelected={(index) => { this.onShareMenuPressed(index) }}
+              onCloseWindow={() => { this.setState({ isShareMenuShow: false }) }}
             /> : null
         }
         {
           this.state.isFullScreen && this.state.isSettingViewShow ?
             <MoreSettingView
               style={{
-                position:'absolute',
+                position: 'absolute',
                 top: 0,
                 left: 0,
                 width: this.state.videoWidth,
@@ -300,36 +321,36 @@ export default class VideoPlayer extends React.Component {
               volume={this.state.volume}
               selectedRate={this.state.playRate}
               selectedEndTimeIndex={0}
-              onFavoriteTapped={() => { this.setState({isSettingViewShow: false}) }}
-              onDownloadTapped={() => { this.setState({isSettingViewShow: false}) }}
+              onFavoriteTapped={() => { this.setState({ isSettingViewShow: false }) }}
+              onDownloadTapped={() => { this.setState({ isSettingViewShow: false }) }}
               onMuteVolumeTapped={(isMute) => { this.onMuteVolume(isMute); }}
               onPlayRateChanged={(rate) => { this.onPlayRateChange(rate); }}
               onEndTimeSelected={(index) => { this.onEndTimeChange(index); }}
-              onCloseWindow={() => { this.setState({isSettingViewShow: false}) }}
+              onCloseWindow={() => { this.setState({ isSettingViewShow: false }) }}
               onVolumeChange={(volume) => { this.onVolumeChanged(volume); }}
             /> : null
         }
       </View>
     )
   }
-  
+
   /// -------播放器回调事件方法-------
-  
+
   _onLoadStart = () => {
     console.log('视频开始加载...');
   };
-  
+
   _onBuffering = () => {
     console.log('视频缓冲中...');
   };
-  
+
   _onLoad = (data) => {
     console.log('视频加载完成');
     this.setState({
       duration: data.duration,
     });
   };
-  
+
   //进度
   _onProgressChange = (data) => {
     if (!this.state.isPaused) {
@@ -338,7 +359,7 @@ export default class VideoPlayer extends React.Component {
       })
     }
   };
-  
+
   //视频播放结束触发的方法
   _onPlayEnd = () => {
     console.log('播放结束');
@@ -349,20 +370,20 @@ export default class VideoPlayer extends React.Component {
       isShowVideoCover: this.state.hasCover
     });
   };
-  
+
   _onPlayError = () => {
     console.log('视频播放失败');
   };
-  
+
   /// -------控件点击事件-------
-  
+
   _onTapVideo = () => {
     let isShow = !this.state.isShowControl;
     this.setState({
       isShowControl: isShow,
     })
   };
-  
+
   _onTapPlayButton = () => {
     let isPause = !this.state.isPaused;
     let isShowControl = false;
@@ -381,7 +402,7 @@ export default class VideoPlayer extends React.Component {
       })
     }
   };
-  
+
   _onSliderValueChange = (currentTime) => {
     this.videoRef.seek(currentTime);
     if (this.state.isPaused) {
@@ -391,12 +412,12 @@ export default class VideoPlayer extends React.Component {
       })
     }
   };
-  
+
   // 点击展开全屏或收起全屏
   _onTapSwitchButton = () => {
     this.props.onChangeOrientation && this.props.onChangeOrientation(this.state.isFullScreen);
   };
-  
+
   // 点击返回键
   _onTapBackButton = () => {
     if (this.state.isFullScreen) {
@@ -405,7 +426,7 @@ export default class VideoPlayer extends React.Component {
       this.props.onTapBackButton && this.props.onTapBackButton();
     }
   };
-  
+
   // 点击切换清晰度
   _onTapDefinitionButton = () => {
     this.setState({
@@ -413,7 +434,7 @@ export default class VideoPlayer extends React.Component {
       isShowControl: false
     })
   };
-  
+
   // 点击选集
   _onTapSelectVideo = () => {
     this.setState({
@@ -421,17 +442,17 @@ export default class VideoPlayer extends React.Component {
       isShowControl: false
     })
   };
-  
+
   // 点击截屏
   _onTapCaptureImage = () => {
-  
+
   };
-  
+
   // 点击AirPlay
   _onTapAirplayButton = () => {
-  
+
   };
-  
+
   // 点击分享
   _onTapShareButton = () => {
     this.setState({
@@ -439,7 +460,7 @@ export default class VideoPlayer extends React.Component {
       isShowControl: false
     })
   };
-  
+
   // 点击更多
   _onTapMoreButton = () => {
     this.setState({
@@ -447,26 +468,26 @@ export default class VideoPlayer extends React.Component {
       isShowControl: false
     })
   };
-  
+
   onDefinitionItemSelected(index) {
     this.setState({
       isDefinitionShow: false
     })
   }
-  
+
   onVideoListSwitch(url) {
     this.updateVideo(url, 0, null);
     this.setState({
       isVideoListShow: false
     })
   }
-  
+
   onShareMenuPressed(index) {
     this.setState({
       isShareMenuShow: false
     })
   }
-  
+
   onMuteVolume(isMute) {
     let volume = this.state.volume;
     if (!isMute && volume === 0) {
@@ -478,18 +499,18 @@ export default class VideoPlayer extends React.Component {
       isSettingViewShow: false
     })
   }
-  
+
   onPlayRateChange(rate) {
     this.setState({
       playRate: rate,
       isSettingViewShow: false
     })
   }
-  
+
   onEndTimeChange(index) {
-  
+
   }
-  
+
   onVolumeChanged(volume) {
     let isMute = (volume === 0);
     this.setState({
@@ -497,9 +518,9 @@ export default class VideoPlayer extends React.Component {
       isMuted: isMute
     })
   }
-  
+
   /// --------外部调用方法--------
-  
+
   updateVideo(videoUrl, seekTime, videoTitle) {
     let title = (videoTitle != null) ? videoTitle : this.state.videoTitle;
     this.setState({
@@ -510,7 +531,7 @@ export default class VideoPlayer extends React.Component {
     });
     this.videoRef.seek(seekTime);
   }
-  
+
   updateLayout(width, height, isFullScreen) {
     let xPadding = 0;
     if (isFullScreen) {
@@ -524,14 +545,14 @@ export default class VideoPlayer extends React.Component {
       isFullScreen: isFullScreen
     })
   }
-  
+
   stop() {
     this.setState({
       isPaused: true,
       currentTime: 0
     })
   }
-  
+
 }
 
 export function formatTime(second) {
@@ -548,7 +569,7 @@ export function formatTime(second) {
 }
 export const screenWidth = Dimensions.get('window').width;
 export const screenHeight = Dimensions.get('window').height;
-export const defaultVideoHeight = screenWidth * 9/16;
+export const defaultVideoHeight = screenWidth * 9 / 16;
 export const isIPhoneX = DeviceInfo.isIPhoneX_deprecated;
 export const statusBarHeight = isIPhoneX ? 44 : 20;
 export const isSystemIOS = (Platform.OS === 'ios');
@@ -590,16 +611,16 @@ const styles = StyleSheet.create({
     marginRight: 15
   },
   backButton: {
-    flexDirection:'row',
+    flexDirection: 'row',
     width: 44,
     height: 44,
-    alignItems:'center',
-    justifyContent:'center',
+    alignItems: 'center',
+    justifyContent: 'center',
     marginLeft: 10
   },
   bottomOptionView: {
     flexDirection: 'row',
-    alignItems:'center',
+    alignItems: 'center',
     marginRight: 15,
     height: 50
   },
@@ -609,15 +630,15 @@ const styles = StyleSheet.create({
   },
   topOptionView: {
     flexDirection: 'row',
-    alignItems:'center',
+    alignItems: 'center',
     marginRight: 15,
     height: 50
   },
   topOptionItem: {
     width: 50,
     height: 50,
-    alignItems:'center',
-    justifyContent:'center'
+    alignItems: 'center',
+    justifyContent: 'center'
   },
   topImageOption: {
     width: 24,

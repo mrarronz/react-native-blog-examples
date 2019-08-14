@@ -1,14 +1,14 @@
 import React from 'react';
-import {View, Image, Text, TouchableOpacity, StyleSheet} from 'react-native';
+import { View, Image, Text, TouchableOpacity, StyleSheet } from 'react-native';
 import PropTypes from 'prop-types';
 
 export default class ShareOptionView extends React.Component {
-  
+
   static propTypes = {
     onShareItemSelected: PropTypes.func,
     onCloseWindow: PropTypes.func
   };
-  
+
   render() {
     return (
       <TouchableOpacity
@@ -25,7 +25,7 @@ export default class ShareOptionView extends React.Component {
                   key={index}
                   style={styles.shareItem}
                   activeOpacity={0.8}
-                  onPress={() => {this.shareItemSelectedAtIndex(index)}}
+                  onPress={() => { this.shareItemSelectedAtIndex(index) }}
                 >
                   <Image
                     source={item.imageRef}
@@ -40,35 +40,35 @@ export default class ShareOptionView extends React.Component {
       </TouchableOpacity>
     )
   }
-  
+
   _onTapBackground = () => {
     this.props.onCloseWindow && this.props.onCloseWindow();
   };
-  
+
   shareItemSelectedAtIndex(index) {
     this.props.onShareItemSelected && this.props.onShareItemSelected(index);
   }
 }
 
 const shareOptions = [
-  {imageRef:require('../image/icon_share_qq.png'), title:'QQ'},
-  {imageRef:require('../image/icon_share_qzone.png'), title:'QQ空间'},
-  {imageRef:require('../image/icon_share_wxsession.png'), title:'微信'},
-  {imageRef:require('../image/icon_share_wxtimeline.png'), title:'朋友圈'},
-  {imageRef:require('../image/icon_share_sina.png'), title:'微博'},
-  {imageRef:require('../image/icon_share_copylink.png'), title:'复制链接'},
+  { imageRef: require('../image/icon_share_qq.png'), title: 'QQ' },
+  { imageRef: require('../image/icon_share_qzone.png'), title: 'QQ空间' },
+  { imageRef: require('../image/icon_share_wxsession.png'), title: '微信' },
+  { imageRef: require('../image/icon_share_wxtimeline.png'), title: '朋友圈' },
+  { imageRef: require('../image/icon_share_sina.png'), title: '微博' },
+  { imageRef: require('../image/icon_share_copylink.png'), title: '复制链接' },
 ];
 
 const styles = StyleSheet.create({
   container: {
     backgroundColor: 'rgba(0, 0, 0, 0.5)',
-    alignItems:'center',
-    justifyContent:'center'
+    alignItems: 'center',
+    justifyContent: 'center'
   },
   shareMenuView: {
-    flexDirection:'row',
-    flexWrap:'wrap',
-    alignItems:'center',
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    alignItems: 'center',
     marginTop: 10,
     width: 300,
   },
@@ -77,17 +77,17 @@ const styles = StyleSheet.create({
     color: 'white',
   },
   shareItem: {
-    alignItems:'center',
-    justifyContent:'center',
+    alignItems: 'center',
+    justifyContent: 'center',
     margin: 20
   },
   image: {
-    width:60,
-    height:60
+    width: 60,
+    height: 60
   },
   title: {
     marginTop: 5,
-    fontSize:13,
+    fontSize: 13,
     color: 'white'
   }
 });

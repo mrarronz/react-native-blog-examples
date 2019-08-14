@@ -1,25 +1,25 @@
 import React from 'react';
-import {View, Text, TouchableOpacity, StyleSheet} from 'react-native';
+import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 import PropTypes from 'prop-types';
 
 export default class SelectDefinitionView extends React.Component {
-  
+
   static defaultProps = {
     selectedIndex: -1
   };
-  
+
   static propTypes = {
     onItemSelected: PropTypes.func,
     onCloseWindow: PropTypes.func
   };
-  
+
   constructor(props) {
     super(props);
     this.state = {
       selectedIndex: this.props.selectedIndex
     }
   }
-  
+
   render() {
     return (
       <TouchableOpacity
@@ -38,7 +38,7 @@ export default class SelectDefinitionView extends React.Component {
                   style={[styles.optionItem, isSelected ? styles.optionItem_active : null]}
                   onPress={() => { this.onTapItemAtIndex(index); }}
                 >
-                  <Text style={[styles.optionText, isSelected ? styles.optionText_active: null]}>{item}</Text>
+                  <Text style={[styles.optionText, isSelected ? styles.optionText_active : null]}>{item}</Text>
                 </TouchableOpacity>
               )
             })
@@ -47,11 +47,11 @@ export default class SelectDefinitionView extends React.Component {
       </TouchableOpacity>
     )
   }
-  
+
   _onTapBackground = () => {
     this.props.onCloseWindow && this.props.onCloseWindow();
   };
-  
+
   onTapItemAtIndex(index) {
     if (this.state.selectedIndex !== index) {
       this.setState({
@@ -67,20 +67,20 @@ const optionItems = ['蓝光1080P', '超清720P', '高清480P', '标清270P'];
 const styles = StyleSheet.create({
   container: {
     backgroundColor: 'rgba(0, 0, 0, 0.5)',
-    alignItems:'center',
-    justifyContent:'center'
+    alignItems: 'center',
+    justifyContent: 'center'
   },
   optionView: {
-    alignItems:'center',
-    justifyContent:'space-between',
+    alignItems: 'center',
+    justifyContent: 'space-between',
   },
   optionItem: {
     marginTop: 10,
     marginBottom: 10,
     height: 40,
-    alignItems:'center',
-    justifyContent:'center',
-    paddingLeft:10,
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingLeft: 10,
     paddingRight: 10,
   },
   optionItem_active: {
